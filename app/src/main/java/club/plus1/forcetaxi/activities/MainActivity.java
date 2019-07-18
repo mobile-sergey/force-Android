@@ -1,8 +1,10 @@
-package club.plus1.forcetaxi;
+package club.plus1.forcetaxi.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import club.plus1.forcetaxi.R;
 
 public class MainActivity extends AppCompatActivity {
 
