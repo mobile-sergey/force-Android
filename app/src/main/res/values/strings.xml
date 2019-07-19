@@ -19,4 +19,11 @@
     <string name="email">E-mail</string>
     <string name="registration">Регистрация</string>
 
+    <!-- Экран 4.Регистрация. Подтверждение телефона -->
+    <string name="label_code">Введите код из СМС, которое мы отправили на номер </string>
+    <string name="code">Код из СМС</string>
+    <string name="send_sms">Отправить СМС</string>
+    <string name="verification">Подтвердить</string>
+
+
 </resources>

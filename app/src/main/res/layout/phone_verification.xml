@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/splash_screen"
+        android:src="@mipmap/ic_launcher"
+        style="@style/AppTheme.ForceTaxi.Logo"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textCode"
+        style="@style/AppTheme.ForceTaxi.Text"
+        android:text="@string/label_code" />
+
+    <EditText
+        android:id="@+id/editCode"
+        style="@style/AppTheme.ForceTaxi.Edit"
+        android:hint="@string/code"
+        android:inputType="number"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/buttonSendSMS"
+        style="@style/AppTheme.ForceTaxi.Button"
+        android:text="@string/send_sms" />
+
+    <Button
+        android:id="@+id/buttonVerification"
+        style="@style/AppTheme.ForceTaxi.Button"
+        android:text="@string/verification" />
+
+</LinearLayout>
