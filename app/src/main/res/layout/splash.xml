@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
     <ImageView
         android:id="@+id/splash_screen"
-        style="@style/AppTheme.ForceTaxi.Logo" />
+        android:src="@mipmap/ic_launcher"
+        style="@style/AppTheme.ForceTaxi.Logo"
+        tools:ignore="ContentDescription" />
 </LinearLayout>

@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.EnterActivity"/>
-        <activity android:name=".activities.EnterResultActivity"/>
+        <activity android:name=".activities.EnterActivity" />
+        <activity android:name=".activities.EnterResultActivity" />
+        <activity android:name=".activities.RegistrationActivity" />
     </application>
 
 </manifest>

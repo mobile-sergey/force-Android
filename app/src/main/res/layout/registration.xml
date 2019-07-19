@@ -27,19 +27,30 @@
         style="@style/AppTheme.ForceTaxi.Edit"
         tools:ignore="Autofill" />
 
+    <EditText
+        android:id="@+id/editConfirmation"
+        android:hint="@string/confirmation"
+        android:inputType="textPassword"
+        style="@style/AppTheme.ForceTaxi.Edit"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/editPhone"
+        style="@style/AppTheme.ForceTaxi.Edit"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        style="@style/AppTheme.ForceTaxi.Edit"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        tools:ignore="Autofill" />
+
     <Button
         android:id="@+id/buttonEnter"
         style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/enter" />
-
-    <TextView
-        android:id="@+id/linkRegister"
-        android:text="@string/register"
-        style="@style/AppTheme.ForceTaxi.Link" />
-
-    <TextView
-        android:id="@+id/textResult"
-        android:text="@string/remind_password"
-        style="@style/AppTheme.ForceTaxi.Link"  />
+        android:text="@string/registration" />
 
 </LinearLayout>

@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import club.plus1.forcetaxi.R;
 
 public class EnterActivity extends AppCompatActivity {
 
     Button buttonEnter;
+    TextView linkRegistration;
 
     View.OnClickListener listenerEnter = new View.OnClickListener() {
         @Override
@@ -21,6 +23,15 @@ public class EnterActivity extends AppCompatActivity {
         }
     };
 
+    View.OnClickListener listenerRegistraiton = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(EnterActivity.this, RegistrationActivity.class);
+            startActivity(intent);
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +39,8 @@ public class EnterActivity extends AppCompatActivity {
 
         buttonEnter = findViewById(R.id.buttonEnter);
         buttonEnter.setOnClickListener(listenerEnter);
+
+        linkRegistration = findViewById(R.id.linkRegister);
+        linkRegistration.setOnClickListener(listenerRegistraiton);
     }
 }

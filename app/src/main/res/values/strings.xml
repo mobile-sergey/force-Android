@@ -11,5 +11,12 @@
     <!-- Экран 2.Результат входа -->
     <string name="enter_success">Удалось войти</string>
 
+    <!-- Экран 3.Регистрация -->
+    <!-- <string name="login">Логин</string> -->
+    <!-- <string name="password">Пароль</string> -->
+    <string name="confirmation">Подтверждение пароля</string>
+    <string name="phone">Телефон</string>
+    <string name="email">E-mail</string>
+    <string name="registration">Регистрация</string>
 
 </resources>
