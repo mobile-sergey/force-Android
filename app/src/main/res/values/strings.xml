@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Force Taxi</string>
 
+    <!-- Экран 1.Вход -->
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
     <string name="enter">Войти</string>
     <string name="register"><u>Зарегистрироваться</u></string>
     <string name="remind_password"><u>Забыл пароль</u></string>
+
+    <!-- Экран 2.Результат входа -->
+    <string name="enter_success">Удалось войти</string>
+
+
 </resources>

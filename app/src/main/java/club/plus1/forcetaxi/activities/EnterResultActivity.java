@@ -5,18 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import club.plus1.forcetaxi.R;
 
-public class EnterActivity extends AppCompatActivity {
+public class EnterResultActivity extends AppCompatActivity {
 
-    Button buttonEnter;
+    View layout;
 
-    View.OnClickListener listenerEnter = new View.OnClickListener() {
+    View.OnClickListener listenerLayout = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(EnterActivity.this, EnterResultActivity.class);
+            Intent intent = new Intent(EnterResultActivity.this, EnterActivity.class);
             startActivity(intent);
         }
     };
@@ -24,9 +23,10 @@ public class EnterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.enter);
+        setContentView(R.layout.enter_result);
 
-        buttonEnter = findViewById(R.id.buttonEnter);
-        buttonEnter.setOnClickListener(listenerEnter);
+        layout = findViewById(R.id.layout);
+        layout.setOnClickListener(listenerLayout);
+
     }
 }

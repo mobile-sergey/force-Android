@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-
     <ImageView
         android:id="@+id/splash_screen"
         android:layout_width="wrap_content"
@@ -18,53 +17,29 @@
 
     <EditText
         android:id="@+id/editLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/login"
         android:inputType="textPersonName|text"
-        android:textSize="24sp" />
+        style="@style/AppTheme.ForceTaxi.Edit" />
 
     <EditText
         android:id="@+id/editPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:textSize="24sp" />
+        style="@style/AppTheme.ForceTaxi.Edit" />
 
     <Button
         android:id="@+id/buttonEnter"
-        style="@style/AppTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:text="@string/enter"
-        android:textColor="@color/colorAccent"
-        android:textSize="24sp" />
+        style="@style/AppTheme.ForceTaxi.Button"
+        android:text="@string/enter" />
 
     <TextView
         android:id="@+id/linkRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="10dp"
         android:text="@string/register"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp" />
+        style="@style/AppTheme.ForceTaxi.Link" />
 
     <TextView
-        android:id="@+id/linkRemindPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="10dp"
+        android:id="@+id/textResult"
         android:text="@string/remind_password"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp" />
+        style="@style/AppTheme.ForceTaxi.Link"  />
 
 </LinearLayout>
