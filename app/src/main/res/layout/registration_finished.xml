@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/splash_screen"
+        android:src="@mipmap/ic_launcher"
+        style="@style/AppTheme.ForceTaxi.Logo"
+        tools:ignore="ContentDescription" />
+
+
+    <TextView
+        android:id="@+id/textRegistrationFinished"
+        android:text="@string/label_registration_finished"
+        style="@style/AppTheme.ForceTaxi.Text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/statusBind"
+            style="@style/AppTheme.ForceTaxi.Status.Image"
+            android:src="@drawable/yes"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/linkBind"
+            style="@style/AppTheme.ForceTaxi.Status.Link"
+            android:text="@string/bind" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/statusRegistrationFNS"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/no"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/linkRegistrationFNS"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:layout_weight="1"
+            android:text="@string/registration_fns"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/statusGetAccess"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/wait"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/linkGetAccess"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:layout_weight="1"
+            android:text="@string/get_access"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/statusSetPIN"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/yes"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/linkSetPIN"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:layout_weight="1"
+            android:text="@string/set_pin"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonConfigureLater"
+        style="@style/AppTheme.ForceTaxi.Button"
+        android:text="@string/configure_later" />
+
+</LinearLayout>

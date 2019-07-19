@@ -24,7 +24,7 @@
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="AppTheme.ForceTaxi.Link">
+    <style name="AppTheme.ForceTaxi.Link" parent="AppTheme.ForceTaxi">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">10dp</item>
@@ -34,7 +34,7 @@
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="AppTheme.ForceTaxi.Text">
+    <style name="AppTheme.ForceTaxi.Text" parent="AppTheme.ForceTaxi">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">10dp</item>
@@ -43,12 +43,31 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="AppTheme.ForceTaxi.Logo">
+    <style name="AppTheme.ForceTaxi.Logo" parent="AppTheme.ForceTaxi">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:contentDescription">@string/app_name</item>
+    </style>
+
+    <style name="AppTheme.ForceTaxi.Status.Image" parent="AppTheme.ForceTaxi">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:contentDescription">@string/app_name</item>
+    </style>
+
+    <style name="AppTheme.ForceTaxi.Status.Link" parent="AppTheme.ForceTaxi.Link">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

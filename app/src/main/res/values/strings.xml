@@ -25,5 +25,12 @@
     <string name="send_sms">Отправить СМС</string>
     <string name="verification">Подтвердить</string>
 
+    <!-- Экран 5.Регистрация завершена -->
+    <string name="label_registration_finished">Для полноценной работы следует завершить следующие шаги:</string>
+    <string name="bind"><u>Привязать учет доходов \nи выбивание чеков</u></string>
+    <string name="registration_fns"><u>Зарегистрироваться в ФНС</u></string>
+    <string name="get_access"><u>Предоставить права \nплощадке ООО «Фокс Такси»</u></string>
+    <string name="set_pin"><u>Установить ПИН</u></string>
+    <string name="configure_later">Настроить позже</string>
 
 </resources>
