@@ -5,10 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <ImageView android:id="@+id/splash_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:src="@mipmap/ic_launcher"
-        android:layout_gravity="center"
-        android:contentDescription="@string/app_name" />
+    <ImageView
+        android:id="@+id/splash_screen"
+        style="@style/AppTheme.ForceTaxi.Logo" />
 </LinearLayout>
