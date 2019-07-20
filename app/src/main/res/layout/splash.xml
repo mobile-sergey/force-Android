@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/splash_screen"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/logo"
         style="@style/AppTheme.ForceTaxi.Logo"
         tools:ignore="ContentDescription" />
 </LinearLayout>
