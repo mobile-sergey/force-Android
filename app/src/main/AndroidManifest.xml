@@ -31,6 +31,7 @@
         <activity android:name=".activities.RecoveryEmailActivity" />
         <activity android:name=".activities.RecoveryPhoneActivity" />
         <activity android:name=".activities.PasswordActivity" />
+        <activity android:name=".activities.PasswordResultActivity" />
     </application>
 
 </manifest>

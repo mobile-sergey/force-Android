@@ -15,7 +15,7 @@ public class PasswordActivity extends AppCompatActivity {
     View.OnClickListener listenerChangePassword = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(PasswordActivity.this, RecoveryActivity.class);
+            Intent intent = new Intent(PasswordActivity.this, PasswordResultActivity.class);
             startActivity(intent);
         }
     };

@@ -9,7 +9,7 @@
     <string name="link_recovery"><u>Забыл пароль</u></string>
 
     <!-- Экран 2.Результат входа (enter_result.xml) -->
-    <string name="text_result_success">Удалось войти</string>
+    <string name="text_enter_success">Удалось войти</string>
 
     <!-- Экран 3.Регистрация (registration.xml) -->
     <!-- <string name="edit_login">Логин</string> -->
@@ -53,5 +53,7 @@
     <!-- <string name="edit_confirmation">Подтверждение пароля</string> -->
     <string name="button_change_password">Сменить пароль</string>
 
+    <!-- Экран 10.Смена пароля. Результат (password_result.xml) -->
+    <string name="text_password_success">Пароль успешно изменен</string>
 
 </resources>

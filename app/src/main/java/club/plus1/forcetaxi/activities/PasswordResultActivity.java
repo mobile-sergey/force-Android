@@ -8,22 +8,23 @@ import android.view.View;
 
 import club.plus1.forcetaxi.R;
 
-public class EnterResultActivity extends AppCompatActivity {
+public class PasswordResultActivity extends AppCompatActivity {
 
     View layout;
 
     View.OnClickListener listenerLayout = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(EnterResultActivity.this, EnterActivity.class);
+            Intent intent = new Intent(PasswordResultActivity.this, EnterActivity.class);
             startActivity(intent);
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.enter_result);
+        setContentView(R.layout.password_result);
 
         layout = findViewById(R.id.layout);
         layout.setOnClickListener(listenerLayout);
