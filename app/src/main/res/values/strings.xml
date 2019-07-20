@@ -23,7 +23,7 @@
     <string name="text_code">Введите код из СМС, которое мы отправили на номер </string>
     <string name="edit_code">Код из СМС</string>
     <string name="button_send_sms">Отправить СМС</string>
-    <string name="button_verification">Подтвердить</string>
+    <string name="button_confirm">Подтвердить</string>
 
     <!-- Экран 5.Регистрация завершена (registration_finished.xml) -->
     <string name="text_registration">Для полноценной работы следует завершить следующие шаги:</string>
@@ -41,5 +41,10 @@
     <!-- Экран 7.Восстановление пароля по e-mail (recovery_email.xml) -->
     <string name="text_recovery_email">На почту отправлены инструкции по восстановлению пароля</string>
 
+    <!-- Экран 8.Восстановление пароля по телефону (recovery_phone.xml) -->
+    <!-- <string name="text_code">Введите код из СМС, которое мы отправили на номер </string> -->
+    <!-- <string name="edit_code">Код из СМС</string> -->
+    <!-- <string name="button_send_sms">Отправить СМС</string> -->
+    <!-- <string name="button_confirm">Подтвердить</string> -->
 
 </resources>

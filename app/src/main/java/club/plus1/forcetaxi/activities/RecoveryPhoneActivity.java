@@ -9,14 +9,13 @@ import android.widget.Button;
 
 import club.plus1.forcetaxi.R;
 
-public class RecoveryEmailActivity extends AppCompatActivity {
+public class RecoveryPhoneActivity extends AppCompatActivity {
 
-    View layout;
-
-    View.OnClickListener listenerLayout = new View.OnClickListener() {
+    Button butonConfirm;
+    View.OnClickListener listenerConfirm = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(RecoveryEmailActivity.this, RecoveryPhoneActivity.class);
+            Intent intent = new Intent(RecoveryPhoneActivity.this, RecoveryActivity.class);
             startActivity(intent);
         }
     };
@@ -24,9 +23,9 @@ public class RecoveryEmailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recovery_email);
+        setContentView(R.layout.recovery_phone);
 
-        layout = findViewById(R.id.layout);
-        layout.setOnClickListener(listenerLayout);
+        butonConfirm = findViewById(R.id.buttonConfirm);
+        butonConfirm.setOnClickListener(listenerConfirm);
     }
 }
