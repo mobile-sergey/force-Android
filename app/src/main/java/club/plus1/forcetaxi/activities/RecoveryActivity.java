@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import club.plus1.forcetaxi.R;
 
-public class PasswordRecoveryActivity extends AppCompatActivity {
+public class RecoveryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.password_recovery);
+        setContentView(R.layout.recovery);
     }
 }

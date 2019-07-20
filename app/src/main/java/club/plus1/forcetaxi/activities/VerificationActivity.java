@@ -9,13 +9,13 @@ import android.widget.Button;
 
 import club.plus1.forcetaxi.R;
 
-public class PhoneVerificationActivity extends AppCompatActivity {
+public class VerificationActivity extends AppCompatActivity {
 
     Button butonVerification;
     View.OnClickListener listenerVerification = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(PhoneVerificationActivity.this, RegistrationFinishedActivity.class);
+            Intent intent = new Intent(VerificationActivity.this, RegistrationFinishedActivity.class);
             startActivity(intent);
         }
     };
@@ -23,7 +23,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phone_verification);
+        setContentView(R.layout.verification);
 
         butonVerification = findViewById(R.id.buttonVerification);
         butonVerification.setOnClickListener(listenerVerification);

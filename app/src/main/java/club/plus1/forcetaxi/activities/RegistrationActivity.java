@@ -15,7 +15,7 @@ public class RegistrationActivity extends AppCompatActivity {
     View.OnClickListener listenerRegistraiton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(RegistrationActivity.this, PhoneVerificationActivity.class);
+            Intent intent = new Intent(RegistrationActivity.this, VerificationActivity.class);
             startActivity(intent);
         }
     };

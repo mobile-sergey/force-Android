@@ -23,9 +23,9 @@
         <activity android:name=".activities.EnterActivity" />
         <activity android:name=".activities.EnterResultActivity" />
         <activity android:name=".activities.RegistrationActivity" />
-        <activity android:name=".activities.PhoneVerificationActivity" />
+        <activity android:name=".activities.VerificationActivity" />
         <activity android:name=".activities.RegistrationFinishedActivity" />
-        <activity android:name=".activities.PasswordRecoveryActivity" />
+        <activity android:name=".activities.RecoveryActivity" />
     </application>
 
 </manifest>

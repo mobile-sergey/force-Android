@@ -35,7 +35,7 @@ public class EnterActivity extends AppCompatActivity {
     View.OnClickListener listenerRecovery = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(EnterActivity.this, PasswordRecoveryActivity.class);
+            Intent intent = new Intent(EnterActivity.this, RecoveryActivity.class);
             startActivity(intent);
         }
     };
