@@ -25,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
-        butonRegistration = findViewById(R.id.buttonEnter);
+        butonRegistration = findViewById(R.id.buttonRegistration);
         butonRegistration.setOnClickListener(listenerRegistraiton);
 
     }

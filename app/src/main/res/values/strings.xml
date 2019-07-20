@@ -1,42 +1,42 @@
 <resources>
     <string name="app_name">Force Taxi</string>
 
-    <!-- Экран 1.Вход -->
-    <string name="login">Логин</string>
-    <string name="password">Пароль</string>
-    <string name="enter">Войти</string>
-    <string name="register"><u>Зарегистрироваться</u></string>
-    <string name="remind_password"><u>Забыл пароль</u></string>
+    <!-- Экран 1.Вход (enter.xml) -->
+    <string name="edit_login">Логин</string>
+    <string name="edit_password">Пароль</string>
+    <string name="button_enter">Войти</string>
+    <string name="link_register"><u>Зарегистрироваться</u></string>
+    <string name="link_recovery"><u>Забыл пароль</u></string>
 
-    <!-- Экран 2.Результат входа -->
-    <string name="enter_success">Удалось войти</string>
+    <!-- Экран 2.Результат входа (enter_result.xml) -->
+    <string name="text_result_success">Удалось войти</string>
 
-    <!-- Экран 3.Регистрация -->
-    <!-- <string name="login">Логин</string> -->
-    <!-- <string name="password">Пароль</string> -->
-    <string name="confirmation">Подтверждение пароля</string>
-    <string name="phone">Телефон</string>
-    <string name="email">E-mail</string>
-    <string name="registration">Регистрация</string>
+    <!-- Экран 3.Регистрация (registration.xml) -->
+    <!-- <string name="edit_login">Логин</string> -->
+    <!-- <string name="edit_password">Пароль</string> -->
+    <string name="edit_confirmation">Подтверждение пароля</string>
+    <string name="edit_phone">Телефон</string>
+    <string name="edit_email">E-mail</string>
+    <string name="button_registration">Регистрация</string>
 
-    <!-- Экран 4.Регистрация. Подтверждение телефона -->
-    <string name="label_code">Введите код из СМС, которое мы отправили на номер </string>
-    <string name="code">Код из СМС</string>
-    <string name="send_sms">Отправить СМС</string>
-    <string name="verification">Подтвердить</string>
+    <!-- Экран 4.Регистрация. Подтверждение телефона (phone_verification.xml) -->
+    <string name="text_code">Введите код из СМС, которое мы отправили на номер </string>
+    <string name="edit_code">Код из СМС</string>
+    <string name="button_send_sms">Отправить СМС</string>
+    <string name="button_verification">Подтвердить</string>
 
-    <!-- Экран 5.Регистрация завершена -->
-    <string name="label_registration_finished">Для полноценной работы следует завершить следующие шаги:</string>
-    <string name="bind"><u>Привязать учет доходов \nи выбивание чеков</u></string>
-    <string name="registration_fns"><u>Зарегистрироваться в ФНС</u></string>
-    <string name="get_access"><u>Предоставить права \nплощадке ООО «Фокс Такси»</u></string>
-    <string name="set_pin"><u>Установить ПИН</u></string>
-    <string name="configure_later">Настроить позже</string>
+    <!-- Экран 5.Регистрация завершена (registration_finished.xml) -->
+    <string name="text_registration">Для полноценной работы следует завершить следующие шаги:</string>
+    <string name="link_bind"><u>Привязать учет доходов \nи выбивание чеков</u></string>
+    <string name="link_registration_fns"><u>Зарегистрироваться в ФНС</u></string>
+    <string name="link_get_access"><u>Предоставить права \nплощадке ООО «Фокс Такси»</u></string>
+    <string name="link_set_pin"><u>Установить ПИН</u></string>
+    <string name="button_configure_later">Настроить позже</string>
 
-    <!-- Экран 6.Восстановление пароля -->
-    <string name="label_password_recovery">Укажите почту или телефон для восстановления пароля</string>
-    <string name="phonemail">E-mail или телефон</string>
-    <string name="recovery">Восстановить</string>
+    <!-- Экран 6.Восстановление пароля (password_recovery.xml) -->
+    <string name="text_recovery">Укажите почту или телефон для восстановления пароля</string>
+    <string name="edit_phonemail">E-mail или телефон</string>
+    <string name="button_recovery">Восстановить</string>
 
 
 </resources>

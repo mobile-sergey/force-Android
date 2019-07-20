@@ -15,14 +15,14 @@
 
     <EditText
         android:id="@+id/editLogin"
-        android:hint="@string/login"
+        android:hint="@string/edit_login"
         android:inputType="textPersonName|text"
         style="@style/AppTheme.ForceTaxi.Edit"
         tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editPassword"
-        android:hint="@string/password"
+        android:hint="@string/edit_password"
         android:inputType="textPassword"
         style="@style/AppTheme.ForceTaxi.Edit"
         tools:ignore="Autofill" />
@@ -30,16 +30,16 @@
     <Button
         android:id="@+id/buttonEnter"
         style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/enter" />
+        android:text="@string/button_enter" />
 
     <TextView
         android:id="@+id/linkRegister"
-        android:text="@string/register"
+        android:text="@string/link_register"
         style="@style/AppTheme.ForceTaxi.Link" />
 
     <TextView
         android:id="@+id/linkRecovery"
-        android:text="@string/remind_password"
+        android:text="@string/link_recovery"
         style="@style/AppTheme.ForceTaxi.Link"  />
 
 </LinearLayout>

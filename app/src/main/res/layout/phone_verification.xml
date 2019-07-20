@@ -16,23 +16,23 @@
     <TextView
         android:id="@+id/textCode"
         style="@style/AppTheme.ForceTaxi.Text"
-        android:text="@string/label_code" />
+        android:text="@string/text_code" />
 
     <EditText
         android:id="@+id/editCode"
         style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/code"
+        android:hint="@string/edit_code"
         android:inputType="number"
         tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/buttonSendSMS"
         style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/send_sms" />
+        android:text="@string/button_send_sms" />
 
     <Button
         android:id="@+id/buttonVerification"
         style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/verification" />
+        android:text="@string/button_verification" />
 
 </LinearLayout>

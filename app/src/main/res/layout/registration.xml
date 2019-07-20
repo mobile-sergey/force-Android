@@ -15,21 +15,21 @@
 
     <EditText
         android:id="@+id/editLogin"
-        android:hint="@string/login"
+        android:hint="@string/edit_login"
         android:inputType="textPersonName|text"
         style="@style/AppTheme.ForceTaxi.Edit"
         tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editPassword"
-        android:hint="@string/password"
+        android:hint="@string/edit_password"
         android:inputType="textPassword"
         style="@style/AppTheme.ForceTaxi.Edit"
         tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editConfirmation"
-        android:hint="@string/confirmation"
+        android:hint="@string/edit_confirmation"
         android:inputType="textPassword"
         style="@style/AppTheme.ForceTaxi.Edit"
         tools:ignore="Autofill" />
@@ -37,20 +37,20 @@
     <EditText
         android:id="@+id/editPhone"
         style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/phone"
+        android:hint="@string/edit_phone"
         android:inputType="phone"
         tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editEmail"
         style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/email"
+        android:hint="@string/edit_email"
         android:inputType="textEmailAddress"
         tools:ignore="Autofill" />
 
     <Button
-        android:id="@+id/buttonEnter"
+        android:id="@+id/buttonRegistration"
         style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/registration" />
+        android:text="@string/button_registration" />
 
 </LinearLayout>

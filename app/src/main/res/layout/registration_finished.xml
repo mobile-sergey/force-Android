@@ -13,10 +13,9 @@
         style="@style/AppTheme.ForceTaxi.Logo"
         tools:ignore="ContentDescription" />
 
-
     <TextView
-        android:id="@+id/textRegistrationFinished"
-        android:text="@string/label_registration_finished"
+        android:id="@+id/textRegistration"
+        android:text="@string/text_registration"
         style="@style/AppTheme.ForceTaxi.Text" />
 
     <LinearLayout
@@ -34,7 +33,7 @@
         <TextView
             android:id="@+id/linkBind"
             style="@style/AppTheme.ForceTaxi.Status.Link"
-            android:text="@string/bind" />
+            android:text="@string/link_bind" />
 
     </LinearLayout>
 
@@ -57,7 +56,7 @@
             android:id="@+id/linkRegistrationFNS"
             style="@style/AppTheme.ForceTaxi.Link"
             android:layout_weight="1"
-            android:text="@string/registration_fns"
+            android:text="@string/link_registration_fns"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
@@ -82,7 +81,7 @@
             android:id="@+id/linkGetAccess"
             style="@style/AppTheme.ForceTaxi.Link"
             android:layout_weight="1"
-            android:text="@string/get_access"
+            android:text="@string/link_get_access"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
@@ -107,7 +106,7 @@
             android:id="@+id/linkSetPIN"
             style="@style/AppTheme.ForceTaxi.Link"
             android:layout_weight="1"
-            android:text="@string/set_pin"
+            android:text="@string/link_set_pin"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
@@ -116,6 +115,6 @@
     <Button
         android:id="@+id/buttonConfigureLater"
         style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/configure_later" />
+        android:text="@string/button_configure_later" />
 
 </LinearLayout>

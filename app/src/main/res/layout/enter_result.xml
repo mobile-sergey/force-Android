@@ -18,6 +18,6 @@
     <TextView
         android:id="@+id/textResult"
         style="@style/AppTheme.ForceTaxi.Text"
-        android:text="@string/enter_success" />
+        android:text="@string/text_result_success" />
 
 </LinearLayout>
