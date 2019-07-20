@@ -9,13 +9,13 @@ import android.widget.Button;
 
 import club.plus1.forcetaxi.R;
 
-public class RecoveryPhoneActivity extends AppCompatActivity {
+public class PasswordActivity extends AppCompatActivity {
 
-    Button butonConfirm;
-    View.OnClickListener listenerConfirm = new View.OnClickListener() {
+    Button buttonChangePassword;
+    View.OnClickListener listenerChangePassword = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(RecoveryPhoneActivity.this, PasswordActivity.class);
+            Intent intent = new Intent(PasswordActivity.this, RecoveryActivity.class);
             startActivity(intent);
         }
     };
@@ -23,9 +23,9 @@ public class RecoveryPhoneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recovery_phone);
+        setContentView(R.layout.password);
 
-        butonConfirm = findViewById(R.id.buttonConfirm);
-        butonConfirm.setOnClickListener(listenerConfirm);
+        buttonChangePassword = findViewById(R.id.buttonChangePassword);
+        buttonChangePassword.setOnClickListener(listenerChangePassword);
     }
 }

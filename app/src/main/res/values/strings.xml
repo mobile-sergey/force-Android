@@ -47,4 +47,11 @@
     <!-- <string name="button_send_sms">Отправить СМС</string> -->
     <!-- <string name="button_confirm">Подтвердить</string> -->
 
+    <!-- Экран 9.Смена пароля (password.xml) -->
+    <string name="text_password">Придумайте новый пароль:</string>
+    <!-- <string name="edit_password">Пароль</string> -->
+    <!-- <string name="edit_confirmation">Подтверждение пароля</string> -->
+    <string name="button_change_password">Сменить пароль</string>
+
+
 </resources>
