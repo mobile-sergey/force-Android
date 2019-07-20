@@ -19,7 +19,7 @@
     <string name="edit_email">E-mail</string>
     <string name="button_registration">Регистрация</string>
 
-    <!-- Экран 4.Регистрация. Подтверждение телефона (phone_verification.xml) -->
+    <!-- Экран 4.Регистрация. Подтверждение телефона (verification.xml) -->
     <string name="text_code">Введите код из СМС, которое мы отправили на номер </string>
     <string name="edit_code">Код из СМС</string>
     <string name="button_send_sms">Отправить СМС</string>
@@ -33,10 +33,13 @@
     <string name="link_set_pin"><u>Установить ПИН</u></string>
     <string name="button_configure_later">Настроить позже</string>
 
-    <!-- Экран 6.Восстановление пароля (password_recovery.xml) -->
+    <!-- Экран 6.Восстановление пароля (recovery.xml) -->
     <string name="text_recovery">Укажите почту или телефон для восстановления пароля</string>
     <string name="edit_phonemail">E-mail или телефон</string>
     <string name="button_recovery">Восстановить</string>
+
+    <!-- Экран 7.Восстановление пароля по e-mail (recovery_email.xml) -->
+    <string name="text_recovery_email">На почту отправлены инструкции по восстановлению пароля</string>
 
 
 </resources>
