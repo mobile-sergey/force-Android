@@ -33,4 +33,10 @@
     <string name="set_pin"><u>Установить ПИН</u></string>
     <string name="configure_later">Настроить позже</string>
 
+    <!-- Экран 6.Восстановление пароля -->
+    <string name="label_password_recovery">Укажите почту или телефон для восстановления пароля</string>
+    <string name="phonemail">E-mail или телефон</string>
+    <string name="recovery">Восстановить</string>
+
+
 </resources>

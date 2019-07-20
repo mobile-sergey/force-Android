@@ -38,7 +38,7 @@
         style="@style/AppTheme.ForceTaxi.Link" />
 
     <TextView
-        android:id="@+id/textResult"
+        android:id="@+id/linkRecovery"
         android:text="@string/remind_password"
         style="@style/AppTheme.ForceTaxi.Link"  />
 

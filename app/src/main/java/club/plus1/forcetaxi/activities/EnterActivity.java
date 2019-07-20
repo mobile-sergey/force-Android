@@ -14,6 +14,7 @@ public class EnterActivity extends AppCompatActivity {
 
     Button buttonEnter;
     TextView linkRegistration;
+    TextView linkRecovery;
 
     View.OnClickListener listenerEnter = new View.OnClickListener() {
         @Override
@@ -31,6 +32,13 @@ public class EnterActivity extends AppCompatActivity {
         }
     };
 
+    View.OnClickListener listenerRecovery = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(EnterActivity.this, PasswordRecoveryActivity.class);
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +50,8 @@ public class EnterActivity extends AppCompatActivity {
 
         linkRegistration = findViewById(R.id.linkRegister);
         linkRegistration.setOnClickListener(listenerRegistraiton);
+
+        linkRecovery = findViewById(R.id.linkRecovery);
+        linkRecovery.setOnClickListener(listenerRecovery);
     }
 }
