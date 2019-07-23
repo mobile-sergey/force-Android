@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/splash_screen"
         android:src="@drawable/logo"
         style="@style/AppTheme.ForceTaxi.Logo"
         tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/text_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/version"
+        android:textAlignment="center" />
 </LinearLayout>

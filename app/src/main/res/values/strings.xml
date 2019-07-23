@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Force Taxi</string>
+    <string name="version">version %1$s.%2$d</string>
 
     <!-- Экран 1.Вход (enter.xml) -->
     <string name="edit_login">Логин</string>
