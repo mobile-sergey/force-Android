@@ -1,4 +1,4 @@
-package club.plus1.forcetaxi.activities;
+package club.plus1.forcetaxi.view;
 
 import android.app.Activity;
 import android.content.pm.PackageInfo;
