@@ -15,7 +15,7 @@ public class RegistrationFinishedActivity extends AppCompatActivity {
     View.OnClickListener listenerSetPIN = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(RegistrationFinishedActivity.this, SetPINActivity.class);
+            Intent intent = new Intent(RegistrationFinishedActivity.this, PINSetActivity.class);
             startActivity(intent);
         }
     };

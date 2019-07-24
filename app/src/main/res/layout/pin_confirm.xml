@@ -14,14 +14,14 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textConfirmPIN"
+        android:id="@+id/textPINConfirm"
         style="@style/AppTheme.ForceTaxi.Text"
-        android:text="@string/text_confirm_pin" />
+        android:text="@string/text_pin_confirm" />
 
     <EditText
-        android:id="@+id/editConfirmPIN"
+        android:id="@+id/editPINConfirm"
         style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/edit_confirm_pin"
+        android:hint="@string/edit_pin_confirm"
         android:inputType="numberPassword"
         android:textAlignment="center"
         tools:ignore="Autofill" />

@@ -57,9 +57,9 @@
     <!-- Экран 10.Смена пароля. Результат (password_result.xml) -->
     <string name="text_password_success">Пароль успешно изменен</string>
 
-    <!-- Экран 30.Установка ПИН (set_pin.xml) -->
-    <string name="text_think_up_pin">Придумайте пинкод</string>
-    <string name="edit_pin">Пинкод</string>
+    <!-- Экран 30.Установка ПИН (pin_set.xml) -->
+    <string name="text_pin_set">Придумайте пинкод</string>
+    <string name="edit_pin_set">Пинкод</string>
     <string name="button_1">1</string>
     <string name="button_2">2</string>
     <string name="button_3">3</string>
@@ -72,9 +72,9 @@
     <string name="button_0">0</string>
     <string name="button_next">Продолжить</string>
 
-    <!-- Экран 31.Подтверждение ПИН (confirm_pin.xml) -->
-    <string name="text_confirm_pin">Подтвердите пинкод</string>
-    <string name="edit_confirm_pin">Пинкод повторно</string>
+    <!-- Экран 31.Подтверждение ПИН (pin_confirm.xml) -->
+    <string name="text_pin_confirm">Подтвердите пинкод</string>
+    <string name="edit_pin_confirm">Пинкод повторно</string>
     <!-- <string name="button_1">1</string> -->
     <!-- <string name="button_2">2</string> -->
     <!-- <string name="button_3">3</string> -->

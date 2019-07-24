@@ -13,8 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ForceTaxi"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".view.PINResultActivity"></activity>
-        <activity android:name=".view.ConfirmPINActivity" />
         <activity
             android:name=".view.SplashActivity"
             android:label="@string/app_name">
@@ -34,7 +32,9 @@
         <activity android:name=".view.RecoveryPhoneActivity" />
         <activity android:name=".view.PasswordActivity" />
         <activity android:name=".view.PasswordResultActivity" />
-        <activity android:name=".view.SetPINActivity" />
+        <activity android:name=".view.PINSetActivity" />
+        <activity android:name=".view.PINConfirmActivity" />
+        <activity android:name=".view.PINResultActivity" />
     </application>
 
 </manifest>
