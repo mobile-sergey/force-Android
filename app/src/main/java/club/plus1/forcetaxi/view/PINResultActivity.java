@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import club.plus1.forcetaxi.R;
 
-public class ConfirmPINActivity extends AppCompatActivity {
+public class PINResultActivity extends AppCompatActivity {
 
-    Button butonNext;
-    View.OnClickListener listenerNext = new View.OnClickListener() {
+    View layout;
+
+    View.OnClickListener listenerLayout = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(ConfirmPINActivity.this, PINResultActivity.class);
+            Intent intent = new Intent(PINResultActivity.this, EnterActivity.class);
             startActivity(intent);
         }
     };
@@ -23,9 +23,9 @@ public class ConfirmPINActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.confirm_pin);
+        setContentView(R.layout.pin_result);
 
-        butonNext = findViewById(R.id.buttonNext);
-        butonNext.setOnClickListener(listenerNext);
+        layout = findViewById(R.id.layout);
+        layout.setOnClickListener(listenerLayout);
     }
 }

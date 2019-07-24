@@ -87,4 +87,7 @@
     <!-- <string name="button_0">0</string> -->
     <!-- <string name="button_next">Продолжить</string> -->
 
+    <!-- Экран 32.Установка ПИН. Результат (pin_result.xml) -->
+    <string name="text_pin_success">Пинкод успешно установлен</string>
+
 </resources>
