@@ -32,6 +32,7 @@
         <activity android:name=".view.RecoveryPhoneActivity" />
         <activity android:name=".view.PasswordActivity" />
         <activity android:name=".view.PasswordResultActivity" />
+        <activity android:name=".view.SetPINActivity" />
     </application>
 
 </manifest>
