@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/splash_screen"
+        android:src="@drawable/logo"
+        style="@style/AppTheme.ForceTaxi.Logo"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textConfirmPIN"
+        style="@style/AppTheme.ForceTaxi.Text"
+        android:text="@string/text_confirm_pin" />
+
+    <EditText
+        android:id="@+id/editConfirmPIN"
+        style="@style/AppTheme.ForceTaxi.Edit"
+        android:hint="@string/edit_confirm_pin"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
+        tools:ignore="Autofill" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button7"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_7" />
+
+        <Button
+            android:id="@+id/button8"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_8" />
+
+        <Button
+            android:id="@+id/button9"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_9" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_4" />
+
+        <Button
+            android:id="@+id/button5"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_5" />
+
+        <Button
+            android:id="@+id/button6"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_6" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_1" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_2" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button0"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="2"
+            android:text="@string/button_0" />
+
+        <Button
+            android:id="@+id/buttonNext"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_weight="1"
+            android:text="@string/button_next" />
+    </LinearLayout>
+
+</LinearLayout>
