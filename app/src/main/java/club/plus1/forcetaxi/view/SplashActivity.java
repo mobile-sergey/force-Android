@@ -1,37 +1,40 @@
 package club.plus1.forcetaxi.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.content.Intent;
 import android.os.Handler;
-import android.widget.TextView;
+
+import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.databinding.SplashBinding;
+import club.plus1.forcetaxi.viewmodel.SplashViewModel;
 
 public class SplashActivity extends Activity {
 
     // Время в милесекундах, в течение которого будет отображаться Splash Screen
-    private final int SPLASH_DISPLAY_LENGTH = 2000;
+    private final int SPLASH_DISPLAY_LENGTH = 1000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
 
+        PackageInfo pInfo = null;
         try {
-            Resources res = getResources();
-            PackageInfo pInfo;
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            String version = pInfo.versionName;
-            int verCode = pInfo.versionCode;
-            String versionString = res.getString(R.string.version, version, verCode);
-            TextView versionView = findViewById(R.id.text_version);
-            versionView.setText(versionString);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+        }
+
+        if (pInfo == null) {
+            setContentView(R.layout.splash);
+        } else {
+            SplashViewModel splashViewModel = new SplashViewModel(pInfo.versionName, pInfo.versionCode);
+            SplashBinding binding = DataBindingUtil.setContentView(this, R.layout.splash);
+            binding.setSplash(splashViewModel);
         }
 
         new Handler().postDelayed(new Runnable() {
