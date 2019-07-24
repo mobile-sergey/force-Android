@@ -18,6 +18,6 @@
     <TextView
         android:id="@+id/textRecoveryEmail"
         style="@style/AppTheme.ForceTaxi.Text"
-        android:text="@string/text_recovery_email" />
+        android:text="@string/text_recovery_success" />
 
 </LinearLayout>

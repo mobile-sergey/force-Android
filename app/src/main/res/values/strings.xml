@@ -11,6 +11,7 @@
 
     <!-- Экран 2.Результат входа (enter_result.xml) -->
     <string name="text_enter_success">Удалось войти</string>
+    <string name="text_enter_error">При входе возникла ошибка:\n%1$s</string>
 
     <!-- Экран 3.Регистрация (registration.xml) -->
     <!-- <string name="edit_login">Логин</string> -->
@@ -21,7 +22,7 @@
     <string name="button_registration">Регистрация</string>
 
     <!-- Экран 4.Регистрация. Подтверждение телефона (verification.xml) -->
-    <string name="text_code">Введите код из СМС, которое мы отправили на номер </string>
+    <string name="text_code">Введите код из СМС, которое мы отправили на номер %1$d</string>
     <string name="edit_code">Код из СМС</string>
     <string name="button_send_sms">Отправить СМС</string>
     <string name="button_confirm">Подтвердить</string>
@@ -40,7 +41,8 @@
     <string name="button_recovery">Восстановить</string>
 
     <!-- Экран 7.Восстановление пароля по e-mail (recovery_email.xml) -->
-    <string name="text_recovery_email">На почту отправлены инструкции по восстановлению пароля</string>
+    <string name="text_recovery_success">На почту отправлены инструкции по восстановлению пароля</string>
+    <string name="text_recovery_error">При восстановлении пароля по e-mail возникла ошибка:\n%1$s</string>
 
     <!-- Экран 8.Восстановление пароля по телефону (recovery_phone.xml) -->
     <!-- <string name="text_code">Введите код из СМС, которое мы отправили на номер </string> -->
@@ -56,6 +58,7 @@
 
     <!-- Экран 10.Смена пароля. Результат (password_result.xml) -->
     <string name="text_password_success">Пароль успешно изменен</string>
+    <string name="text_password_error">При смене пароля возникла ошибка:\n%1$s</string>
 
     <!-- Экран 30.Установка ПИН (pin_set.xml) -->
     <string name="text_pin_set">Придумайте пинкод</string>
@@ -89,6 +92,7 @@
 
     <!-- Экран 32.Установка ПИН. Результат (pin_result.xml) -->
     <string name="text_pin_success">Пинкод успешно установлен</string>
+    <string name="text_pin_error">При установке пинкода возникла ошибка:\n%1$s</string>
 
     <!-- Экран 33.Ввод ПИН (pin_enter.xml) -->
     <string name="text_pin_enter">Введите ПИН-код для входа в приложение</string>
@@ -104,6 +108,5 @@
     <!-- <string name="button_9">9</string> -->
     <!-- <string name="button_0">0</string> -->
     <!-- <string name="button_next">Продолжить</string> -->
-
 
 </resources>
