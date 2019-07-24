@@ -35,6 +35,7 @@
         <activity android:name=".view.PINSetActivity" />
         <activity android:name=".view.PINConfirmActivity" />
         <activity android:name=".view.PINResultActivity" />
+        <activity android:name=".view.PINEnterActivity" />
     </application>
 
 </manifest>
