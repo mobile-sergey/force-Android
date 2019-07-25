@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="20dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/splash_screen"
-        android:src="@drawable/logo"
-        style="@style/AppTheme.ForceTaxi.Logo"
-        tools:ignore="ContentDescription" />
+    <data>
 
-    <EditText
-        android:id="@+id/editLogin"
-        android:hint="@string/edit_login"
-        android:inputType="textPersonName|text"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        tools:ignore="Autofill" />
+        <variable
+            name="enter"
+            type="club.plus1.forcetaxi.viewmodel.EnterViewModel" />
+    </data>
 
-    <EditText
-        android:id="@+id/editPassword"
-        android:hint="@string/edit_password"
-        android:inputType="textPassword"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        tools:ignore="Autofill" />
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/buttonEnter"
-        style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/button_enter" />
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/linkRegister"
-        android:text="@string/link_register"
-        style="@style/AppTheme.ForceTaxi.Link" />
+        <EditText
+            android:id="@+id/editLogin"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_login"
+            android:inputType="textPersonName|text"
+            tools:ignore="Autofill" />
 
-    <TextView
-        android:id="@+id/linkRecovery"
-        android:text="@string/link_recovery"
-        style="@style/AppTheme.ForceTaxi.Link"  />
+        <EditText
+            android:id="@+id/editPassword"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/buttonEnter"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> enter.onEnter(context)}"
+            android:text="@string/button_enter" />
+
+        <TextView
+            android:id="@+id/linkRegister"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:onClick="@{() -> enter.onRegister(context)}"
+            android:text="@string/link_register" />
+
+        <TextView
+            android:id="@+id/linkRecovery"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:onClick="@{() -> enter.onRecovery(context)}"
+            android:text="@string/link_recovery" />
+
+    </LinearLayout>
+</layout>
