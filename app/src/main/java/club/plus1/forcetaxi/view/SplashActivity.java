@@ -2,8 +2,6 @@ package club.plus1.forcetaxi.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -18,25 +16,18 @@ public class SplashActivity extends Activity {
     // Время в милесекундах, в течение которого будет отображаться Splash Screen
     private final int SPLASH_DISPLAY_LENGTH = 1000;
 
+    private SplashViewModel viewModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        PackageInfo pInfo = null;
-        try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        // Создаём ViewModel и показываем экран исползуя биндинги
+        viewModel = new SplashViewModel(this);
+        SplashBinding binding = DataBindingUtil.setContentView(this, R.layout.splash);
+        binding.setSplash(viewModel);
 
-        if (pInfo == null) {
-            setContentView(R.layout.splash);
-        } else {
-            SplashViewModel splashViewModel = new SplashViewModel(pInfo.versionName, pInfo.versionCode);
-            SplashBinding binding = DataBindingUtil.setContentView(this, R.layout.splash);
-            binding.setSplash(splashViewModel);
-        }
-
+        // Запуск экрана "1.Вход" параллельно через некоторое время после завершения загрузки приложения
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -46,5 +37,11 @@ public class SplashActivity extends Activity {
                 SplashActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.onResume(this);
     }
 }
