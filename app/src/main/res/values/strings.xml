@@ -28,10 +28,10 @@
 
     <!-- Экран 5.Регистрация завершена (registration_finished.xml) -->
     <string name="text_registration">Для полноценной работы следует завершить следующие шаги:</string>
-    <string name="link_bind"><u>Привязать учет доходов \nи выбивание чеков</u></string>
-    <string name="link_registration_fns"><u>Зарегистрироваться в ФНС</u></string>
-    <string name="link_get_access"><u>Предоставить права \nплощадке ООО «Фокс Такси»</u></string>
-    <string name="link_set_pin"><u>Установить ПИН</u></string>
+    <string name="link_tighten"><u>Привязать учет доходов \nи выбивание чеков</u></string>
+    <string name="link_in_fns"><u>Зарегистрироваться в ФНС</u></string>
+    <string name="link_force_accepted"><u>Предоставить права \nплощадке ООО «Фокс Такси»</u></string>
+    <string name="link_pin_set"><u>Установить ПИН</u></string>
     <string name="button_configure_later">Настроить позже</string>
 
     <!-- Экран 6.Восстановление пароля (recovery.xml) -->

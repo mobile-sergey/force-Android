@@ -1,31 +1,27 @@
 package club.plus1.forcetaxi.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.databinding.RegistrationFinishedBinding;
+import club.plus1.forcetaxi.viewmodel.RegistrationViewModel;
 
 public class RegistrationFinishedActivity extends AppCompatActivity {
 
-    TextView buttonSetPIN;
-    View.OnClickListener listenerSetPIN = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(RegistrationFinishedActivity.this, PINSetActivity.class);
-            startActivity(intent);
-        }
-    };
+    private RegistrationViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registration_finished);
-
-        buttonSetPIN = findViewById(R.id.linkSetPIN);
-        buttonSetPIN.setOnClickListener(listenerSetPIN);
+        viewModel = new RegistrationViewModel();
+        viewModel.setSrcTighten("yes");
+        viewModel.setSrcInFns("no");
+        viewModel.setSrcForceAccepted("wait");
+        viewModel.setSrcPinSet("no");
+        RegistrationFinishedBinding binding = DataBindingUtil.setContentView(this, R.layout.registration_finished);
+        binding.setRegistration(viewModel);
     }
 }

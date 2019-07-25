@@ -3,6 +3,7 @@ package club.plus1.forcetaxi.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 
+import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.EnterResultActivity;
 import club.plus1.forcetaxi.view.RecoveryActivity;
@@ -11,12 +12,13 @@ import club.plus1.forcetaxi.view.RegistrationActivity;
 public class EnterViewModel {
     private String login;
     private String password;
-    private String status;
+    public String result;
 
-    public EnterViewModel() {
+    public EnterViewModel(Context context) {
         this.login = "";
         this.password = "";
-        this.status = "";
+        this.result = context.getString(R.string.text_enter_success);
+        //this.result = context.getString(R.string.text_enter_error, "");
     }
 
     public void onEnter(Context context) {

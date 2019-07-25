@@ -1,56 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="20dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/splash_screen"
-        android:src="@drawable/logo"
-        style="@style/AppTheme.ForceTaxi.Logo"
-        tools:ignore="ContentDescription" />
+    <data>
 
-    <EditText
-        android:id="@+id/editLogin"
-        android:hint="@string/edit_login"
-        android:inputType="textPersonName|text"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        tools:ignore="Autofill" />
+        <variable
+            name="registration"
+            type="club.plus1.forcetaxi.viewmodel.RegistrationViewModel" />
+    </data>
 
-    <EditText
-        android:id="@+id/editPassword"
-        android:hint="@string/edit_password"
-        android:inputType="textPassword"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        tools:ignore="Autofill" />
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <EditText
-        android:id="@+id/editConfirmation"
-        android:hint="@string/edit_confirmation"
-        android:inputType="textPassword"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        tools:ignore="Autofill" />
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
 
-    <EditText
-        android:id="@+id/editPhone"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/edit_phone"
-        android:inputType="phone"
-        tools:ignore="Autofill" />
+        <EditText
+            android:id="@+id/editLogin"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_login"
+            android:inputType="textPersonName|text"
+            tools:ignore="Autofill" />
 
-    <EditText
-        android:id="@+id/editEmail"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/edit_email"
-        android:inputType="textEmailAddress"
-        tools:ignore="Autofill" />
+        <EditText
+            android:id="@+id/editPassword"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
-    <Button
-        android:id="@+id/buttonRegistration"
-        style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/button_registration" />
+        <EditText
+            android:id="@+id/editConfirmation"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_confirmation"
+            android:inputType="textPassword"
+            tools:ignore="Autofill" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/editPhone"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_phone"
+            android:inputType="phone"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_email"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/buttonRegistration"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> registration.onRegistration(context)}"
+            android:text="@string/button_registration" />
+
+    </LinearLayout>
+</layout>

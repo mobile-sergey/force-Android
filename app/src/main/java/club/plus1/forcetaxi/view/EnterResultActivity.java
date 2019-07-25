@@ -17,7 +17,7 @@ public class EnterResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EnterResultBinding binding = DataBindingUtil.setContentView(this, R.layout.enter_result);
-        viewModel = new EnterViewModel();
+        viewModel = new EnterViewModel(this);
         binding.setEnter(viewModel);
     }
 }

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <data>
-
         <variable
             name="enter"
             type="club.plus1.forcetaxi.viewmodel.EnterViewModel" />
     </data>
-
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/layout"
         android:layout_width="match_parent"
@@ -27,7 +24,7 @@
         <TextView
             android:id="@+id/textEnterResult"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@string/text_enter_success" />
+            android:text="@{enter.result}" />
 
     </LinearLayout>
 </layout>
