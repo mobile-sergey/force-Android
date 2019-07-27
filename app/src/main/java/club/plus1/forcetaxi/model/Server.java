@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Date;
 import java.util.Map;
@@ -41,7 +40,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_server_error, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void sendMail(Context context, String email) {
@@ -53,7 +51,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_email_error, email, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void login(Context context, String login, String password) {
@@ -66,7 +63,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_login_error, login, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void signUp(Context context, String phone, String email, String password) {
@@ -78,7 +74,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_signup_error, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void sendSMS(Context context, String phone) {
@@ -90,7 +85,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_sendsms_error, phone, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void getUser(Context context) {
@@ -114,7 +108,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_getuser_error, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void reserPassword(Context context, String login, LoginType loginType) {
@@ -126,10 +119,9 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_resetpassword_error, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
-    public void acceptResetPass(Context context, String code, LoginType newPassword) {
+    public void acceptResetPass(Context context, String code, String newPassword) {
         Log.d("Force", "ServerModel::acceptResetPass()");
         try {
             this.setOk(true);
@@ -138,10 +130,9 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_acceptresetpass_error, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
-    public void setPassword(Context context, String oldPassword, LoginType newPassword) {
+    public void setPassword(Context context, String oldPassword, String newPassword) {
         Log.d("Force", "ServerModel::setPassword()");
         try {
             this.setOk(true);
@@ -150,7 +141,6 @@ public class Server {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_setpassword_error, e.toString())));
         }
-        Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
 
     public String getAppToken() {
@@ -177,7 +167,7 @@ public class Server {
         this.ok = ok;
     }
 
-    private Error getError() {
+    public Error getError() {
         return error;
     }
 

@@ -1,6 +1,7 @@
 package club.plus1.forcetaxi.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ public class PinSetActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Force", "PinSetActivity::onCreate()");
         super.onCreate(savedInstanceState);
         PinSetBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_set);
         viewModel = PinViewModel.getInstance(this);

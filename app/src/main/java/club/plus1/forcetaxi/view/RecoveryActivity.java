@@ -1,6 +1,7 @@
 package club.plus1.forcetaxi.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ public class RecoveryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Force", "RecoveryActivity::onCreate()");
         super.onCreate(savedInstanceState);
         RecoveryBinding binding = DataBindingUtil.setContentView(this, R.layout.recovery);
         viewModel = RecoveryViewModel.getInstance(this);

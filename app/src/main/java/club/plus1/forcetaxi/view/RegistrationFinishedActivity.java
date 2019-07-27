@@ -1,6 +1,7 @@
 package club.plus1.forcetaxi.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,12 +16,13 @@ public class RegistrationFinishedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Force", "RegistrationFinishedActivity::onCreate()");
         super.onCreate(savedInstanceState);
         viewModel = RegistrationViewModel.getInstance(this);
-        viewModel.setSrcTighten("yes");
-        viewModel.setSrcInFns("no");
-        viewModel.setSrcForceAccepted("wait");
-        viewModel.setSrcPinSet("no");
+        viewModel.setIsTighten(true);
+        viewModel.setIsInFns(false);
+        viewModel.setIsForceAccepted(null);
+        viewModel.setIsPinSet(false);
         RegistrationFinishedBinding binding = DataBindingUtil.setContentView(this, R.layout.registration_finished);
         binding.setViewModel(viewModel);
     }

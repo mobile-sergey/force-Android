@@ -27,6 +27,7 @@
             android:id="@+id/editPhonemail"
             style="@style/AppTheme.ForceTaxi.Edit"
             android:hint="@string/edit_phonemail"
+            android:text="@={viewModel.login}"
             android:inputType="textEmailAddress"
             tools:ignore="Autofill" />
 

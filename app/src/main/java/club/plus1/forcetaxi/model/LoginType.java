@@ -1,3 +1,3 @@
 package club.plus1.forcetaxi.model;
 
-enum LoginType {email, phone, login}
+public enum LoginType {email, phone, login}

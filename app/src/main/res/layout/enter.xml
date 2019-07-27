@@ -23,6 +23,7 @@
             style="@style/AppTheme.ForceTaxi.Edit"
             android:hint="@string/edit_login"
             android:inputType="textPersonName|text"
+            android:text="@={viewModel.login}"
             tools:ignore="Autofill" />
 
         <EditText
@@ -30,6 +31,7 @@
             style="@style/AppTheme.ForceTaxi.Edit"
             android:hint="@string/edit_password"
             android:inputType="textPassword"
+            android:text="@={viewModel.password}"
             tools:ignore="Autofill" />
 
         <Button

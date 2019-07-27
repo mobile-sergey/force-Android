@@ -1,6 +1,7 @@
 package club.plus1.forcetaxi.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ public class RecoveryEmailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Force", "RecoveryEmailActivity::onCreate()");
         super.onCreate(savedInstanceState);
         RecoveryEmailBinding binding = DataBindingUtil.setContentView(this, R.layout.recovery_email);
         viewModel = RecoveryViewModel.getInstance(this);

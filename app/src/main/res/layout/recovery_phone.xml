@@ -21,18 +21,20 @@
         <TextView
             android:id="@+id/textCode"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@string/text_code" />
+            android:text="@{viewModel.textCode}" />
 
         <EditText
             android:id="@+id/editCode"
             style="@style/AppTheme.ForceTaxi.Edit"
             android:hint="@string/edit_code"
+            android:text="@{viewModel.code}"
             android:inputType="number"
             tools:ignore="Autofill" />
 
         <Button
             android:id="@+id/buttonSendSMS"
             style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onSendSMS(context)}"
             android:text="@string/button_send_sms" />
 
         <Button

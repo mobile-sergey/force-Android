@@ -1,6 +1,7 @@
 package club.plus1.forcetaxi.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ public class PinResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Force", "PinResultActivity::onCreate()");
         super.onCreate(savedInstanceState);
         PinResultBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_result);
         viewModel = PinViewModel.getInstance(this);

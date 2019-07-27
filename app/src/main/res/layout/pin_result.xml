@@ -24,6 +24,6 @@
         <TextView
             android:id="@+id/textPINResult"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@string/text_pin_success" />
+            android:text="@{viewModel.result}" />
     </LinearLayout>
 </layout>

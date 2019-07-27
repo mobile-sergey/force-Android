@@ -32,11 +32,12 @@
             <ImageView
                 android:id="@+id/statusTighten"
                 style="@style/AppTheme.ForceTaxi.Status.Image"
-                android:src='@{viewModel.srcTighten == "wait" ? @drawable/wait : (viewModel.srcTighten == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.isTighten == null ? @drawable/wait : (viewModel.isTighten ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/linkTighten"
+                android:onClick="@{() -> viewModel.onTighten(context)}"
                 style="@style/AppTheme.ForceTaxi.Status.Link"
                 android:text="@string/link_tighten" />
 
@@ -54,13 +55,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.srcInFns == "wait" ? @drawable/wait : (viewModel.srcInFns == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.isInFns == null ? @drawable/wait : (viewModel.isInFns ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/linkInFns"
                 style="@style/AppTheme.ForceTaxi.Link"
                 android:layout_weight="1"
+                android:onClick="@{() -> viewModel.onInFns(context)}"
                 android:text="@string/link_in_fns"
                 android:textAlignment="viewStart"
                 android:textSize="18sp" />
@@ -79,13 +81,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.srcForceAccepted == "wait" ? @drawable/wait : (viewModel.srcForceAccepted == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.isForceAccepted == null ? @drawable/wait : (viewModel.isForceAccepted ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/linkForceAccepted"
                 style="@style/AppTheme.ForceTaxi.Link"
                 android:layout_weight="1"
+                android:onClick="@{() -> viewModel.onForceAccepted(context)}"
                 android:text="@string/link_force_accepted"
                 android:textAlignment="viewStart"
                 android:textSize="18sp" />
@@ -104,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.srcPinSet == "wait" ? @drawable/wait : (viewModel.srcPinSet == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.isPinSet == null ? @drawable/wait : (viewModel.isPinSet ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView

@@ -11,6 +11,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
+import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.EnterActivity;
 
 public class SplashViewModel extends BaseObservable {
@@ -57,14 +58,23 @@ public class SplashViewModel extends BaseObservable {
         this.setVersionCode(pInfo.versionCode);
     }
 
-    // Запуск экрана "1.Вход" параллельно через некоторое время после завершения загрузки приложения
+    // Запуск экрана "1.Вход" или "33.Ввод ПИН" после завершения загрузки приложения
     public void startEnterActivity(final Context context) {
         Log.d("Force", "SplashViewModel::startEnterActivity()");
+
+        // "Отправляем на сервер запрос GET /
+        final Server server = Server.getInstance(context);
+        //Toast.makeText(context, server.getError().getText(), Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // По истечении времени, запускаем главный активити, а Splash Screen закрываем
+                // По истечении времени, запускаем главный активити или экран ввода пинкода
+                //Intent mainIntent = null;
+                //if (server.getArgs().get("isPinSet").equals(true)) {
                 Intent mainIntent = new Intent(context, EnterActivity.class);
+                //} else {
+                //    mainIntent = new Intent(context, PinEnterActivity.class);
+                //}
                 context.startActivity(mainIntent);
             }
         }, SPLASH_TIME);

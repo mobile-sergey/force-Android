@@ -2,6 +2,7 @@ package club.plus1.forcetaxi.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -15,6 +16,7 @@ public class SplashActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("Force", "SplashActivity::onCreate()");
         super.onCreate(savedInstanceState);
         SplashBinding binding = DataBindingUtil.setContentView(this, R.layout.splash);
         viewModel = SplashViewModel.getInstance(this);
@@ -24,6 +26,7 @@ public class SplashActivity extends Activity {
 
     @Override
     protected void onResume() {
+        Log.d("Force", "SplashActivity::onResume()");
         super.onResume();
         viewModel.onResume(this);
     }
