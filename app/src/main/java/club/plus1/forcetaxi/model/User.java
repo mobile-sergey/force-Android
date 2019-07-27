@@ -2,9 +2,9 @@ package club.plus1.forcetaxi.model;
 
 import java.util.Date;
 
-public class UserModel {
+public class User {
     private int ok;
-    private ErrorModel error;
+    private Error error;
     private String name;
     private String inn;
     private Date date;
@@ -17,7 +17,7 @@ public class UserModel {
     private String forceAcceptUrl;
     private String shareUrl;
 
-    public UserModel(){
+    public User() {
         this.ok = 0;
         this.error = null;
         this.name = "";

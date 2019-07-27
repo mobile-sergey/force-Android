@@ -11,27 +11,27 @@ import java.util.Map;
 
 import club.plus1.forcetaxi.R;
 
-public class ServerModel {
+public class Server {
 
-    private static ServerModel mInstance;
+    private static Server mInstance;
 
     private String appToken;
     private String userToken;
     private boolean ok;
-    private ErrorModel error;
+    private Error error;
     private Map<String, Object> args;
 
     @SuppressLint("HardwareIds")
-    private ServerModel(Context context) {
+    private Server(Context context) {
         Log.d("Force", "ServerModel::ServerModel()");
         try {
             this.setAppToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
             this.setUserToken("aec27f0f-b8a3-43cb-b076-e075a095abfe"); // Должен получаться с сервера, пока случайная строка
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_server_success)));
+            this.setError(new Error(200, context.getString(R.string.text_server_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_server_error, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_server_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -39,11 +39,11 @@ public class ServerModel {
     public static void initInstance(Context context) {
         Log.d("Force", "ServerModel::InitInstance()");
         if (mInstance == null) {
-            mInstance = new ServerModel(context);
+            mInstance = new Server(context);
         }
     }
 
-    public static ServerModel getInstance() {
+    public static Server getInstance() {
         Log.d("Force", "ServerModel::getInstance()");
         return mInstance;
     }
@@ -52,10 +52,10 @@ public class ServerModel {
         Log.d("Force", "ServerModel::sendMail()");
         try {
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_email_success, email)));
+            this.setError(new Error(200, context.getString(R.string.text_email_success, email)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_email_error, email, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_email_error, email, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -65,10 +65,10 @@ public class ServerModel {
         try {
             this.getArgs().put("signUpStep", null);
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_login_success, login)));
+            this.setError(new Error(200, context.getString(R.string.text_login_success, login)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_login_error, login, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_login_error, login, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -77,10 +77,10 @@ public class ServerModel {
         Log.d("Force", "ServerModel::signUp()");
         try {
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_signup_success)));
+            this.setError(new Error(200, context.getString(R.string.text_signup_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_signup_error, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_signup_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -89,10 +89,10 @@ public class ServerModel {
         Log.d("Force", "ServerModel::sendSMS()");
         try {
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_sendsms_success, phone)));
+            this.setError(new Error(200, context.getString(R.string.text_sendsms_success, phone)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_sendsms_error, phone, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_sendsms_error, phone, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -113,10 +113,10 @@ public class ServerModel {
             this.getArgs().put("forceAcceptUrl", "http://locallhost");
             this.getArgs().put("shareUrl", "http://locallhost");
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_getuser_success)));
+            this.setError(new Error(200, context.getString(R.string.text_getuser_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_getuser_error, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_getuser_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -125,10 +125,10 @@ public class ServerModel {
         Log.d("Force", "ServerModel::reserPassword()");
         try {
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_resetpassword_success)));
+            this.setError(new Error(200, context.getString(R.string.text_resetpassword_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_resetpassword_error, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_resetpassword_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -137,10 +137,10 @@ public class ServerModel {
         Log.d("Force", "ServerModel::acceptResetPass()");
         try {
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_acceptresetpass_success)));
+            this.setError(new Error(200, context.getString(R.string.text_acceptresetpass_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_acceptresetpass_error, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_acceptresetpass_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -149,10 +149,10 @@ public class ServerModel {
         Log.d("Force", "ServerModel::setPassword()");
         try {
             this.setOk(true);
-            this.setError(new ErrorModel(200, context.getString(R.string.text_setpassword_success)));
+            this.setError(new Error(200, context.getString(R.string.text_setpassword_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ErrorModel(500, context.getString(R.string.text_setpassword_error, e.toString())));
+            this.setError(new Error(500, context.getString(R.string.text_setpassword_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
     }
@@ -181,11 +181,11 @@ public class ServerModel {
         this.ok = ok;
     }
 
-    private ErrorModel getError() {
+    private Error getError() {
         return error;
     }
 
-    private void setError(ErrorModel error) {
+    private void setError(Error error) {
         this.error = error;
     }
 

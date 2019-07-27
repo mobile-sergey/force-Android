@@ -1,8 +1,6 @@
 package club.plus1.forcetaxi.model;
 
-enum LoginType {email, phone, login}
-
-public class LoginModel {
+public class Login {
 
     private String login;
     private String email;
@@ -11,7 +9,7 @@ public class LoginModel {
     private String password;
     private LoginType loginType;
 
-    public LoginModel(String login, String email, String phone, String password){
+    public Login(String login, String email, String phone, String password) {
         this.loginType = LoginType.login;
         this.code = "";
         this.login = login;
