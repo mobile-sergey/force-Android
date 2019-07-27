@@ -108,4 +108,32 @@
     <!-- <string name="button_0">0</string> -->
     <!-- <string name="button_next">Продолжить</string> -->
 
+    <!-- Работа с сервером -->
+    <string name="text_server_success">Соединение с сервером прошло успешно</string>
+    <string name="text_server_error">При соединении с сервером возникла ошибка:\n%1$s</string>
+
+    <string name="text_email_success">Письмо на адрес %1$s отправлено успешно</string>
+    <string name="text_email_error">При отправке письма на адрес %1$s возникла ошибка:\n%2$s</string>
+
+    <string name="text_login_success">Вход под логином %1$s прошёл успешно</string>
+    <string name="text_login_error">При попытке войти под логином %1$s возникла ошибка:\n%2$s</string>
+
+    <string name="text_signup_success">Регистрация прошла успешно</string>
+    <string name="text_signup_error">При регистрации возникла ошибка:\n%1$s</string>
+
+    <string name="text_sendsms_success">СМС на номер %1$s отправлено успешно</string>
+    <string name="text_sendsms_error">При отправке СМС на номер %1$s возникла ошибка:\n%2$s</string>
+
+    <string name="text_getuser_success">Информация о пользователе запрошена успешно</string>
+    <string name="text_getuser_error">При запросе информации о пользователе возникла ошибка:\n%1$s</string>
+
+    <string name="text_resetpassword_success">Пароль сброшен успешно</string>
+    <string name="text_resetpassword_error">При сбросе пароля возникла ошибка:\n%1$s</string>
+
+    <string name="text_acceptresetpass_success">Процесс восстановления пароля начат успешно</string>
+    <string name="text_acceptresetpass_error">При восстановлении пароля возникла ошибка:\n%1$s</string>
+
+    <string name="text_setpassword_success">Пароль на сервере изменен успешно</string>
+    <string name="text_setpassword_error">При изменении пароля возникла ошибка:\n%1$s</string>
+
 </resources>
