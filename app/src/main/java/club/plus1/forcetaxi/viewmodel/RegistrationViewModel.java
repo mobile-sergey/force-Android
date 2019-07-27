@@ -8,7 +8,7 @@ import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.view.EnterActivity;
-import club.plus1.forcetaxi.view.PINSetActivity;
+import club.plus1.forcetaxi.view.PinSetActivity;
 import club.plus1.forcetaxi.view.RegistrationFinishedActivity;
 import club.plus1.forcetaxi.view.RegistrationVerificationActivity;
 
@@ -58,7 +58,7 @@ public class RegistrationViewModel extends BaseObservable {
     }
 
     public void onPIN(Context context) {
-        Intent intent = new Intent(context, PINSetActivity.class);
+        Intent intent = new Intent(context, PinSetActivity.class);
         context.startActivity(intent);
     }
 

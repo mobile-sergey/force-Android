@@ -1,13 +1,42 @@
 package club.plus1.forcetaxi.viewmodel;
 
-public class PINViewModel {
+import android.content.Context;
+import android.content.Intent;
+
+import club.plus1.forcetaxi.view.EnterActivity;
+import club.plus1.forcetaxi.view.PinConfirmActivity;
+import club.plus1.forcetaxi.view.PinEnterActivity;
+import club.plus1.forcetaxi.view.PinResultActivity;
+
+public class PinViewModel {
     private int pin;
     private int confirm;
     private String status;
 
-    public PINViewModel(int pin, int confirm){
-        this.pin = pin;
-        this.confirm = confirm;
+    public PinViewModel(Context context) {
+        this.pin = 0;
+        this.confirm = 0;
         this.status = "";
     }
+
+    public void onSet(Context context) {
+        Intent intent = new Intent(context, PinConfirmActivity.class);
+        context.startActivity(intent);
+    }
+
+    public void onConfirm(Context context) {
+        Intent intent = new Intent(context, PinResultActivity.class);
+        context.startActivity(intent);
+    }
+
+    public void onResult(Context context) {
+        Intent intent = new Intent(context, PinEnterActivity.class);
+        context.startActivity(intent);
+    }
+
+    public void onEnter(Context context) {
+        Intent intent = new Intent(context, EnterActivity.class);
+        context.startActivity(intent);
+    }
+
 }

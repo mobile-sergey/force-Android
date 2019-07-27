@@ -1,31 +1,23 @@
 package club.plus1.forcetaxi.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.databinding.PinResultBinding;
+import club.plus1.forcetaxi.viewmodel.PinViewModel;
 
-public class PINResultActivity extends AppCompatActivity {
+public class PinResultActivity extends AppCompatActivity {
 
-    View layout;
-
-    View.OnClickListener listenerLayout = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(PINResultActivity.this, PINEnterActivity.class);
-            startActivity(intent);
-        }
-    };
+    private PinViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pin_result);
-
-        layout = findViewById(R.id.layout);
-        layout.setOnClickListener(listenerLayout);
+        PinResultBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_result);
+        viewModel = new PinViewModel(this);
+        binding.setViewModel(viewModel);
     }
 }
