@@ -1,31 +1,23 @@
 package club.plus1.forcetaxi.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.databinding.RecoveryPhoneBinding;
+import club.plus1.forcetaxi.viewmodel.RecoveryViewModel;
 
 public class RecoveryPhoneActivity extends AppCompatActivity {
 
-    Button butonConfirm;
-    View.OnClickListener listenerConfirm = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(RecoveryPhoneActivity.this, PasswordActivity.class);
-            startActivity(intent);
-        }
-    };
+    private RecoveryViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recovery_phone);
-
-        butonConfirm = findViewById(R.id.buttonConfirm);
-        butonConfirm.setOnClickListener(listenerConfirm);
+        RecoveryPhoneBinding binding = DataBindingUtil.setContentView(this, R.layout.recovery_phone);
+        viewModel = new RecoveryViewModel(this);
+        binding.setViewModel(viewModel);
     }
 }

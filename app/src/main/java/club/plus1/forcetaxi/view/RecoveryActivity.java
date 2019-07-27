@@ -1,31 +1,23 @@
 package club.plus1.forcetaxi.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.databinding.RecoveryBinding;
+import club.plus1.forcetaxi.viewmodel.RecoveryViewModel;
 
 public class RecoveryActivity extends AppCompatActivity {
 
-    Button buttonRecovery;
-    View.OnClickListener listenerRecovery = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(RecoveryActivity.this, RecoveryEmailActivity.class);
-            startActivity(intent);
-        }
-    };
+    private RecoveryViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recovery);
-
-        buttonRecovery = findViewById(R.id.buttonRecovery);
-        buttonRecovery.setOnClickListener(listenerRecovery);
+        RecoveryBinding binding = DataBindingUtil.setContentView(this, R.layout.recovery);
+        viewModel = new RecoveryViewModel(this);
+        binding.setViewModel(viewModel);
     }
 }

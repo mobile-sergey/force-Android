@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="20dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/splash_screen"
-        android:src="@drawable/logo"
-        style="@style/AppTheme.ForceTaxi.Logo"
-        tools:ignore="ContentDescription" />
+    <data>
 
-    <TextView
-        android:id="@+id/textRecovery"
-        style="@style/AppTheme.ForceTaxi.Text"
-        android:text="@string/text_recovery" />
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.RecoveryViewModel" />
+    </data>
 
-    <EditText
-        android:id="@+id/editPhonemail"
-        style="@style/AppTheme.ForceTaxi.Edit"
-        android:hint="@string/edit_phonemail"
-        android:inputType="textEmailAddress"
-        tools:ignore="Autofill" />
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/buttonRecovery"
-        style="@style/AppTheme.ForceTaxi.Button"
-        android:text="@string/button_recovery" />
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textRecovery"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@string/text_recovery" />
+
+        <EditText
+            android:id="@+id/editPhonemail"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_phonemail"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/buttonRecovery"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onRecovery(context)}"
+            android:text="@string/button_recovery" />
+
+    </LinearLayout>
+</layout>
