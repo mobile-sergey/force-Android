@@ -17,7 +17,7 @@ public class EnterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EnterBinding binding = DataBindingUtil.setContentView(this, R.layout.enter);
-        viewModel = new EnterViewModel(this);
+        viewModel = EnterViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

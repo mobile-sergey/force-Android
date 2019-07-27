@@ -17,7 +17,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RegistrationBinding binding = DataBindingUtil.setContentView(this, R.layout.registration);
-        viewModel = new RegistrationViewModel();
+        viewModel = RegistrationViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

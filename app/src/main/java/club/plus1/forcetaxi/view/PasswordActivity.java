@@ -17,7 +17,7 @@ public class PasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PasswordBinding binding = DataBindingUtil.setContentView(this, R.layout.password);
-        viewModel = new PasswordViewModel(this);
+        viewModel = PasswordViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

@@ -16,7 +16,7 @@ public class RegistrationFinishedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new RegistrationViewModel();
+        viewModel = RegistrationViewModel.getInstance(this);
         viewModel.setSrcTighten("yes");
         viewModel.setSrcInFns("no");
         viewModel.setSrcForceAccepted("wait");

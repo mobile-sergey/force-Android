@@ -17,7 +17,7 @@ public class PinResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PinResultBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_result);
-        viewModel = new PinViewModel(this);
+        viewModel = PinViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

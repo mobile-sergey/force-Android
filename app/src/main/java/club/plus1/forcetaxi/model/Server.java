@@ -21,6 +21,14 @@ public class Server {
     private Error error;
     private Map<String, Object> args;
 
+    public static Server getInstance(Context context) {
+        Log.d("Force", "ServerModel::getInstance()");
+        if (mInstance == null) {
+            mInstance = new Server(context);
+        }
+        return mInstance;
+    }
+
     @SuppressLint("HardwareIds")
     private Server(Context context) {
         Log.d("Force", "ServerModel::ServerModel()");
@@ -34,18 +42,6 @@ public class Server {
             this.setError(new Error(500, context.getString(R.string.text_server_error, e.toString())));
         }
         Toast.makeText(context, this.getError().getText(), Toast.LENGTH_SHORT).show();
-    }
-
-    public static void initInstance(Context context) {
-        Log.d("Force", "ServerModel::InitInstance()");
-        if (mInstance == null) {
-            mInstance = new Server(context);
-        }
-    }
-
-    public static Server getInstance() {
-        Log.d("Force", "ServerModel::getInstance()");
-        return mInstance;
     }
 
     public void sendMail(Context context, String email) {

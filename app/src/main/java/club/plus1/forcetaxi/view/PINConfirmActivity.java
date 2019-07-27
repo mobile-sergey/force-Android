@@ -17,7 +17,7 @@ public class PinConfirmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PinConfirmBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_confirm);
-        viewModel = new PinViewModel(this);
+        viewModel = PinViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

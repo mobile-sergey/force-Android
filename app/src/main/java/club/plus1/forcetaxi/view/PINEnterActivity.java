@@ -17,7 +17,7 @@ public class PinEnterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PinEnterBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_enter);
-        viewModel = new PinViewModel(this);
+        viewModel = PinViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

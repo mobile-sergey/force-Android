@@ -17,7 +17,7 @@ public class PinSetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PinSetBinding binding = DataBindingUtil.setContentView(this, R.layout.pin_set);
-        viewModel = new PinViewModel(this);
+        viewModel = PinViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

@@ -17,7 +17,7 @@ public class RecoveryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RecoveryBinding binding = DataBindingUtil.setContentView(this, R.layout.recovery);
-        viewModel = new RecoveryViewModel(this);
+        viewModel = RecoveryViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 }

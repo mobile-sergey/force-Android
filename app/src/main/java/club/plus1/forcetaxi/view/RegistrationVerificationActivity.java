@@ -16,7 +16,7 @@ public class RegistrationVerificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new RegistrationViewModel();
+        viewModel = RegistrationViewModel.getInstance(this);
         RegistrationVerificationBinding binding = DataBindingUtil.setContentView(this, R.layout.registration_verification);
         binding.setViewModel(viewModel);
     }
