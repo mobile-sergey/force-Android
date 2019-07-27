@@ -9,14 +9,8 @@ import club.plus1.forcetaxi.view.PinEnterActivity;
 import club.plus1.forcetaxi.view.PinResultActivity;
 
 public class PinViewModel {
-    private int pin;
-    private int confirm;
-    private String status;
 
     public PinViewModel(Context context) {
-        this.pin = 0;
-        this.confirm = 0;
-        this.status = "";
     }
 
     public void onSet(Context context) {

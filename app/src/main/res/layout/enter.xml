@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="enter"
+            name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.EnterViewModel" />
     </data>
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
@@ -35,20 +35,19 @@
         <Button
             android:id="@+id/buttonEnter"
             style="@style/AppTheme.ForceTaxi.Button"
-            android:onClick="@{() -> enter.onEnter(context)}"
+            android:onClick="@{() -> viewModel.onEnter(context)}"
             android:text="@string/button_enter" />
 
         <TextView
             android:id="@+id/linkRegister"
             style="@style/AppTheme.ForceTaxi.Link"
-            android:onClick="@{() -> enter.onRegister(context)}"
+            android:onClick="@{() -> viewModel.onRegister(context)}"
             android:text="@string/link_register" />
 
         <TextView
             android:id="@+id/linkRecovery"
             style="@style/AppTheme.ForceTaxi.Link"
-            android:onClick="@{() -> enter.onRecovery(context)}"
+            android:onClick="@{() -> viewModel.onRecovery(context)}"
             android:text="@string/link_recovery" />
-
     </LinearLayout>
 </layout>

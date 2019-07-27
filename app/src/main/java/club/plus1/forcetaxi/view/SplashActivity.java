@@ -19,7 +19,7 @@ public class SplashActivity extends Activity {
         SplashBinding binding = DataBindingUtil.setContentView(this, R.layout.splash);
         viewModel = new SplashViewModel(this);
         viewModel.startEnterActivity(this);
-        binding.setSplash(viewModel);
+        binding.setViewModel(viewModel);
     }
 
     @Override

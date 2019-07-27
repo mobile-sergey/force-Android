@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="registration"
+            name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.RegistrationViewModel" />
     </data>
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
@@ -32,7 +32,7 @@
             <ImageView
                 android:id="@+id/statusTighten"
                 style="@style/AppTheme.ForceTaxi.Status.Image"
-                android:src='@{registration.srcTighten == "wait" ? @drawable/wait : (registration.srcTighten == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcTighten == "wait" ? @drawable/wait : (viewModel.srcTighten == "yes" ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{registration.srcInFns == "wait" ? @drawable/wait : (registration.srcInFns == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcInFns == "wait" ? @drawable/wait : (viewModel.srcInFns == "yes" ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{registration.srcForceAccepted == "wait" ? @drawable/wait : (registration.srcForceAccepted == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcForceAccepted == "wait" ? @drawable/wait : (viewModel.srcForceAccepted == "yes" ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -104,14 +104,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{registration.srcPinSet == "wait" ? @drawable/wait : (registration.srcPinSet == "yes" ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcPinSet == "wait" ? @drawable/wait : (viewModel.srcPinSet == "yes" ? @drawable/yes : @drawable/no)}'
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/linkPinSet"
                 style="@style/AppTheme.ForceTaxi.Link"
                 android:layout_weight="1"
-                android:onClick="@{() -> registration.onPIN(context)}"
+                android:onClick="@{() -> viewModel.onPIN(context)}"
                 android:text="@string/link_pin_set"
                 android:textAlignment="viewStart"
                 android:textSize="18sp" />
@@ -121,7 +121,7 @@
         <Button
             android:id="@+id/buttonConfigureLater"
             style="@style/AppTheme.ForceTaxi.Button"
-            android:onClick="@{() -> registration.onLater(context)}"
+            android:onClick="@{() -> viewModel.onLater(context)}"
             android:text="@string/button_configure_later" />
 
     </LinearLayout>

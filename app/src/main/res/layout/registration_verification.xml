@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <data>
-
         <variable
-            name="registration"
+            name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.RegistrationViewModel" />
     </data>
-
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +21,7 @@
         <TextView
             android:id="@+id/textCode"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@{registration.textCode}" />
+            android:text="@{viewModel.textCode}" />
 
         <EditText
             android:id="@+id/editCode"
@@ -41,8 +38,7 @@
         <Button
             android:id="@+id/buttonVerification"
             style="@style/AppTheme.ForceTaxi.Button"
-            android:onClick="@{() -> registration.onVerification(context)}"
+            android:onClick="@{() -> viewModel.onVerification(context)}"
             android:text="@string/button_confirm" />
-
     </LinearLayout>
 </layout>

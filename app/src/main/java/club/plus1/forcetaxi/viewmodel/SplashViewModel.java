@@ -6,11 +6,15 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.view.EnterActivity;
 
-public class SplashViewModel {
-    public String versionName;
-    public int versionCode;
+public class SplashViewModel extends BaseObservable {
+    private String versionName;
+    private int versionCode;
     private final int SPLASH_TIME = 1000;
 
     public SplashViewModel(Context context) {
@@ -35,8 +39,8 @@ public class SplashViewModel {
             pInfo.versionName = "0.0";
             pInfo.versionCode = 0;
         }
-        this.versionName = pInfo.versionName;
-        this.versionCode = pInfo.versionCode;
+        this.setVersionName(pInfo.versionName);
+        this.setVersionCode(pInfo.versionCode);
     }
 
     // Запуск экрана "1.Вход" параллельно через некоторое время после завершения загрузки приложения
@@ -49,5 +53,25 @@ public class SplashViewModel {
                 context.startActivity(mainIntent);
             }
         }, SPLASH_TIME);
+    }
+
+    @Bindable
+    public String getVersionName() {
+        return versionName;
+    }
+
+    private void setVersionName(String versionName) {
+        this.versionName = versionName;
+        notifyPropertyChanged(BR.versionName);
+    }
+
+    @Bindable
+    public int getVersionCode() {
+        return versionCode;
+    }
+
+    private void setVersionCode(int versionCode) {
+        this.versionCode = versionCode;
+        notifyPropertyChanged(BR.versionCode);
     }
 }

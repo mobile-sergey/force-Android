@@ -14,27 +14,13 @@ import club.plus1.forcetaxi.view.RegistrationVerificationActivity;
 
 public class RegistrationViewModel extends BaseObservable {
 
-    private String login;
-    private String email;
-    private String password;
-    private String confirm;
-    private String status;
-
     public String textCode;
-    private String phone;
-
     private String srcTighten;
     private String srcInFns;
     private String srcForceAccepted;
     private String srcPinSet;
 
     public RegistrationViewModel() {
-        this.login = "";
-        this.email = "";
-        this.phone = "+79876543210";
-        this.password = "";
-        this.confirm = "";
-        this.status = "";
         this.textCode = "@strings/text_code";
         setSrcTighten("wait");
         setSrcInFns("wait");

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="enter"
+            name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.EnterViewModel" />
     </data>
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:onClick="@{() -> enter.onResult(context)}"
+        android:onClick="@{() -> viewModel.onResult(context)}"
         android:orientation="vertical"
         android:padding="20dp"
         tools:ignore="UseCompoundDrawables">
@@ -24,7 +24,6 @@
         <TextView
             android:id="@+id/textEnterResult"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@{enter.result}" />
-
+            android:text="@{viewModel.result}" />
     </LinearLayout>
 </layout>

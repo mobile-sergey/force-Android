@@ -22,6 +22,6 @@ public class RegistrationFinishedActivity extends AppCompatActivity {
         viewModel.setSrcForceAccepted("wait");
         viewModel.setSrcPinSet("no");
         RegistrationFinishedBinding binding = DataBindingUtil.setContentView(this, R.layout.registration_finished);
-        binding.setRegistration(viewModel);
+        binding.setViewModel(viewModel);
     }
 }

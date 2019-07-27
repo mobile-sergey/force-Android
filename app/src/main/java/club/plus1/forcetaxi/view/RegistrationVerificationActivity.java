@@ -18,6 +18,6 @@ public class RegistrationVerificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         viewModel = new RegistrationViewModel();
         RegistrationVerificationBinding binding = DataBindingUtil.setContentView(this, R.layout.registration_verification);
-        binding.setRegistration(viewModel);
+        binding.setViewModel(viewModel);
     }
 }
