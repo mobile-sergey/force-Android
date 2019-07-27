@@ -1,32 +1,23 @@
 package club.plus1.forcetaxi.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.databinding.PasswordResultBinding;
+import club.plus1.forcetaxi.viewmodel.PasswordViewModel;
 
 public class PasswordResultActivity extends AppCompatActivity {
 
-    View layout;
-
-    View.OnClickListener listenerLayout = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(PasswordResultActivity.this, EnterActivity.class);
-            startActivity(intent);
-        }
-    };
-
+    private PasswordViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.password_result);
-
-        layout = findViewById(R.id.layout);
-        layout.setOnClickListener(listenerLayout);
+        PasswordResultBinding binding = DataBindingUtil.setContentView(this, R.layout.password_result);
+        viewModel = new PasswordViewModel(this);
+        binding.setViewModel(viewModel);
     }
 }
