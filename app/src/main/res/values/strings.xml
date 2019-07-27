@@ -20,7 +20,7 @@
     <string name="edit_email">E-mail</string>
     <string name="button_registration">Регистрация</string>
 
-    <!-- Экран 4.Регистрация. Подтверждение телефона (verification.xml) -->
+    <!-- Экран 4.Регистрация. Подтверждение телефона (registration_verification.xml) -->
     <string name="text_code">Введите код из СМС, которое мы отправили на номер %1$d</string>
     <string name="edit_code">Код из СМС</string>
     <string name="button_send_sms">Отправить СМС</string>

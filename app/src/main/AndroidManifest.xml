@@ -25,7 +25,7 @@
         <activity android:name=".view.EnterActivity" />
         <activity android:name=".view.EnterResultActivity" />
         <activity android:name=".view.RegistrationActivity" />
-        <activity android:name=".view.VerificationActivity" />
+        <activity android:name=".view.RegistrationVerificationActivity" />
         <activity android:name=".view.RegistrationFinishedActivity" />
         <activity android:name=".view.RecoveryActivity" />
         <activity android:name=".view.RecoveryEmailActivity" />

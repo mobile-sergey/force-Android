@@ -1,13 +1,15 @@
 package club.plus1.forcetaxi.viewmodel;
 
+import android.content.Context;
+
 public class RecoveryViewModel {
     private String login;
     private String code;
-    private String status;
+    private String result;
 
-    public RecoveryViewModel(String login, String code){
-        this.login = login;
-        this.code = code;
-        this.status = "";
+    public RecoveryViewModel(Context context) {
+        this.login = "";
+        this.code = "";
+        this.result = "";
     }
 }

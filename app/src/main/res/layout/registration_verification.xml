@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="registration"
+            type="club.plus1.forcetaxi.viewmodel.RegistrationViewModel" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textCode"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@{registration.textCode}" />
+
+        <EditText
+            android:id="@+id/editCode"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_code"
+            android:inputType="number"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/buttonSendSMS"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:text="@string/button_send_sms" />
+
+        <Button
+            android:id="@+id/buttonVerification"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> registration.onVerification(context)}"
+            android:text="@string/button_confirm" />
+
+    </LinearLayout>
+</layout>
