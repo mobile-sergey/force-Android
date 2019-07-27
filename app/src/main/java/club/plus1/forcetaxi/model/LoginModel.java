@@ -1,7 +1,8 @@
 package club.plus1.forcetaxi.model;
 
+enum LoginType {email, phone, login}
+
 public class LoginModel {
-    enum LoginType {email, phone, login}
 
     private String login;
     private String email;
