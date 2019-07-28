@@ -6,6 +6,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import club.plus1.forcetaxi.R;
@@ -36,9 +37,11 @@ public class Server {
             this.setUserToken("aec27f0f-b8a3-43cb-b076-e075a095abfe"); // Должен получаться с сервера, пока случайная строка
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_server_success)));
+            this.args = new HashMap<>();
         } catch (Exception e) {
             this.setOk(false);
             this.setError(new Error(500, context.getString(R.string.text_server_error, e.toString())));
+            this.args = new HashMap<>();
         }
     }
 
@@ -56,7 +59,7 @@ public class Server {
     public void login(Context context, String login, String password) {
         Log.d("Force", "ServerModel::login()");
         try {
-            this.getArgs().put("signUpStep", null);
+            this.putArg("signUpStep", null);
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_login_success, login)));
         } catch (Exception e) {
@@ -90,18 +93,18 @@ public class Server {
     public void getUser(Context context) {
         Log.d("Force", "ServerModel::getUser()");
         try {
-            this.getArgs().put("name", "ФИО");
-            this.getArgs().put("inn", "");
-            this.getArgs().put("oktmo", "");
-            this.getArgs().put("date", new Date());
-            this.getArgs().put("businessType", null);
-            this.getArgs().put("isTighten", true);
-            this.getArgs().put("isInFns", false);
-            this.getArgs().put("isForceAccepted", null);
-            this.getArgs().put("isPinSet", false);
-            this.getArgs().put("inFnsUrl", "http://locallhost");
-            this.getArgs().put("forceAcceptUrl", "http://locallhost");
-            this.getArgs().put("shareUrl", "http://locallhost");
+            this.putArg("name", "ФИО");
+            this.putArg("inn", "");
+            this.putArg("oktmo", "");
+            this.putArg("date", new Date());
+            this.putArg("businessType", null);
+            this.putArg("isTighten", true);
+            this.putArg("isInFns", false);
+            this.putArg("isForceAccepted", null);
+            this.putArg("isPinSet", false);
+            this.putArg("inFnsUrl", "http://locallhost");
+            this.putArg("forceAcceptUrl", "http://locallhost");
+            this.putArg("shareUrl", "http://locallhost");
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_getuser_success)));
         } catch (Exception e) {
@@ -175,11 +178,19 @@ public class Server {
         this.error = error;
     }
 
-    private Map<String, Object> getArgs() {
+    public Map<String, Object> getArgs() {
         return args;
     }
 
-    private void setArgs(Map<String, Object> args) {
+    public void setArgs(Map<String, Object> args) {
         this.args = args;
+    }
+
+    private void putArg(String key, Object object) {
+        this.args.put(key, object);
+    }
+
+    public Object getArg(String key) {
+        return args.get(key);
     }
 }
