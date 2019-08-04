@@ -6,13 +6,13 @@ import android.util.Log;
 
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.InnBindActivity;
 import club.plus1.forcetaxi.view.InnBindResultActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
 import club.plus1.forcetaxi.view.InnSearchActivity;
 import club.plus1.forcetaxi.view.InnSearchResultActivity;
 import club.plus1.forcetaxi.view.InnSetResultActivity;
-import club.plus1.forcetaxi.view.SplashActivity;
 
 public class InnViewModel {
 
@@ -141,11 +141,11 @@ public class InnViewModel {
         }
     }
 
-    // Запуск экрана "0.Заставка" при нажатии на экране "17.Привязка ИНН. Результат"
+    // Запуск экрана "18.Выбивание чека" при нажатии на экране "17.Привязка ИНН. Результат"
     // TODO: Когда появится экран "34.Закрытое меню" - нужно будет перенаправлять туда
     public void onBindResult(Context context) {
         Log.d("Force", "InnViewModel::onBindResult()");
-        Intent intent = new Intent(context, SplashActivity.class);
+        Intent intent = new Intent(context, CheckActivity.class);
         context.startActivity(intent);
     }
 

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.CheckViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/linkHistory"
+                    style="@style/AppTheme.ForceTaxi.Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:onClick='@{() -> viewModel.onHistory(context)}'
+                    android:text="@string/check_history"
+                    android:textAlignment="textEnd" />
+
+                <LinearLayout
+                    android:id="@+id/layoutCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorAccent"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showCheck ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginRight="1dp"
+                        android:background="@android:color/background_light"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textNumber"
+                            style="@style/AppTheme.ForceTaxi.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:text="@string/check_number"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/textCheck"
+                            style="@style/AppTheme.ForceTaxi.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:text="@{@string/check_text(viewModel.total)}"
+                            android:textAlignment="viewStart" />
+
+                        <TextView
+                            android:id="@+id/textUrl"
+                            style="@style/AppTheme.ForceTaxi.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:text="@string/check_url"
+                            android:textAlignment="center" />
+
+                        <ImageView
+                            android:id="@+id/imageQR"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/qr"
+                            android:src="@drawable/qr" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/colorPrimaryDark"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/editClient"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryDark"
+                        android:ems="10"
+                        android:hint="@string/check_client"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textColor="@color/colorAccent"
+                        tools:ignore="Autofill,NestedWeights" />
+
+                    <EditText
+                        android:id="@+id/editTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent"
+                        android:ems="10"
+                        android:hint="@string/button_0"
+                        android:inputType="textPersonName"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="@{viewModel.total}"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorPrimary"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        tools:ignore="Autofill" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <Button
+                            android:id="@+id/buttonClear"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.Clear(context)}'
+                            android:text="@string/button_clear"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/buttonPoint"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, ",")}'
+                            android:text="@string/button_point"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/buttonBack"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.Back(context)}'
+                            android:text="@string/button_back"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <Button
+                            android:id="@+id/button7"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "7")}'
+                            android:text="@string/button_7"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/button8"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "8")}'
+                            android:text="@string/button_8"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/button9"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "9")}'
+                            android:text="@string/button_9"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <Button
+                            android:id="@+id/button4"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "4")}'
+                            android:text="@string/button_4"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/button5"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "5")}'
+                            android:text="@string/button_5"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/button6"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "6")}'
+                            android:text="@string/button_6"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <Button
+                            android:id="@+id/button1"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "1")}'
+                            android:text="@string/button_1"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/button2"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "2")}'
+                            android:text="@string/button_2"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/button3"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.addNumber(context, "3")}'
+                            android:text="@string/button_3"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <Button
+                            android:id="@+id/button0"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2"
+                            android:onClick='@{() -> viewModel.addNumber(context, "0")}'
+                            android:text="@string/button_0"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/buttonPrint"
+                            style="@style/AppTheme.ForceTaxi.Button"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:onClick='@{() -> viewModel.Print(context)}'
+                            android:text="@{viewModel.showCheck ? @string/button_hide : @string/button_print}"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

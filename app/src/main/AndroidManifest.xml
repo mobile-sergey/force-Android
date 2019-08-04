@@ -43,6 +43,10 @@
         <activity android:name=".view.InnInfoActivity" />
         <activity android:name=".view.InnBindActivity" />
         <activity android:name=".view.InnBindResultActivity" />
+        <activity android:name=".view.CheckActivity" />
+        <activity android:name=".view.CheckHistoryActivity" />
+        <activity android:name=".view.CheckStornoActivity" />
+        <activity android:name=".view.CheckStornoResultActivity" />
     </application>
 
 </manifest>
