@@ -59,6 +59,54 @@
     <string name="text_password_success">Пароль успешно изменен</string>
     <string name="text_password_error">При смене пароля возникла ошибка:\n%1$s</string>
 
+    <!-- Экран 11.Указание ИНН (inn_set.xml) -->
+    <string name="text_inn">Укажите ваш ИНН</string>
+    <string name="edit_inn">ИНН</string>
+    <string name="link_inn_remind">Напомнить ИНН</string>
+    <string name="button_inn_set">Продолжить</string>
+
+    <!-- Экран 12.Указание ИНН. Результат (inn_set_result.xml) -->
+    <string name="text_set_inn_success">Удалось указать ИНН</string>
+    <string name="text_set_inn_error">При указании ИНН возникла ошибка:\n%1$s</string>
+
+    <!-- Экран 13.Поиск ИНН (inn_search.xml) -->
+    <!-- <string name="edit_phone">Телефон</string> -->
+    <string name="edit_surname">Фамилия</string>
+    <string name="edit_name">Имя</string>
+    <string name="edit_patronymic">Отчество</string>
+    <string name="edit_doc_series">Серия</string>
+    <string name="edit_doc_number">Номер паспорта</string>
+    <string name="button_search">Поиск в ФНС</string>
+    <string name="link_inn_info">Как зарегистрироваться самозанятым</string>
+
+    <!-- Экран 14.Поиск ИНН. Результат (inn_search_result.xml) -->
+    <string name="text_search_inn_success">ИНН найден:\n%1$s</string>
+    <string name="text_search_inn_error">При поиске ИНН возникла ошибка:\n%1$s</string>
+
+    <!-- Экран 15.	Мой налог. Просмотр инструкции (inn_info.xml) -->
+    <string name="url_inn_info">https://lknpd.nalog.ru/</string>
+
+    <!-- Экран 16.Привязка ИНН (inn_bind.xml) -->
+    <string name="text_bind">Привяжите учет доходов\nи выбивание чеков:</string>
+    <string name="text_bind_info">
+        ФИО\n
+        <b>Иванов Вазген Куйран Оглы</b>\n
+        ИНН\n
+        <b>1234567</b>\n
+        ОКТМО\n
+        <b>46748000890</b>\n
+        Дата постановки на учет\n
+        <b>01.07.2019</b>\n
+        Виды деятельности\n
+        <b>- Такси</b>
+    </string>
+    <string name="button_bind">Привязать</string>
+    <string name="link_bind_info">Как дать разрешения на работу площадки</string>
+
+    <!-- Экран 17.Привязка ИНН. Результат (inn_bind_result.xml) -->
+    <string name="text_bind_inn_success">ИНН %1$s привязан</string>
+    <string name="text_bind_inn_error">При привязке ИНН %1$s возникла ошибка:\n%2$s</string>
+
     <!-- Экран 30.Установка ПИН (pin_set.xml) -->
     <string name="text_pin_set">Придумайте пинкод</string>
     <string name="edit_pin_set">Пинкод</string>
@@ -135,5 +183,15 @@
 
     <string name="text_setpassword_success">Пароль на сервере изменен успешно</string>
     <string name="text_setpassword_error">При изменении пароля возникла ошибка:\n%1$s</string>
+
+    <string name="text_tightenincome_success">ИНН %1$s привязан успешно</string>
+    <string name="text_tightenincome_error">При привязке ИНН %1$s возникла ошибка:\n%2$s</string>
+
+    <string name="text_searchinn_success">ИНН найден</string>
+    <string name="text_searchinn_error">При поиске ИНН %1$s возникла ошибка:\n%1$s</string>
+
+    <string name="text_setinn_success">ИНН %1$s установлен успешно</string>
+    <string name="text_setinn_error">При установке ИНН %1$s возникла ошибка:\n%2$s</string>
+
 
 </resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.InnViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textBind"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@string/text_bind" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textBindInfo"
+                    style="@style/AppTheme.ForceTaxi.Text"
+                    android:text="@string/text_bind_info"
+                    android:textAlignment="viewStart" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/buttonEnter"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onBind(context)}"
+            android:text="@string/button_bind" />
+
+        <TextView
+            android:id="@+id/linkRegister"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:onClick="@{() -> viewModel.onBindInfo(context)}"
+            android:text="@string/link_bind_info"
+            android:textSize="14sp" />
+    </LinearLayout>
+</layout>

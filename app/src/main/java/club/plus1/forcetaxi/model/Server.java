@@ -146,6 +146,44 @@ public class Server {
         }
     }
 
+    public void setINN(Context context, String inn) {
+        Log.d("Force", "ServerModel::setINN()");
+        try {
+            this.putArg("inn", "1234567890");
+            this.setOk(true);
+            this.setError(new Error(200, context.getString(R.string.text_setinn_success, inn)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new Error(500, context.getString(R.string.text_setinn_error, inn, e.toString())));
+        }
+    }
+
+    public void searchINN(Context context, String phone,
+                          String surname, String name, String patronymic,
+                          String docSeries, String docNumber) {
+        Log.d("Force", "ServerModel::searchINN()");
+        try {
+            this.setOk(true);
+            this.setError(new Error(200, context.getString(R.string.text_searchinn_success)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new Error(500, context.getString(R.string.text_searchinn_error, e.toString())));
+        }
+    }
+
+    public void tightenIncome(Context context, String inn) {
+        Log.d("Force", "ServerModel::tightenIncome()");
+        try {
+            this.setOk(true);
+            this.setError(new Error(200, context.getString(R.string.text_tightenincome_success, inn)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new Error(500, context.getString(R.string.text_tightenincome_error, inn, e.toString())));
+        }
+    }
+
+
+
     public String getAppToken() {
         return appToken;
     }

@@ -11,6 +11,8 @@ import androidx.databinding.Bindable;
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.view.InnInfoActivity;
+import club.plus1.forcetaxi.view.InnSetActivity;
 import club.plus1.forcetaxi.view.PinSetActivity;
 import club.plus1.forcetaxi.view.RegistrationFinishedActivity;
 import club.plus1.forcetaxi.view.RegistrationVerificationActivity;
@@ -93,21 +95,19 @@ public class RegistrationViewModel extends BaseObservable {
         context.startActivity(intent);
     }
 
-    // Запуск экрана "0.Заставка" при нажатии ссылки "Привязать учет доходов и выбивание чеков"
+    // Запуск экрана "11.Указание ИНН" при нажатии ссылки "Привязать учет доходов и выбивание чеков"
     // в экране "5.Регистрация завершена"
-    // TODO: Когда появится экран "16.Привязка ИНН" - нужно будет перенаправлять туда
     public void onTighten(Context context) {
         Log.d("Force", "RegistrationViewModel::onTighten()");
-        Intent intent = new Intent(context, SplashActivity.class);
+        Intent intent = new Intent(context, InnSetActivity.class);
         context.startActivity(intent);
     }
 
-    // Запуск экрана "0.Заставка" при нажатии ссылки "Зарегистрироваться в ФНС"
+    // Запуск экрана "15.Мой налог. Просмотре инструкции" при нажатии ссылки "Зарегистрироваться в ФНС"
     // в экране "5.Регистрация завершена"
-    // TODO: Когда появится экран "15.Мой налог. Просмотре инструкции" - нужно будет перенаправлять туда
     public void onInFns(Context context) {
         Log.d("Force", "RegistrationViewModel::onInFns()");
-        Intent intent = new Intent(context, SplashActivity.class);
+        Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
 

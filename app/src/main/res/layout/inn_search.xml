@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.InnViewModel" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/editPhone"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_phone"
+            android:inputType="text|phone"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@={viewModel.phone}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editSurname"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_surname"
+            android:inputType="textPersonName|text"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@={viewModel.surname}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editName"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_name"
+            android:inputType="textPersonName|text"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@={viewModel.name}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editPatronymic"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_patronymic"
+            android:inputType="textPersonName|text"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@={viewModel.patronymic}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editDocSeries"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_doc_series"
+            android:inputType="number|text"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@={viewModel.docSeries}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editDocNumber"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_doc_number"
+            android:inputType="number|text"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@={viewModel.docNumber}"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/buttonSearch"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onSearch(context)}"
+            android:text="@string/button_search" />
+
+        <TextView
+            android:id="@+id/linkInnInfo"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:onClick="@{() -> viewModel.onInnInfo(context)}"
+            android:text="@string/link_inn_info" />
+    </LinearLayout>
+</layout>

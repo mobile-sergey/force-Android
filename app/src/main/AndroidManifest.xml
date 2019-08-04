@@ -36,6 +36,13 @@
         <activity android:name=".view.PinConfirmActivity" />
         <activity android:name=".view.PinResultActivity" />
         <activity android:name=".view.PinEnterActivity" />
+        <activity android:name=".view.InnSetActivity" />
+        <activity android:name=".view.InnSetResultActivity" />
+        <activity android:name=".view.InnSearchActivity" />
+        <activity android:name=".view.InnSearchResultActivity" />
+        <activity android:name=".view.InnInfoActivity" />
+        <activity android:name=".view.InnBindActivity" />
+        <activity android:name=".view.InnBindResultActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.InnViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:onClick="@{() -> viewModel.onBindResult(context)}"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <WebView
+            android:id="@+id/webInnInfo"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>
