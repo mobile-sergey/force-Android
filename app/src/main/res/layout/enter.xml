@@ -27,7 +27,7 @@
             tools:ignore="Autofill" />
 
         <EditText
-            android:id="@+id/editPassword"
+            android:id="@+id/editReason"
             style="@style/AppTheme.ForceTaxi.Edit"
             android:hint="@string/edit_password"
             android:inputType="textPassword"
@@ -35,7 +35,7 @@
             tools:ignore="Autofill" />
 
         <Button
-            android:id="@+id/buttonEnter"
+            android:id="@+id/buttonStorno"
             style="@style/AppTheme.ForceTaxi.Button"
             android:onClick="@{() -> viewModel.onEnter(context)}"
             android:text="@string/button_enter" />

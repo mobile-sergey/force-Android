@@ -27,7 +27,7 @@
             tools:ignore="Autofill" />
 
         <EditText
-            android:id="@+id/editPassword"
+            android:id="@+id/editReason"
             style="@style/AppTheme.ForceTaxi.Edit"
             android:hint="@string/edit_password"
             android:text="@={viewModel.password}"
