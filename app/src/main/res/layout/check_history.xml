@@ -16,7 +16,7 @@
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/textCheckCancelled"
+            android:id="@+id/textUserInfo"
             style="@style/AppTheme.ForceTaxi.Text"
             android:text="@string/text_check_owner" />
 

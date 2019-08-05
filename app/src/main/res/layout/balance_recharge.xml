@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.BalanceViewModel" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/editAmount"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_recharge_amount"
+            android:inputType="number"
+            android:text="@={viewModel.amount}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editGett"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_recharge_gett"
+            android:inputType="text"
+            android:text="@={viewModel.gett}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editYTaxi"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_recharge_ytaxi"
+            android:inputType="text"
+            android:text="@={viewModel.ytaxi}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editCity"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_recharge_city"
+            android:inputType="text"
+            android:text="@={viewModel.city}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editBolt"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_recharge_bolt"
+            android:inputType="text"
+            android:text="@={viewModel.bolt}"
+            tools:ignore="Autofill" />
+
+        <TextView
+            android:id="@+id/linkSberbank"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:onClick="@{() -> viewModel.onSendSberbank(context)}"
+            android:text="@string/link_sberbank"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonRecharge"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onRechargeSberbank(context)}"
+            android:text="@string/button_recharge" />
+
+    </LinearLayout>
+</layout>

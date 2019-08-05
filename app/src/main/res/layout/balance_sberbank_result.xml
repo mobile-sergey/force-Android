@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.BalanceViewModel" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:onClick="@{() -> viewModel.onSberbankResult(context)}"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textSberbankResult"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@{viewModel.result}" />
+    </LinearLayout>
+</layout>

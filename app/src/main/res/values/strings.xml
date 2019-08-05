@@ -119,6 +119,9 @@
     <string name="qr">QR-код</string>
     <string name="check_url">https://link.to/order/1234567</string>
     <string name="check_client">Клиент</string>
+    <string name="button_clear">C</string>
+    <string name="button_point">,</string>
+    <string name="button_back"><![CDATA[<]]></string>
     <string name="button_1">1</string>
     <string name="button_2">2</string>
     <string name="button_3">3</string>
@@ -129,7 +132,6 @@
     <string name="button_8">8</string>
     <string name="button_9">9</string>
     <string name="button_0">0</string>
-    <string name="button_point">,</string>
     <string name="button_print">Печать</string>
     <string name="button_hide">Скрыть</string>
 
@@ -147,6 +149,37 @@
 
     <!-- Экран 21.Сторнирование чека. Результат (check_storno_result.xml) -->
     <string name="text_check_cancelled">Чек успешно сторнирован (уничтожен)</string>
+
+    <!-- Экран 22.Баланс (balance.xml) -->
+    <string name="text_balance_label">Баланс для уплаты налогов</string>
+    <string name="button_recharge">Пополнить баланс</string>
+
+    <!-- Экран 22.Баланс - транзакции(balance_item.xml) -->
+    <string name="text_transaction_amount">Сумма: %1$s рублей</string>
+    <string name="text_transaction_date">Дата: %1$s</string>
+    <string name="text_transaction_status">%1$s</string>
+
+    <!-- Экран 23.Пополнение баланса  (balance_recharge.xml) -->
+    <string name="edit_recharge_amount">Сумма</string>
+    <string name="edit_recharge_gett">Позывной Gett</string>
+    <string name="edit_recharge_ytaxi">Телефон в Я.Такси</string>
+    <string name="edit_recharge_city">Телефон в Сити</string>
+    <string name="edit_recharge_bolt">Телефон в Bolt</string>
+    <string name="link_sberbank">Отправить ссылку для Сбербанка</string>
+
+    <!-- Экран 24.Пополнение баланса. Результат (balance_recharge_result.xml) -->
+    <string name="text_balance_result">Заявка на пополнение\nбаланса отправлена</string>
+    <string name="text_amount_label">Сумма:</string>
+    <string name="text_status_label">Статус:</string>
+
+    <!-- Экран 25.Пополнение баланса. Ссылка на Сбербанк  (balance_sberbank.xml) -->
+    <string name="text_sberbank_label">Введите ваш номер телефона,  привязанный к Сбербанку,
+        мы отправим вам ссылку на Сбербанк</string>
+    <string name="button_send_sberbank">Отправить ссылку</string>
+
+    <!-- Экран 26.	Пополнение баланса. Сбербанк. Результат (balance_sberbank_result.xml) -->
+    <string name="text_sberbank_success">Ссылка на Сбербанк отправлена на телефон %1$s</string>
+    <string name="text_sberbank_error">При отправке ссылки на телефон %1$s возникла ошибка:\n%2$s</string>
 
     <!-- Экран 30.Установка ПИН (pin_set.xml) -->
     <string name="text_pin_set">Придумайте пинкод</string>
@@ -233,8 +266,14 @@
 
     <string name="text_setinn_success">ИНН %1$s установлен успешно</string>
     <string name="text_setinn_error">При установке ИНН %1$s возникла ошибка:\n%2$s</string>
-    <string name="button_clear">C</string>
-    <string name="button_back"><![CDATA[<]]></string>
 
+    <string name="text_balance_success">Баланс получен успешно</string>
+    <string name="text_balance_error">При получении баланса возникла ошибка:\n%1$s</string>
+
+    <string name="text_check_history_success">История чеков получена успешно</string>
+    <string name="text_check_history_error">При получении истории чеков возникла ошибка:\n%1$s</string>
+
+    <string name="text_refill_balance_success">Баланс пополнен на %1$s успешно</string>
+    <string name="text_refill_balance_error">При пополнении баланса от %1$s возникла ошибка:\n%2$s</string>
 
 </resources>

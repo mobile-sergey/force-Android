@@ -11,6 +11,7 @@ import androidx.databinding.Bindable;
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
 import club.plus1.forcetaxi.view.InnSetActivity;
 import club.plus1.forcetaxi.view.PinSetActivity;
@@ -111,12 +112,17 @@ public class RegistrationViewModel extends BaseObservable {
         context.startActivity(intent);
     }
 
-    // Запуск экрана "0.Заставка" при нажатии ссылки "Предоставить права площадке ..."
+    // Запуск экрана "22.Баланс" при нажатии ссылки "Предоставить права площадке ..."
     // в экране "5.Регистрация завершена"
     // TODO: Когда появится экран "28.Инструкция" - нужно будет перенаправлять туда
     public void onForceAccepted(Context context) {
         Log.d("Force", "RegistrationViewModel::onForceAccepted()");
-        Intent intent = new Intent(context, SplashActivity.class);
+
+        Server server = Server.getInstance(context);
+        server.balance(context);
+        server.getCheckHistory(context, 0, 0);
+
+        Intent intent = new Intent(context, BalanceActivity.class);
         context.startActivity(intent);
     }
 

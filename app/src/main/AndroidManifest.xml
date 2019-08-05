@@ -47,6 +47,11 @@
         <activity android:name=".view.CheckHistoryActivity" />
         <activity android:name=".view.CheckStornoActivity" />
         <activity android:name=".view.CheckStornoResultActivity" />
+        <activity android:name=".view.BalanceActivity" />
+        <activity android:name=".view.BalanceRechargeActivity" />
+        <activity android:name=".view.BalanceRechargeResultActivity" />
+        <activity android:name=".view.BalanceSberbankActivity" />
+        <activity android:name=".view.BalanceSberbankResultActivity" />
     </application>
 
 </manifest>

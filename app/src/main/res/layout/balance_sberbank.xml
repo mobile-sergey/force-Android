@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.BalanceViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textSberbankLabel"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@string/text_sberbank_label" />
+
+        <EditText
+            android:id="@+id/editPhone"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_phone"
+            android:inputType="phone"
+            android:text="@={viewModel.phone}"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/buttonRecharge"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onSendLink(context)}"
+            android:text="@string/button_send_sberbank" />
+
+    </LinearLayout>
+</layout>

@@ -21,17 +21,9 @@ public class Server {
     private Error error;
     private Map<String, Object> args;
 
-    public static Server getInstance(Context context) {
-        Log.d("Force", "ServerModel::getInstance()");
-        if (mInstance == null) {
-            mInstance = new Server(context);
-        }
-        return mInstance;
-    }
-
     @SuppressLint("HardwareIds")
     private Server(Context context) {
-        Log.d("Force", "ServerModel::ServerModel()");
+        Log.d("Force", "Server::ServerModel()");
         try {
             this.setAppToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
             this.setUserToken("aec27f0f-b8a3-43cb-b076-e075a095abfe"); // Должен получаться с сервера, пока случайная строка
@@ -45,8 +37,16 @@ public class Server {
         }
     }
 
+    public static Server getInstance(Context context) {
+        Log.d("Force", "Server::getInstance()");
+        if (mInstance == null) {
+            mInstance = new Server(context);
+        }
+        return mInstance;
+    }
+
     public void sendMail(Context context, String email) {
-        Log.d("Force", "ServerModel::sendMail()");
+        Log.d("Force", "Server::sendMail()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_email_success, email)));
@@ -57,7 +57,7 @@ public class Server {
     }
 
     public void login(Context context, String login, String password) {
-        Log.d("Force", "ServerModel::login()");
+        Log.d("Force", "Server::login()");
         try {
             this.putArg("signUpStep", null);
             this.setOk(true);
@@ -69,7 +69,7 @@ public class Server {
     }
 
     public void signUp(Context context, String phone, String email, String password) {
-        Log.d("Force", "ServerModel::signUp()");
+        Log.d("Force", "Server::signUp()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_signup_success)));
@@ -80,7 +80,7 @@ public class Server {
     }
 
     public void sendSMS(Context context, String phone) {
-        Log.d("Force", "ServerModel::sendSMS()");
+        Log.d("Force", "Server::sendSMS()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_sendsms_success, phone)));
@@ -91,7 +91,7 @@ public class Server {
     }
 
     public void getUser(Context context) {
-        Log.d("Force", "ServerModel::getUser()");
+        Log.d("Force", "Server::getUser()");
         try {
             this.putArg("name", "ФИО");
             this.putArg("inn", "");
@@ -114,7 +114,7 @@ public class Server {
     }
 
     public void reserPassword(Context context, String login, LoginType loginType) {
-        Log.d("Force", "ServerModel::reserPassword()");
+        Log.d("Force", "Server::reserPassword()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_resetpassword_success)));
@@ -125,7 +125,7 @@ public class Server {
     }
 
     public void acceptResetPass(Context context, String code, String newPassword) {
-        Log.d("Force", "ServerModel::acceptResetPass()");
+        Log.d("Force", "Server::acceptResetPass()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_acceptresetpass_success)));
@@ -136,7 +136,7 @@ public class Server {
     }
 
     public void setPassword(Context context, String oldPassword, String newPassword) {
-        Log.d("Force", "ServerModel::setPassword()");
+        Log.d("Force", "Server::setPassword()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_setpassword_success)));
@@ -147,7 +147,7 @@ public class Server {
     }
 
     public void setINN(Context context, String inn) {
-        Log.d("Force", "ServerModel::setINN()");
+        Log.d("Force", "Server::setINN()");
         try {
             this.putArg("inn", "1234567890");
             this.setOk(true);
@@ -161,7 +161,7 @@ public class Server {
     public void searchINN(Context context, String phone,
                           String surname, String name, String patronymic,
                           String docSeries, String docNumber) {
-        Log.d("Force", "ServerModel::searchINN()");
+        Log.d("Force", "Server::searchINN()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_searchinn_success)));
@@ -172,7 +172,7 @@ public class Server {
     }
 
     public void tightenIncome(Context context, String inn) {
-        Log.d("Force", "ServerModel::tightenIncome()");
+        Log.d("Force", "Server::tightenIncome()");
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_tightenincome_success, inn)));
@@ -182,6 +182,40 @@ public class Server {
         }
     }
 
+    public void balance(Context context) {
+        Log.d("Force", "Server::balance()");
+        try {
+            this.putArg("balance", "1000");
+            this.setOk(true);
+            this.setError(new Error(200, context.getString(R.string.text_balance_success)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new Error(500, context.getString(R.string.text_balance_error, e.toString())));
+        }
+    }
+
+    public void getCheckHistory(Context context, int startPosition, int endPosition) {
+        Log.d("Force", "Server::getCheckHistory()");
+        try {
+            this.setOk(true);
+            this.setError(new Error(200, context.getString(R.string.text_check_history_success)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new Error(500, context.getString(R.string.text_check_history_error, e.toString())));
+        }
+    }
+
+    public void refillBalance(Context context, String amount, String from) {
+        Log.d("Force", "Server::refillBalance()");
+        try {
+            this.putArg("status", "В обработке");
+            this.setOk(true);
+            this.setError(new Error(200, context.getString(R.string.text_refill_balance_success, amount)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new Error(500, context.getString(R.string.text_refill_balance_error, from, e.toString())));
+        }
+    }
 
 
     public String getAppToken() {
