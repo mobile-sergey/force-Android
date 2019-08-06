@@ -13,8 +13,6 @@
     <string name="text_enter_error">При входе возникла ошибка:\n%1$s</string>
 
     <!-- Экран 3.Регистрация (registration.xml) -->
-    <!-- <string name="edit_login">Логин</string> -->
-    <!-- <string name="edit_password">Пароль</string> -->
     <string name="edit_confirmation">Подтверждение пароля</string>
     <string name="edit_phone">Телефон</string>
     <string name="edit_email">E-mail</string>
@@ -44,15 +42,9 @@
     <string name="text_recovery_error">При восстановлении пароля по e-mail возникла ошибка:\n%1$s</string>
 
     <!-- Экран 8.Восстановление пароля по телефону (recovery_phone.xml) -->
-    <!-- <string name="text_code">Введите код из СМС, которое мы отправили на номер </string> -->
-    <!-- <string name="edit_code">Код из СМС</string> -->
-    <!-- <string name="button_send_sms">Отправить СМС</string> -->
-    <!-- <string name="button_confirm">Подтвердить</string> -->
 
     <!-- Экран 9.Смена пароля (password.xml) -->
     <string name="text_password">Придумайте новый пароль:</string>
-    <!-- <string name="edit_password">Пароль</string> -->
-    <!-- <string name="edit_confirmation">Подтверждение пароля</string> -->
     <string name="button_change_password">Сменить пароль</string>
 
     <!-- Экран 10.Смена пароля. Результат (password_result.xml) -->
@@ -70,7 +62,6 @@
     <string name="text_set_inn_error">При указании ИНН возникла ошибка:\n%1$s</string>
 
     <!-- Экран 13.Поиск ИНН (inn_search.xml) -->
-    <!-- <string name="edit_phone">Телефон</string> -->
     <string name="edit_surname">Фамилия</string>
     <string name="edit_name">Имя</string>
     <string name="edit_patronymic">Отчество</string>
@@ -181,35 +172,27 @@
     <string name="text_sberbank_success">Ссылка на Сбербанк отправлена на телефон %1$s</string>
     <string name="text_sberbank_error">При отправке ссылки на телефон %1$s возникла ошибка:\n%2$s</string>
 
+    <!-- Экран 27.Профиль (menu_profile.xml) -->
+    <string name="link_invite">Пригласить друга</string>
+    <string name="link_exit">Выйти из профиля</string>
+
+    <!-- Экран 28.Инструкция (menu_instruction.xml) -->
+    <string name="url_instruction">http://google.com</string>
+
+    <!-- Экран 29.Пригласить друга (menu_invite.xml) -->
+    <string name="text_invite_label">Поделитесь ссылкой с другом:</string>
+    <string name="url_link_app">link.to/app/</string>
+    <string name="button_copy_link">Скопировать ссылку</string>
+    <string name="text_buffer_copy">Текст скопирован</string>
+
     <!-- Экран 30.Установка ПИН (pin_set.xml) -->
     <string name="text_pin_set">Придумайте пинкод</string>
     <string name="edit_pin_set">Пинкод</string>
-    <!-- <string name="button_1">1</string> -->
-    <!-- <string name="button_2">2</string> -->
-    <!-- <string name="button_3">3</string> -->
-    <!-- <string name="button_4">4</string> -->
-    <!-- <string name="button_5">5</string> -->
-    <!-- <string name="button_6">6</string> -->
-    <!-- <string name="button_7">7</string> -->
-    <!-- <string name="button_8">8</string> -->
-    <!-- <string name="button_9">9</string> -->
-    <!-- <string name="button_0">0</string> -->
     <string name="button_next">Продолжить</string>
 
     <!-- Экран 31.Подтверждение ПИН (pin_confirm.xml) -->
     <string name="text_pin_confirm">Подтвердите пинкод</string>
     <string name="edit_pin_confirm">Пинкод повторно</string>
-    <!-- <string name="button_1">1</string> -->
-    <!-- <string name="button_2">2</string> -->
-    <!-- <string name="button_3">3</string> -->
-    <!-- <string name="button_4">4</string> -->
-    <!-- <string name="button_5">5</string> -->
-    <!-- <string name="button_6">6</string> -->
-    <!-- <string name="button_7">7</string> -->
-    <!-- <string name="button_8">8</string> -->
-    <!-- <string name="button_9">9</string> -->
-    <!-- <string name="button_0">0</string> -->
-    <!-- <string name="button_next">Продолжить</string> -->
 
     <!-- Экран 32.Установка ПИН. Результат (pin_result.xml) -->
     <string name="text_pin_success">Пинкод успешно установлен</string>
@@ -218,17 +201,22 @@
     <!-- Экран 33.Ввод ПИН (pin_enter.xml) -->
     <string name="text_pin_enter">Введите ПИН-код для входа в приложение</string>
     <string name="edit_pin_enter">Пинкод</string>
-    <!-- <string name="button_1">1</string> -->
-    <!-- <string name="button_2">2</string> -->
-    <!-- <string name="button_3">3</string> -->
-    <!-- <string name="button_4">4</string> -->
-    <!-- <string name="button_5">5</string> -->
-    <!-- <string name="button_6">6</string> -->
-    <!-- <string name="button_7">7</string> -->
-    <!-- <string name="button_8">8</string> -->
-    <!-- <string name="button_9">9</string> -->
-    <!-- <string name="button_0">0</string> -->
-    <!-- <string name="button_next">Продолжить</string> -->
+
+    <!-- Экран 34.Закрытое меню (menu_check.xml) -->
+    <string name="button_tighten">Привязать учет доходов \nи выбивание чеков</string>
+
+    <!-- Экран 35.Закрытый баланс (menu_balance.xml) -->
+    <string name="button_in_fns">Зарегистрироваться в ФНС</string>
+    <string name="button_force_accepted">Предоставить права \nплощадке ООО «Фокс Такси»</string>
+
+    <!-- Работа с меню -->
+    <string name="action_check">Выбить чек</string>
+    <string name="action_history">История</string>
+    <string name="action_balance">Баланс</string>
+    <string name="action_profile">Профиль</string>
+    <string name="action_instructions">Инструкции</string>
+    <string name="action_exit">Выход</string>
+    <string name="action_invite">Пригласить друга</string>
 
     <!-- Работа с сервером -->
     <string name="text_server_success">Соединение с сервером прошло успешно</string>

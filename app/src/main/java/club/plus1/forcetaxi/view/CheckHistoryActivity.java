@@ -1,6 +1,8 @@
 package club.plus1.forcetaxi.view;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.databinding.CheckHistoryBinding;
 import club.plus1.forcetaxi.databinding.CheckItemBinding;
 import club.plus1.forcetaxi.viewmodel.CheckViewModel;
+import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 
 public class CheckHistoryActivity extends AppCompatActivity {
 
@@ -40,5 +43,20 @@ public class CheckHistoryActivity extends AppCompatActivity {
                 R.layout.check_item, R.id.textCheck, history);
 
         binding.listHistory.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (MenuViewModel.onOptionsItemSelected(this, item.getItemId())) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

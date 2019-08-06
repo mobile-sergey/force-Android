@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.MenuViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textInviteLabel"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@string/text_invite_label" />
+
+        <TextView
+            android:id="@+id/urlLinkApp"
+            style="@style/AppTheme.ForceTaxi.Link"
+            android:text="@string/url_link_app"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonCopyLink"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onCopyLink(context)}"
+            android:text="@string/button_copy_link" />
+
+    </LinearLayout>
+</layout>

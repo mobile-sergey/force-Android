@@ -3,9 +3,7 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="club.plus1.forcetaxi">
-
     <dist:module dist:instant="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -52,6 +50,10 @@
         <activity android:name=".view.BalanceRechargeResultActivity" />
         <activity android:name=".view.BalanceSberbankActivity" />
         <activity android:name=".view.BalanceSberbankResultActivity" />
+        <activity android:name=".view.MenuCheckActivity" />
+        <activity android:name=".view.MenuBalanceActivity" />
+        <activity android:name=".view.MenuProfileActivity" />
+        <activity android:name=".view.MenuInstructionActivity" />
+        <activity android:name=".view.MenuInviteActivity" />
     </application>
-
 </manifest>

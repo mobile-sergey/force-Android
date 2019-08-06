@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="club.plus1.forcetaxi.viewmodel.InnViewModel" />
+            type="club.plus1.forcetaxi.viewmodel.MenuViewModel" />
     </data>
 
     <LinearLayout

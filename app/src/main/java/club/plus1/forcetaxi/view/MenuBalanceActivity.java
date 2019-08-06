@@ -8,19 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.databinding.InnSetBinding;
-import club.plus1.forcetaxi.viewmodel.InnViewModel;
+import club.plus1.forcetaxi.databinding.MenuBalanceBinding;
 import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 
-public class InnSetActivity extends AppCompatActivity {
+public class MenuBalanceActivity extends AppCompatActivity {
 
-    private InnViewModel viewModel;
+    private MenuViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InnSetBinding binding = DataBindingUtil.setContentView(this, R.layout.inn_set);
-        viewModel = InnViewModel.getInstance(this);
+        MenuBalanceBinding binding = DataBindingUtil.setContentView(this, R.layout.menu_balance);
+        viewModel = MenuViewModel.getInstance(this);
         binding.setViewModel(viewModel);
     }
 

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="club.plus1.forcetaxi.viewmodel.MenuViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/splash_screen"
+                    style="@style/AppTheme.ForceTaxi.Logo"
+                    android:src="@drawable/logo"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textBindInfo"
+                        style="@style/AppTheme.ForceTaxi.Text"
+                        android:text="@string/text_bind_info"
+                        android:textAlignment="viewStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/statusTighten"
+                        style="@style/AppTheme.ForceTaxi.Status.Image"
+                        android:src='@{viewModel.isTighten == null ? @drawable/wait : (viewModel.isTighten ? @drawable/yes : @drawable/no)}'
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/linkTighten"
+                        style="@style/AppTheme.ForceTaxi.Status.Link"
+                        android:onClick="@{() -> viewModel.onTighten(context)}"
+                        android:text="@string/link_tighten" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/statusInFns"
+                        style="@style/AppTheme.ForceTaxi.Logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src='@{viewModel.isInFns == null ? @drawable/wait : (viewModel.isInFns ? @drawable/yes : @drawable/no)}'
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/linkInFns"
+                        style="@style/AppTheme.ForceTaxi.Link"
+                        android:layout_weight="1"
+                        android:onClick="@{() -> viewModel.onInFns(context)}"
+                        android:text="@string/link_in_fns"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/statusForceAccepted"
+                        style="@style/AppTheme.ForceTaxi.Logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src='@{viewModel.isForceAccepted == null ? @drawable/wait : (viewModel.isForceAccepted ? @drawable/yes : @drawable/no)}'
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/linkForceAccepted"
+                        style="@style/AppTheme.ForceTaxi.Link"
+                        android:layout_weight="1"
+                        android:onClick="@{() -> viewModel.onForceAccepted(context)}"
+                        android:text="@string/link_force_accepted"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/statusPinSet"
+                        style="@style/AppTheme.ForceTaxi.Logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src='@{viewModel.isPinSet == null ? @drawable/wait : (viewModel.isPinSet ? @drawable/yes : @drawable/no)}'
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/linkPinSet"
+                        style="@style/AppTheme.ForceTaxi.Link"
+                        android:layout_weight="1"
+                        android:onClick="@{() -> viewModel.onPIN(context)}"
+                        android:text="@string/link_pin_set"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/linkInvite"
+                    style="@style/AppTheme.ForceTaxi.Link"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> viewModel.onInvite(context)}"
+                    android:text="@string/link_invite"
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/linkExit"
+                    style="@style/AppTheme.ForceTaxi.Link"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> viewModel.onExit(context)}"
+                    android:text="@string/link_exit"
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>
