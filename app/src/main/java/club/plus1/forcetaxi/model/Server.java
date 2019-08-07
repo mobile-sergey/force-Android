@@ -3,7 +3,6 @@ package club.plus1.forcetaxi.model;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.provider.Settings;
-import android.util.Log;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class Server {
 
     @SuppressLint("HardwareIds")
     private Server(Context context) {
-        Log.d("Force", "Server::ServerModel()");
+        ActiveLog.getInstance().log();
         try {
             this.setAppToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
             this.setUserToken("aec27f0f-b8a3-43cb-b076-e075a095abfe"); // Должен получаться с сервера, пока случайная строка
@@ -38,7 +37,7 @@ public class Server {
     }
 
     public static Server getInstance(Context context) {
-        Log.d("Force", "Server::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new Server(context);
         }
@@ -46,7 +45,7 @@ public class Server {
     }
 
     public void sendMail(Context context, String email) {
-        Log.d("Force", "Server::sendMail()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_email_success, email)));
@@ -57,7 +56,7 @@ public class Server {
     }
 
     public void login(Context context, String login, String password) {
-        Log.d("Force", "Server::login()");
+        ActiveLog.getInstance().log();
         try {
             this.putArg("signUpStep", null);
             this.setOk(true);
@@ -69,7 +68,7 @@ public class Server {
     }
 
     public void signUp(Context context, String phone, String email, String password) {
-        Log.d("Force", "Server::signUp()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_signup_success)));
@@ -80,7 +79,7 @@ public class Server {
     }
 
     public void sendSMS(Context context, String phone) {
-        Log.d("Force", "Server::sendSMS()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_sendsms_success, phone)));
@@ -91,7 +90,7 @@ public class Server {
     }
 
     public void getUser(Context context) {
-        Log.d("Force", "Server::getUser()");
+        ActiveLog.getInstance().log();
         try {
             this.putArg("name", "ФИО");
             this.putArg("inn", "");
@@ -114,7 +113,7 @@ public class Server {
     }
 
     public void reserPassword(Context context, String login, LoginType loginType) {
-        Log.d("Force", "Server::reserPassword()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_resetpassword_success)));
@@ -125,7 +124,7 @@ public class Server {
     }
 
     public void acceptResetPass(Context context, String code, String newPassword) {
-        Log.d("Force", "Server::acceptResetPass()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_acceptresetpass_success)));
@@ -136,7 +135,7 @@ public class Server {
     }
 
     public void setPassword(Context context, String oldPassword, String newPassword) {
-        Log.d("Force", "Server::setPassword()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_setpassword_success)));
@@ -147,7 +146,7 @@ public class Server {
     }
 
     public void setINN(Context context, String inn) {
-        Log.d("Force", "Server::setINN()");
+        ActiveLog.getInstance().log();
         try {
             this.putArg("inn", "1234567890");
             this.setOk(true);
@@ -161,7 +160,7 @@ public class Server {
     public void searchINN(Context context, String phone,
                           String surname, String name, String patronymic,
                           String docSeries, String docNumber) {
-        Log.d("Force", "Server::searchINN()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_searchinn_success)));
@@ -172,7 +171,7 @@ public class Server {
     }
 
     public void tightenIncome(Context context, String inn) {
-        Log.d("Force", "Server::tightenIncome()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_tightenincome_success, inn)));
@@ -183,7 +182,7 @@ public class Server {
     }
 
     public void balance(Context context) {
-        Log.d("Force", "Server::balance()");
+        ActiveLog.getInstance().log();
         try {
             this.putArg("balance", "1000");
             this.setOk(true);
@@ -195,7 +194,7 @@ public class Server {
     }
 
     public void getCheckHistory(Context context, int startPosition, int endPosition) {
-        Log.d("Force", "Server::getCheckHistory()");
+        ActiveLog.getInstance().log();
         try {
             this.setOk(true);
             this.setError(new Error(200, context.getString(R.string.text_check_history_success)));
@@ -206,7 +205,7 @@ public class Server {
     }
 
     public void refillBalance(Context context, String amount, String from) {
-        Log.d("Force", "Server::refillBalance()");
+        ActiveLog.getInstance().log();
         try {
             this.putArg("status", "В обработке");
             this.setOk(true);

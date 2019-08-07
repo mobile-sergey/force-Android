@@ -2,13 +2,13 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.LoginType;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.EnterActivity;
@@ -26,7 +26,7 @@ public class RecoveryViewModel extends BaseObservable {
     public String textCode;
 
     private RecoveryViewModel(Context context) {
-        Log.d("Force", "RecoveryViewModel::RecoveryViewModel()");
+        ActiveLog.getInstance().log();
         try {
             this.setResult(context.getString(R.string.text_recovery_success));
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class RecoveryViewModel extends BaseObservable {
     }
 
     public static RecoveryViewModel getInstance(Context context) {
-        Log.d("Force", "RecoveryViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new RecoveryViewModel(context);
         }
@@ -45,7 +45,7 @@ public class RecoveryViewModel extends BaseObservable {
     // Запуск экрана "7.Восстановление пароля по e-mail" или "8.Восстановление пароля по телефону"
     // при нажатии кнопки "Восстановить" в экране "6.Восстановление пароля"
     public void onRecovery(Context context) {
-        Log.d("Force", "RecoveryViewModel::onRecovery()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         if (login.contains("@")) {  // Найдена @ - значит введен email
             server.reserPassword(context, login, LoginType.email);
@@ -62,14 +62,14 @@ public class RecoveryViewModel extends BaseObservable {
 
     // Запуск экрана "1.Вход" при нажатии на экране "7.Восстановление пароля по e-mail"
     public void onEmailRecovery(Context context) {
-        Log.d("Force", "RecoveryViewModel::onEmailRecovery()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, EnterActivity.class);
         context.startActivity(intent);
     }
 
     // Отправка СМС при нажатии кнопки "Отправить СМС" в экране "8.Восстановление пароля по телефону"
     public void onSendSMS(Context context) {
-        Log.d("Force", "RecoveryViewModel::onSendSMS()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.sendSMS(context, login);
     }
@@ -77,7 +77,7 @@ public class RecoveryViewModel extends BaseObservable {
     // Запуск экрана "9.Смена пароля" при нажатии кнопки "Подтвердить"
     // в экране "8.Восстановление пароля по телефону"
     public void onPhoneRecovery(Context context) {
-        Log.d("Force", "RecoveryViewModel::onPhoneRecovery()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.acceptResetPass(context, code, password);
         Intent intent = new Intent(context, PasswordActivity.class);

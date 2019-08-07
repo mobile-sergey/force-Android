@@ -2,13 +2,15 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableBoolean;
 
 import club.plus1.forcetaxi.BR;
+import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.CheckStornoActivity;
 import club.plus1.forcetaxi.view.CheckStornoResultActivity;
@@ -20,16 +22,28 @@ public class CheckViewModel extends BaseObservable {
     public String reason;
     public ObservableBoolean showCheck;
     private String total;
+    private final String[] history;
+    public ArrayAdapter<String> adapter;
 
     private CheckViewModel(Context context) {
-        Log.d("Force", "EnterViewModel::EnterViewModel()");
+        ActiveLog.getInstance().log();
         this.showCheck = new ObservableBoolean();
         this.showCheck.set(false);
         this.total = "";
+
+        history = new String[]{
+                context.getString(R.string.check_text, "1000"),
+                context.getString(R.string.check_text, "100"),
+                context.getString(R.string.check_text, "200"),
+                context.getString(R.string.check_text, "555.55"),
+                context.getString(R.string.check_text, "33.00"),
+        };
+
+        adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, history);
     }
 
     public static CheckViewModel getInstance(Context context) {
-        Log.d("Force", "EnterViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new CheckViewModel(context);
         }
@@ -37,7 +51,7 @@ public class CheckViewModel extends BaseObservable {
     }
 
     public void addNumber(Context context, String number) {
-        Log.d("Force", "EnterViewModel::addNumber() - " + number);
+        ActiveLog.getInstance().log();
         if (!(number.equals(",") && total.contains(","))) {
             if (total.equals("0")) {
                 total = number;
@@ -49,13 +63,13 @@ public class CheckViewModel extends BaseObservable {
     }
 
     public void Clear(Context context) {
-        Log.d("Force", "EnterViewModel::Clear()");
+        ActiveLog.getInstance().log();
         total = "0";
         notifyPropertyChanged(BR.total);
     }
 
     public void Back(Context context) {
-        Log.d("Force", "EnterViewModel::Back()");
+        ActiveLog.getInstance().log();
         if (total.equals("0")) {
             total = "0";
         } else {
@@ -65,20 +79,20 @@ public class CheckViewModel extends BaseObservable {
     }
 
     public void Print(Context context) {
-        Log.d("Force", "EnterViewModel::Print() - " + showCheck.get());
+        ActiveLog.getInstance().log();
         showCheck.set(!showCheck.get());
     }
 
     // Запуск экрана "19.История чеков" при нажатии ссылки "История чеков" в экране "18.Выбивание чека"
     public void onHistory(Context context) {
-        Log.d("Force", "CheckViewModel::onHistory()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, CheckHistoryActivity.class);
         context.startActivity(intent);
     }
 
     // Запуск экрана "20.Сторнирование чека" при нажатии ссылки "Отменить" в экране "19.История чеков"
     public void onCheckCancel(Context context) {
-        Log.d("Force", "CheckViewModel::onCheckCancel()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, CheckStornoActivity.class);
         context.startActivity(intent);
     }
@@ -86,7 +100,7 @@ public class CheckViewModel extends BaseObservable {
     // Запуск экрана "21.Сторнирование чека. Результат" при нажатии кнопки "Сторнировать чек"
     // в экране "20.Сторнирование чека""
     public void onStorno(Context context) {
-        Log.d("Force", "CheckViewModel::onStorno()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, CheckStornoResultActivity.class);
         context.startActivity(intent);
     }
@@ -94,7 +108,7 @@ public class CheckViewModel extends BaseObservable {
     // Запуск экрана "0.Заставка" при нажатии на экране "21.Сторнирование чека. Результат"
     // TODO: Когда появится экран "34.Закрытое меню" - нужно будет перенаправлять туда
     public void onResult(Context context) {
-        Log.d("Force", "CheckViewModel::onResult()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, SplashActivity.class);
         context.startActivity(intent);
     }

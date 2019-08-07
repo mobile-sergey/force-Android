@@ -2,13 +2,13 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.PasswordResultActivity;
@@ -21,7 +21,7 @@ public class PasswordViewModel extends BaseObservable {
     public String confirm;
 
     private PasswordViewModel(Context context) {
-        Log.d("Force", "PasswordViewModel::PasswordViewModel()");
+        ActiveLog.getInstance().log();
         try {
             this.setResult(context.getString(R.string.text_password_success));
         } catch (Exception e) {
@@ -30,7 +30,7 @@ public class PasswordViewModel extends BaseObservable {
     }
 
     public static PasswordViewModel getInstance(Context context) {
-        Log.d("Force", "PasswordViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new PasswordViewModel(context);
         }
@@ -40,7 +40,7 @@ public class PasswordViewModel extends BaseObservable {
     // Запуск экрана "10.Смена пароля. Результат" при нажатии кнопки "Сменить пароль"
     // в экране "9.Смена пароля"
     public void onPasswordChange(Context context) {
-        Log.d("Force", "PasswordViewModel::onPasswordChange()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.setPassword(context, password, confirm);
         Intent intent = new Intent(context, PasswordResultActivity.class);
@@ -49,7 +49,7 @@ public class PasswordViewModel extends BaseObservable {
 
     // Запуск экрана "1.Вход" при нажатии на экране "10.Смена пароля. Результат"
     public void onResult(Context context) {
-        Log.d("Force", "PasswordViewModel::onResult()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, EnterActivity.class);
         context.startActivity(intent);
     }

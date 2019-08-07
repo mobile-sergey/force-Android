@@ -2,9 +2,9 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.InnBindActivity;
@@ -28,13 +28,13 @@ public class InnViewModel {
     public String urlInfo;
 
     private InnViewModel(Context context) {
-        Log.d("Force", "InnViewModel::InnViewModel()");
+        ActiveLog.getInstance().log();
         urlInfo = context.getString(R.string.url_inn_info);
         inn = "";
     }
 
     public static InnViewModel getInstance(Context context) {
-        Log.d("Force", "InnViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new InnViewModel(context);
         }
@@ -43,14 +43,14 @@ public class InnViewModel {
 
     // Запуск экрана "13.Поиск ИНН" при нажатии ссылки "Напомнить ИНН" в экране "11.Указание ИНН"
     public void onInnRemind(Context context) {
-        Log.d("Force", "InnViewModel::onInnRemind()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnSearchActivity.class);
         context.startActivity(intent);
     }
 
     // Запуск экрана "12.Указание ИНН. Результат" при нажатии кнопки "Продолжить" в экране "11.Указание ИНН"
     public void onInnSet(Context context) {
-        Log.d("Force", "InnViewModel::onInnSet()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.setINN(context, inn);
@@ -66,7 +66,7 @@ public class InnViewModel {
 
     // Запуск экрана "14.Поиск ИНН. Результат" при нажатии кнопки "Поиск в ФНС" в экране "13.Поиск ИНН"
     public void onSearch(Context context) {
-        Log.d("Force", "InnViewModel::onSearch()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.searchINN(context, phone, surname, name, patronymic, docSeries, docNumber);
@@ -84,15 +84,14 @@ public class InnViewModel {
     // Запуск экрана "15.Мой налог. Просмотр инструкции" при нажатии ссылки
     // "Как зарегистрироваться самозанятым" в экране "13.Поиск ИНН"
     public void onInnInfo(Context context) {
-        Log.d("Force", "InnViewModel::onInnInfo()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
 
     // Запуск экрана "17.Привязка ИНН. Результат" при нажатии кнопки "Привязать" в экране "16.Привязка ИНН"
     public void onBind(Context context) {
-        Log.d("Force", "InnViewModel::onBind()");
-
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.tightenIncome(context, inn);
         if (server.isOk()) {
@@ -108,7 +107,7 @@ public class InnViewModel {
     // Запуск экрана "15.Мой налог. Просмотр инструкции" при нажатии ссылки
     // "Как дать разрешения на работу площадки" в экране "16.Привязка ИНН"
     public void onBindInfo(Context context) {
-        Log.d("Force", "InnViewModel::onBindInfo()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
@@ -117,7 +116,7 @@ public class InnViewModel {
     // запуск экрана "16.Привязка ИНН" если ИНН найден
     // или запуск экрана "13.Поиск ИНН" если ИНН не найден
     public void onSetResult(Context context) {
-        Log.d("Force", "InnViewModel::onSetResult()");
+        ActiveLog.getInstance().log();
         if (inn.isEmpty()) {
             Intent intent = new Intent(context, InnSearchActivity.class);
             context.startActivity(intent);
@@ -131,7 +130,7 @@ public class InnViewModel {
     // запуск экрана "16.Привязка ИНН" если ИНН найден
     // или запуск экрана "15.Мой налог. Просмотр инструкции" если ИНН не найден
     public void onSearchResult(Context context) {
-        Log.d("Force", "InnViewModel::onSearchResult()");
+        ActiveLog.getInstance().log();
         if (inn.isEmpty()) {
             Intent intent = new Intent(context, InnInfoActivity.class);
             context.startActivity(intent);
@@ -144,7 +143,7 @@ public class InnViewModel {
     // Запуск экрана "18.Выбивание чека" при нажатии на экране "17.Привязка ИНН. Результат"
     // TODO: Когда появится экран "34.Закрытое меню" - нужно будет перенаправлять туда
     public void onBindResult(Context context) {
-        Log.d("Force", "InnViewModel::onBindResult()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, CheckActivity.class);
         context.startActivity(intent);
     }

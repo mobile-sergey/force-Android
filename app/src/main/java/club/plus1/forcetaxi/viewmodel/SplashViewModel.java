@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.EnterActivity;
 
@@ -22,27 +22,9 @@ public class SplashViewModel extends BaseObservable {
     private int versionCode;
 
     private SplashViewModel(Context context) {
-        Log.d("Force", "SplashViewModel::SplashViewModel()");
-        setVersion(context);
-    }
-
-    public static SplashViewModel getInstance(Context context) {
-        Log.d("Force", "SplashViewModel::getInstance()");
-        if (mInstance == null) {
-            mInstance = new SplashViewModel(context);
-        }
-        return mInstance;
-    }
-
-    public void onResume(Context context) {
-        Log.d("Force", "SplashViewModel::onResume()");
-        setVersion(context);
-    }
-
-    // Получаем информацию о пакете из которого получим версию и номер сборки
-    // Если не удалось обратиться к пакету - создаём каркас с необходимыми нам полями
-    public void setVersion(Context context) {
-        Log.d("Force", "SplashViewModel::setVersion()");
+        ActiveLog.getInstance().log();
+        // Получаем информацию о пакете из которого получим версию и номер сборки
+        // Если не удалось обратиться к пакету - создаём каркас с необходимыми нам полями
         PackageInfo pInfo = null;
         try {
             pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -54,13 +36,22 @@ public class SplashViewModel extends BaseObservable {
             pInfo.versionName = "0.0";
             pInfo.versionCode = 0;
         }
-        this.setVersionName(pInfo.versionName);
-        this.setVersionCode(pInfo.versionCode);
+        setVersionName(pInfo.versionName);
+        setVersionCode(pInfo.versionCode);
+        startEnterActivity(context);
+    }
+
+    public static SplashViewModel getInstance(Context context) {
+        ActiveLog.getInstance().log();
+        if (mInstance == null) {
+            mInstance = new SplashViewModel(context);
+        }
+        return mInstance;
     }
 
     // Запуск экрана "1.Вход" или "33.Ввод ПИН" после завершения загрузки приложения
-    public void startEnterActivity(final Context context) {
-        Log.d("Force", "SplashViewModel::startEnterActivity()");
+    private void startEnterActivity(final Context context) {
+        ActiveLog.getInstance().log();
 
         // "Отправляем на сервер запрос GET /
         final Server server = Server.getInstance(context);

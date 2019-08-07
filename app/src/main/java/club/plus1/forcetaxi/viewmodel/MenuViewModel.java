@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -13,6 +12,7 @@ import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
@@ -40,11 +40,11 @@ public class MenuViewModel extends BaseObservable {
 
 
     private MenuViewModel(Context context) {
-        Log.d("Force", "EnterViewModel::EnterViewModel()");
+        ActiveLog.getInstance().log();
     }
 
     public static MenuViewModel getInstance(Context context) {
-        Log.d("Force", "EnterViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new MenuViewModel(context);
         }
@@ -52,6 +52,7 @@ public class MenuViewModel extends BaseObservable {
     }
 
     public static boolean onOptionsItemSelected(Context context, int id) {
+        ActiveLog.getInstance().log();
         Intent intent;
         switch (id) {
             case R.id.actionCheck:
@@ -88,7 +89,7 @@ public class MenuViewModel extends BaseObservable {
     }
 
     public void onCopyLink(Context context) {
-        Log.d("Force", "MenuViewModel::onCopyLink()");
+        ActiveLog.getInstance().log();
 
         ClipData clipData = ClipData.newPlainText("text", context.getString(R.string.url_link_app));
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -102,7 +103,7 @@ public class MenuViewModel extends BaseObservable {
     // Запуск экрана "11.Указание ИНН" при нажатии ссылки "Привязать учет доходов и выбивание чеков"
     // в экране "5.Регистрация завершена"
     public void onTighten(Context context) {
-        Log.d("Force", "RegistrationViewModel::onTighten()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnSetActivity.class);
         context.startActivity(intent);
     }
@@ -110,7 +111,7 @@ public class MenuViewModel extends BaseObservable {
     // Запуск экрана "15.Мой налог. Просмотре инструкции" при нажатии ссылки "Зарегистрироваться в ФНС"
     // в экране "5.Регистрация завершена"
     public void onInFns(Context context) {
-        Log.d("Force", "RegistrationViewModel::onInFns()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
@@ -118,7 +119,7 @@ public class MenuViewModel extends BaseObservable {
     // Запуск экрана "22.Баланс" при нажатии ссылки "Предоставить права площадке ..."
     // в экране "5.Регистрация завершена"
     public void onForceAccepted(Context context) {
-        Log.d("Force", "RegistrationViewModel::onForceAccepted()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.balance(context);
@@ -131,19 +132,19 @@ public class MenuViewModel extends BaseObservable {
     // Запуск экрана "30.Установка ПИН" при нажатии ссылки "Установить ПИН"
     // в экране "5.Регистрация завершена"
     public void onPIN(Context context) {
-        Log.d("Force", "RegistrationViewModel::onPIN()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, PinSetActivity.class);
         context.startActivity(intent);
     }
 
     public void onInvite(Context context) {
-        Log.d("Force", "RegistrationViewModel::onInvite()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, MenuInviteActivity.class);
         context.startActivity(intent);
     }
 
     public void onExit(Context context) {
-        Log.d("Force", "RegistrationViewModel::onExit()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, EnterActivity.class);
         context.startActivity(intent);
     }

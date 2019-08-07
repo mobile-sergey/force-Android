@@ -2,7 +2,6 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
@@ -10,6 +9,7 @@ import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
@@ -41,16 +41,16 @@ public class RegistrationViewModel extends BaseObservable {
     private Boolean isPinSet;
 
     private RegistrationViewModel(Context context) {
-        Log.d("Force", "RegistrationViewModel::RegistrationViewModel()");
+        ActiveLog.getInstance().log();
         this.textCode = context.getString(R.string.text_code);
-        setIsTighten(null);
-        setIsInFns(null);
+        setIsTighten(true);
+        setIsInFns(false);
         setIsForceAccepted(null);
-        setIsPinSet(null);
+        setIsPinSet(false);
     }
 
     public static RegistrationViewModel getInstance(Context context) {
-        Log.d("Force", "RegistrationViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new RegistrationViewModel(context);
         }
@@ -60,7 +60,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Запуск экрана "4.Регистрация. Подтверждение телефона" при нажатии кнопки "Регистрация"
     // в экране "3.Регистрация"
     public void onRegistration(Context context) {
-        Log.d("Force", "RegistrationViewModel::onRegistration()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.signUp(context, phone, email, password);
         server.sendSMS(context, phone);
@@ -71,7 +71,7 @@ public class RegistrationViewModel extends BaseObservable {
 
     // "Отправка СМС" при нажатии кнопки "Отправить СМС" в экране "4.Регистрация. Подтверждение телефона"
     public void onSendSMS(Context context) {
-        Log.d("Force", "RegistrationViewModel::onSendSMS()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.sendSMS(context, phone);
     }
@@ -79,7 +79,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Запуск экрана "5.Регистрация завершена" при нажатии кнопки "Подтвердить"
     // в экране "4.Регистрация. Подтверждение телефона"
     public void onVerification(Context context) {
-        Log.d("Force", "RegistrationViewModel::onVerification()");
+        ActiveLog.getInstance().log();
         Server server = Server.getInstance(context);
         server.acceptResetPass(context, code, password);
         server.getUser(context);
@@ -91,7 +91,7 @@ public class RegistrationViewModel extends BaseObservable {
     // в экране "5.Регистрация завершена"
     // TODO: Когда появится экран "34.Закрытое меню" - нужно будет перенаправлять туда
     public void onLater(Context context) {
-        Log.d("Force", "RegistrationViewModel::onLater()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, SplashActivity.class);
         context.startActivity(intent);
     }
@@ -99,7 +99,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Запуск экрана "11.Указание ИНН" при нажатии ссылки "Привязать учет доходов и выбивание чеков"
     // в экране "5.Регистрация завершена"
     public void onTighten(Context context) {
-        Log.d("Force", "RegistrationViewModel::onTighten()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnSetActivity.class);
         context.startActivity(intent);
     }
@@ -107,7 +107,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Запуск экрана "15.Мой налог. Просмотре инструкции" при нажатии ссылки "Зарегистрироваться в ФНС"
     // в экране "5.Регистрация завершена"
     public void onInFns(Context context) {
-        Log.d("Force", "RegistrationViewModel::onInFns()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
@@ -116,7 +116,7 @@ public class RegistrationViewModel extends BaseObservable {
     // в экране "5.Регистрация завершена"
     // TODO: Когда появится экран "28.Инструкция" - нужно будет перенаправлять туда
     public void onForceAccepted(Context context) {
-        Log.d("Force", "RegistrationViewModel::onForceAccepted()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.balance(context);
@@ -129,7 +129,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Запуск экрана "30.Установка ПИН" при нажатии ссылки "Установить ПИН"
     // в экране "5.Регистрация завершена"
     public void onPIN(Context context) {
-        Log.d("Force", "RegistrationViewModel::onPIN()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, PinSetActivity.class);
         context.startActivity(intent);
     }

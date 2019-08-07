@@ -2,7 +2,6 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -10,6 +9,7 @@ import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.EnterResultActivity;
 import club.plus1.forcetaxi.view.RecoveryActivity;
@@ -24,7 +24,7 @@ public class EnterViewModel extends BaseObservable {
     public String password;
 
     private EnterViewModel(Context context) {
-        Log.d("Force", "EnterViewModel::EnterViewModel()");
+        ActiveLog.getInstance().log();
         try {
             this.setResult(context.getString(R.string.text_enter_success));
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class EnterViewModel extends BaseObservable {
     }
 
     public static EnterViewModel getInstance(Context context) {
-        Log.d("Force", "EnterViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new EnterViewModel(context);
         }
@@ -42,7 +42,7 @@ public class EnterViewModel extends BaseObservable {
 
     // Запуск экрана "2.Результат входа" при нажатии кнопки "Войти" в экране "1.Вход"
     public void onEnter(Context context) {
-        Log.d("Force", "EnterViewModel::onEnter()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.login(context, login, password);
@@ -59,7 +59,7 @@ public class EnterViewModel extends BaseObservable {
 
     // Запуск экрана "3.Регистрация" при нажатии ссылки "Зарегистрироваться" в экране "1.Вход"
     public void onRegister(Context context) {
-        Log.d("Force", "EnterViewModel::onRegister()");
+        ActiveLog.getInstance().log();
 
         RegistrationViewModel registrationViewModel = RegistrationViewModel.getInstance(context);
         registrationViewModel.login = login;
@@ -71,7 +71,7 @@ public class EnterViewModel extends BaseObservable {
 
     // Запуск экрана "6.Восстановление пароля" при нажатии ссылки "Забыл пароль" в экране "1.Вход"
     public void onRecovery(Context context) {
-        Log.d("Force", "EnterViewModel::onRecovery()");
+        ActiveLog.getInstance().log();
 
         RecoveryViewModel recoveryViewModel = RecoveryViewModel.getInstance(context);
         recoveryViewModel.login = login;
@@ -83,7 +83,7 @@ public class EnterViewModel extends BaseObservable {
     // Запуск экрана "0.Заставка" при нажатия на экране "2.Результат входа"
     // TODO: Когда появится экран "34.Закрытое меню" - нужно будет перенаправлять туда
     public void onResult(Context context) {
-        Log.d("Force", "EnterViewModel::onResult()");
+        ActiveLog.getInstance().log();
 
         Intent intent = new Intent(context, SplashActivity.class);
         context.startActivity(intent);

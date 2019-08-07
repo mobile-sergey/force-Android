@@ -2,9 +2,9 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.view.BalanceRechargeActivity;
 import club.plus1.forcetaxi.view.BalanceRechargeResultActivity;
@@ -26,12 +26,12 @@ public class BalanceViewModel {
     public String phone;
 
     private BalanceViewModel(Context context) {
-        Log.d("Force", "BalanceViewModel::EnterViewModel()");
+        ActiveLog.getInstance().log();
         this.balance = 0;
     }
 
     public static BalanceViewModel getInstance(Context context) {
-        Log.d("Force", "BalanceViewModel::getInstance()");
+        ActiveLog.getInstance().log();
         if (mInstance == null) {
             mInstance = new BalanceViewModel(context);
         }
@@ -39,13 +39,13 @@ public class BalanceViewModel {
     }
 
     public void onRecharge(Context context) {
-        Log.d("Force", "BalanceViewModel::onRecharge()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, BalanceRechargeActivity.class);
         context.startActivity(intent);
     }
 
     public void onRechargeSberbank(Context context) {
-        Log.d("Force", "BalanceViewModel::onRechargeSberbank()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.refillBalance(context, amount, gett);
@@ -61,19 +61,19 @@ public class BalanceViewModel {
     }
 
     public void onSendSberbank(Context context) {
-        Log.d("Force", "BalanceViewModel::onSendSberbank()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, BalanceSberbankActivity.class);
         context.startActivity(intent);
     }
 
     public void onResult(Context context) {
-        Log.d("Force", "BalanceViewModel::onResult()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, SplashActivity.class);
         context.startActivity(intent);
     }
 
     public void onSendLink(Context context) {
-        Log.d("Force", "BalanceViewModel::onSendLink()");
+        ActiveLog.getInstance().log();
 
         Server server = Server.getInstance(context);
         server.sendSMS(context, phone);
@@ -83,7 +83,7 @@ public class BalanceViewModel {
     }
 
     public void onSberbankResult(Context context) {
-        Log.d("Force", "BalanceViewModel::onSberbankResult()");
+        ActiveLog.getInstance().log();
         Intent intent = new Intent(context, SplashActivity.class);
         context.startActivity(intent);
     }
