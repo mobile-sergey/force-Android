@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.InnBindActivity;
 import club.plus1.forcetaxi.view.InnBindResultActivity;
@@ -17,6 +17,8 @@ import club.plus1.forcetaxi.view.InnSetResultActivity;
 public class InnViewModel {
 
     private static InnViewModel mInstance;
+    private Server server;
+
     public String result;
     public String inn;
     public String phone;
@@ -29,6 +31,7 @@ public class InnViewModel {
 
     private InnViewModel(Context context) {
         ActiveLog.getInstance().log();
+        server = Server.getInstance(context);
         urlInfo = context.getString(R.string.url_inn_info);
         inn = "";
     }
@@ -51,15 +54,12 @@ public class InnViewModel {
     // Запуск экрана "12.Указание ИНН. Результат" при нажатии кнопки "Продолжить" в экране "11.Указание ИНН"
     public void onInnSet(Context context) {
         ActiveLog.getInstance().log();
-
-        Server server = Server.getInstance(context);
         server.setINN(context, inn);
         if (server.isOk()) {
             result = context.getString(R.string.text_set_inn_success);
         } else {
             result = context.getString(R.string.text_set_inn_error, server.getError().getText());
         }
-
         Intent intent = new Intent(context, InnSetResultActivity.class);
         context.startActivity(intent);
     }
@@ -67,8 +67,6 @@ public class InnViewModel {
     // Запуск экрана "14.Поиск ИНН. Результат" при нажатии кнопки "Поиск в ФНС" в экране "13.Поиск ИНН"
     public void onSearch(Context context) {
         ActiveLog.getInstance().log();
-
-        Server server = Server.getInstance(context);
         server.searchINN(context, phone, surname, name, patronymic, docSeries, docNumber);
         inn = server.getArgs().get("inn").toString();
         if (server.isOk()) {
@@ -76,7 +74,6 @@ public class InnViewModel {
         } else {
             result = context.getString(R.string.text_search_inn_error, server.getError().getText());
         }
-
         Intent intent = new Intent(context, InnSearchResultActivity.class);
         context.startActivity(intent);
     }
@@ -92,14 +89,12 @@ public class InnViewModel {
     // Запуск экрана "17.Привязка ИНН. Результат" при нажатии кнопки "Привязать" в экране "16.Привязка ИНН"
     public void onBind(Context context) {
         ActiveLog.getInstance().log();
-        Server server = Server.getInstance(context);
         server.tightenIncome(context, inn);
         if (server.isOk()) {
             result = context.getString(R.string.text_bind_inn_success, inn);
         } else {
             result = context.getString(R.string.text_bind_inn_error, inn, server.getError().getText());
         }
-
         Intent intent = new Intent(context, InnBindResultActivity.class);
         context.startActivity(intent);
     }
@@ -147,5 +142,4 @@ public class InnViewModel {
         Intent intent = new Intent(context, CheckActivity.class);
         context.startActivity(intent);
     }
-
 }

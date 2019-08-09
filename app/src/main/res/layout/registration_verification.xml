@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/textCode"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@{viewModel.textCode}" />
+            android:text="@{@string/text_code(viewModel.phone.get())}" />
 
         <EditText
             android:id="@+id/editCode"

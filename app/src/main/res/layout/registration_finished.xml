@@ -32,7 +32,7 @@
             <ImageView
                 android:id="@+id/statusTighten"
                 style="@style/AppTheme.ForceTaxi.Status.Image"
-                android:src='@{viewModel.isTighten == null ? @drawable/wait : (viewModel.isTighten ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcTighten.get()}'
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.isInFns == null ? @drawable/wait : (viewModel.isInFns ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcInFns.get()}'
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.isForceAccepted == null ? @drawable/wait : (viewModel.isForceAccepted ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcForceAccepted.get()}'
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.isPinSet == null ? @drawable/wait : (viewModel.isPinSet ? @drawable/yes : @drawable/no)}'
+                android:src='@{viewModel.srcPinSet.get()}'
                 tools:ignore="ContentDescription" />
 
             <TextView

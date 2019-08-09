@@ -3,6 +3,7 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="club.plus1.forcetaxi">
+
     <dist:module dist:instant="true" />
     <application
         android:allowBackup="true"
@@ -11,49 +12,126 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ForceTaxi"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
         <activity
             android:name=".view.SplashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.EnterActivity" />
-        <activity android:name=".view.EnterResultActivity" />
-        <activity android:name=".view.RegistrationActivity" />
-        <activity android:name=".view.RegistrationVerificationActivity" />
-        <activity android:name=".view.RegistrationFinishedActivity" />
-        <activity android:name=".view.RecoveryActivity" />
-        <activity android:name=".view.RecoveryEmailActivity" />
-        <activity android:name=".view.RecoveryPhoneActivity" />
-        <activity android:name=".view.PasswordActivity" />
-        <activity android:name=".view.PasswordResultActivity" />
-        <activity android:name=".view.PinSetActivity" />
-        <activity android:name=".view.PinConfirmActivity" />
-        <activity android:name=".view.PinResultActivity" />
-        <activity android:name=".view.PinEnterActivity" />
-        <activity android:name=".view.InnSetActivity" />
-        <activity android:name=".view.InnSetResultActivity" />
-        <activity android:name=".view.InnSearchActivity" />
-        <activity android:name=".view.InnSearchResultActivity" />
-        <activity android:name=".view.InnInfoActivity" />
-        <activity android:name=".view.InnBindActivity" />
-        <activity android:name=".view.InnBindResultActivity" />
-        <activity android:name=".view.CheckActivity" />
-        <activity android:name=".view.CheckHistoryActivity" />
-        <activity android:name=".view.CheckStornoActivity" />
-        <activity android:name=".view.CheckStornoResultActivity" />
-        <activity android:name=".view.BalanceActivity" />
-        <activity android:name=".view.BalanceRechargeActivity" />
-        <activity android:name=".view.BalanceRechargeResultActivity" />
-        <activity android:name=".view.BalanceSberbankActivity" />
-        <activity android:name=".view.BalanceSberbankResultActivity" />
-        <activity android:name=".view.MenuCheckActivity" />
-        <activity android:name=".view.MenuBalanceActivity" />
-        <activity android:name=".view.MenuProfileActivity" />
-        <activity android:name=".view.MenuInstructionActivity" />
-        <activity android:name=".view.MenuInviteActivity" />
+
+        <activity
+            android:name=".view.EnterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EnterResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EnterPinSetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EnterPinConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EnterPinResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EnterPinActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.RegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationVerificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationFinishedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationRecoveryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationRecoveryEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationRecoveryPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationPasswordResultActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.InnSetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InnSetResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InnSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InnSearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InnInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InnBindActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InnBindResultActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.CheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CheckHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CheckStornoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CheckStornoResultActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.BalanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BalanceRechargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BalanceRechargeResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BalanceSberbankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BalanceSberbankResultActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.MenuCheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MenuBalanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MenuProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MenuInstructionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MenuInviteActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

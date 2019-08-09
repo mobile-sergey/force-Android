@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.BalanceRechargeActivity;
 import club.plus1.forcetaxi.view.BalanceRechargeResultActivity;
 import club.plus1.forcetaxi.view.BalanceSberbankActivity;
@@ -15,6 +15,8 @@ import club.plus1.forcetaxi.view.SplashActivity;
 public class BalanceViewModel {
 
     private static BalanceViewModel mInstance;
+    private Server server;
+
     public int balance;
     public String result;
     public String status;
@@ -27,7 +29,8 @@ public class BalanceViewModel {
 
     private BalanceViewModel(Context context) {
         ActiveLog.getInstance().log();
-        this.balance = 0;
+        server = Server.getInstance(context);
+        balance = 0;
     }
 
     public static BalanceViewModel getInstance(Context context) {
@@ -46,8 +49,6 @@ public class BalanceViewModel {
 
     public void onRechargeSberbank(Context context) {
         ActiveLog.getInstance().log();
-
-        Server server = Server.getInstance(context);
         server.refillBalance(context, amount, gett);
         status = server.getArgs().get("status").toString();
         if (server.isOk()) {
@@ -55,7 +56,6 @@ public class BalanceViewModel {
         } else {
             result = context.getString(R.string.text_search_inn_error, server.getError().getText());
         }
-
         Intent intent = new Intent(context, BalanceRechargeResultActivity.class);
         context.startActivity(intent);
     }
@@ -74,10 +74,7 @@ public class BalanceViewModel {
 
     public void onSendLink(Context context) {
         ActiveLog.getInstance().log();
-
-        Server server = Server.getInstance(context);
         server.sendSMS(context, phone);
-
         Intent intent = new Intent(context, BalanceSberbankResultActivity.class);
         context.startActivity(intent);
     }

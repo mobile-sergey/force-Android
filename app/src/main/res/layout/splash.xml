@@ -21,7 +21,7 @@
             android:id="@+id/text_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text='@{"version "+viewModel.versionName+"."+String.valueOf(viewModel.versionCode)}'
+            android:text='@{@string/text_version(viewModel.version.get())}'
             android:textAlignment="center" />
     </LinearLayout>
 </layout>

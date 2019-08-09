@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="club.plus1.forcetaxi.viewmodel.RecoveryViewModel" />
+            type="club.plus1.forcetaxi.viewmodel.RegistrationViewModel" />
     </data>
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -19,22 +19,28 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/textRecovery"
+            android:id="@+id/textCode"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@string/text_recovery" />
+            android:text="@{@string/text_code(viewModel.phone)}" />
 
         <EditText
-            android:id="@+id/editPhonemail"
+            android:id="@+id/editCode"
             style="@style/AppTheme.ForceTaxi.Edit"
-            android:hint="@string/edit_phonemail"
-            android:text="@={viewModel.login}"
-            android:inputType="textEmailAddress"
+            android:hint="@string/edit_code"
+            android:text="@{viewModel.code}"
+            android:inputType="number"
             tools:ignore="Autofill" />
 
         <Button
-            android:id="@+id/buttonRecovery"
+            android:id="@+id/buttonSendSMS"
             style="@style/AppTheme.ForceTaxi.Button"
-            android:onClick="@{() -> viewModel.onRecovery(context)}"
-            android:text="@string/button_recovery" />
+            android:onClick="@{() -> viewModel.onSendSMS(context)}"
+            android:text="@string/button_send_sms" />
+
+        <Button
+            android:id="@+id/buttonConfirm"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:onClick="@{() -> viewModel.onPhoneRecovery(context)}"
+            android:text="@string/button_confirm" />
     </LinearLayout>
 </layout>

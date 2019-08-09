@@ -1,10 +1,10 @@
 package club.plus1.forcetaxi.model;
 
-public class Error {
+public class ServerError {
     private int id;
     private String text;
 
-    Error(int id, String text) {
+    ServerError(int id, String text) {
         this.setId(id);
         this.setText(text);
     }

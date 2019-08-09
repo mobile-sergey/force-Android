@@ -1,6 +1,8 @@
-package club.plus1.forcetaxi.model;
+package club.plus1.forcetaxi.service;
 
 import android.util.Log;
+
+import club.plus1.forcetaxi.model.ServerError;
 
 public class ActiveLog {
 
@@ -28,8 +30,19 @@ public class ActiveLog {
 
     public void log() {
         if (isActive())
-            Log.d(TAG, "" + (new Exception().getStackTrace()[1].getFileName()
-                    .replaceAll(".java\\s*$", ""))
-                    + "." + (new Exception().getStackTrace()[1].getMethodName()) + "()");
+            Log.d(TAG, ""
+                    + (Thread.currentThread().getStackTrace()[3].getFileName().replaceAll(".java\\s*$", ""))
+                    + "." + (Thread.currentThread().getStackTrace()[3].getMethodName()) + "()");
     }
+
+    public void logError(boolean ok, ServerError error) {
+        if (isActive()) {
+            if (ok) {
+                Log.d(TAG, error.getText());
+            } else {
+                Log.e(TAG, error.getText());
+            }
+        }
+    }
+
 }

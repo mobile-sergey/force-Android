@@ -12,22 +12,23 @@ import androidx.databinding.Bindable;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.ActiveLog;
 import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.EnterActivity;
+import club.plus1.forcetaxi.view.EnterPinSetActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
 import club.plus1.forcetaxi.view.InnSetActivity;
 import club.plus1.forcetaxi.view.MenuBalanceActivity;
 import club.plus1.forcetaxi.view.MenuInstructionActivity;
 import club.plus1.forcetaxi.view.MenuInviteActivity;
 import club.plus1.forcetaxi.view.MenuProfileActivity;
-import club.plus1.forcetaxi.view.PinSetActivity;
 
 public class MenuViewModel extends BaseObservable {
 
     private static MenuViewModel mInstance;
+    private Server server;
 
     @Nullable
     private Boolean isTighten;
@@ -41,6 +42,7 @@ public class MenuViewModel extends BaseObservable {
 
     private MenuViewModel(Context context) {
         ActiveLog.getInstance().log();
+        server = Server.getInstance(context);
     }
 
     public static MenuViewModel getInstance(Context context) {
@@ -90,13 +92,11 @@ public class MenuViewModel extends BaseObservable {
 
     public void onCopyLink(Context context) {
         ActiveLog.getInstance().log();
-
         ClipData clipData = ClipData.newPlainText("text", context.getString(R.string.url_link_app));
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboardManager != null) {
             clipboardManager.setPrimaryClip(clipData);
         }
-
         Toast.makeText(context, context.getString(R.string.text_buffer_copy), Toast.LENGTH_SHORT).show();
     }
 
@@ -120,11 +120,8 @@ public class MenuViewModel extends BaseObservable {
     // в экране "5.Регистрация завершена"
     public void onForceAccepted(Context context) {
         ActiveLog.getInstance().log();
-
-        Server server = Server.getInstance(context);
         server.balance(context);
         server.getCheckHistory(context, 0, 0);
-
         Intent intent = new Intent(context, MenuInstructionActivity.class);
         context.startActivity(intent);
     }
@@ -133,7 +130,7 @@ public class MenuViewModel extends BaseObservable {
     // в экране "5.Регистрация завершена"
     public void onPIN(Context context) {
         ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, PinSetActivity.class);
+        Intent intent = new Intent(context, EnterPinSetActivity.class);
         context.startActivity(intent);
     }
 

@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.databinding.EnterResultBinding;
-import club.plus1.forcetaxi.model.ActiveLog;
+import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.viewmodel.EnterViewModel;
 
 public class EnterResultActivity extends AppCompatActivity {

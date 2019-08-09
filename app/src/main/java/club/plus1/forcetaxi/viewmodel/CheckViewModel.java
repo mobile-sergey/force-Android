@@ -10,7 +10,8 @@ import androidx.databinding.ObservableBoolean;
 
 import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.ActiveLog;
+import club.plus1.forcetaxi.model.Server;
+import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.CheckStornoActivity;
 import club.plus1.forcetaxi.view.CheckStornoResultActivity;
@@ -19,6 +20,8 @@ import club.plus1.forcetaxi.view.SplashActivity;
 public class CheckViewModel extends BaseObservable {
 
     private static CheckViewModel mInstance;
+    private Server server;
+
     public String reason;
     public ObservableBoolean showCheck;
     private String total;
@@ -27,10 +30,10 @@ public class CheckViewModel extends BaseObservable {
 
     private CheckViewModel(Context context) {
         ActiveLog.getInstance().log();
-        this.showCheck = new ObservableBoolean();
-        this.showCheck.set(false);
-        this.total = "";
-
+        server = Server.getInstance(context);
+        showCheck = new ObservableBoolean();
+        showCheck.set(false);
+        total = "";
         history = new String[]{
                 context.getString(R.string.check_text, "1000"),
                 context.getString(R.string.check_text, "100"),
@@ -38,7 +41,6 @@ public class CheckViewModel extends BaseObservable {
                 context.getString(R.string.check_text, "555.55"),
                 context.getString(R.string.check_text, "33.00"),
         };
-
         adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, history);
     }
 

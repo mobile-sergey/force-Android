@@ -19,11 +19,19 @@
             tools:ignore="ContentDescription" />
 
         <EditText
-            android:id="@+id/editLogin"
+            android:id="@+id/editPhone"
             style="@style/AppTheme.ForceTaxi.Edit"
-            android:hint="@string/edit_login"
-            android:text="@={viewModel.login}"
-            android:inputType="textPersonName|text"
+            android:hint="@string/edit_phone"
+            android:inputType="phone"
+            android:text="@={viewModel.phone}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            style="@style/AppTheme.ForceTaxi.Edit"
+            android:hint="@string/edit_email"
+            android:inputType="textEmailAddress"
+            android:text="@={viewModel.email}"
             tools:ignore="Autofill" />
 
         <EditText
@@ -40,22 +48,6 @@
             android:text="@={viewModel.confirm}"
             android:hint="@string/edit_confirmation"
             android:inputType="textPassword"
-            tools:ignore="Autofill" />
-
-        <EditText
-            android:id="@+id/editPhone"
-            style="@style/AppTheme.ForceTaxi.Edit"
-            android:hint="@string/edit_phone"
-            android:text="@={viewModel.phone}"
-            android:inputType="phone"
-            tools:ignore="Autofill" />
-
-        <EditText
-            android:id="@+id/editEmail"
-            style="@style/AppTheme.ForceTaxi.Edit"
-            android:hint="@string/edit_email"
-            android:text="@={viewModel.email}"
-            android:inputType="textEmailAddress"
             tools:ignore="Autofill" />
 
         <Button

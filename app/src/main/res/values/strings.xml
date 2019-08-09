@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Force Taxi</string>
 
+    <!-- Экран 0.Заставка (splash.xml) -->
+    <string name="text_version">version %1$s</string>
+
     <!-- Экран 1.Вход (enter.xml) -->
     <string name="edit_login">Логин</string>
     <string name="edit_password">Пароль</string>
@@ -9,8 +12,6 @@
     <string name="link_recovery"><u>Забыл пароль</u></string>
 
     <!-- Экран 2.Результат входа (enter_result.xml) -->
-    <string name="text_enter_success">Удалось войти</string>
-    <string name="text_enter_error">При входе возникла ошибка:\n%1$s</string>
 
     <!-- Экран 3.Регистрация (registration.xml) -->
     <string name="edit_confirmation">Подтверждение пароля</string>
@@ -18,7 +19,7 @@
     <string name="edit_email">E-mail</string>
     <string name="button_registration">Регистрация</string>
 
-    <!-- Экран 4.Регистрация. Подтверждение телефона (registration_verification.xml) -->
+    <!-- Экран 4.Регистрация. Подтверждение телефона (egistration_verification.xml) -->
     <string name="text_code">Введите код из СМС, которое мы отправили на номер %1$s</string>
     <string name="edit_code">Код из СМС</string>
     <string name="button_send_sms">Отправить СМС</string>
@@ -32,24 +33,21 @@
     <string name="link_pin_set"><u>Установить ПИН</u></string>
     <string name="button_configure_later">Настроить позже</string>
 
-    <!-- Экран 6.Восстановление пароля (recovery.xml) -->
+    <!-- Экран 6.Восстановление пароля (registration_recovery.xml_recovery.xml) -->
     <string name="text_recovery">Укажите почту или телефон для восстановления пароля</string>
     <string name="edit_phonemail">E-mail или телефон</string>
     <string name="button_recovery">Восстановить</string>
+    <string name="text_need_login">Введите номер телефона или адрес электронной почты</string>
 
-    <!-- Экран 7.Восстановление пароля по e-mail (recovery_email.xml) -->
-    <string name="text_recovery_success">На почту отправлены инструкции по восстановлению пароля</string>
-    <string name="text_recovery_error">При восстановлении пароля по e-mail возникла ошибка:\n%1$s</string>
+    <!-- Экран 7.Восстановление пароля по e-mail (registration_recovery_email.xml) -->
 
-    <!-- Экран 8.Восстановление пароля по телефону (recovery_phone.xml) -->
+    <!-- Экран 8.Восстановление пароля по телефону (registration_recovery_phone.xml) -->
 
-    <!-- Экран 9.Смена пароля (password.xml) -->
+    <!-- Экран 9.Смена пароля (registration_password.xml) -->
     <string name="text_password">Придумайте новый пароль:</string>
     <string name="button_change_password">Сменить пароль</string>
 
-    <!-- Экран 10.Смена пароля. Результат (password_result.xml) -->
-    <string name="text_password_success">Пароль успешно изменен</string>
-    <string name="text_password_error">При смене пароля возникла ошибка:\n%1$s</string>
+    <!-- Экран 10.Смена пароля. Результат (registration_password_result.xml) -->
 
     <!-- Экран 11.Указание ИНН (inn_set.xml) -->
     <string name="text_inn">Укажите ваш ИНН</string>
@@ -185,20 +183,18 @@
     <string name="button_copy_link">Скопировать ссылку</string>
     <string name="text_buffer_copy">Текст скопирован</string>
 
-    <!-- Экран 30.Установка ПИН (pin_set.xml) -->
+    <!-- Экран 30.Установка ПИН (enter_pin_set.xml) -->
     <string name="text_pin_set">Придумайте пинкод</string>
     <string name="edit_pin_set">Пинкод</string>
     <string name="button_next">Продолжить</string>
 
-    <!-- Экран 31.Подтверждение ПИН (pin_confirm.xml) -->
+    <!-- Экран 31.Подтверждение ПИН (enter_pin_confirm.xml) -->
     <string name="text_pin_confirm">Подтвердите пинкод</string>
     <string name="edit_pin_confirm">Пинкод повторно</string>
 
-    <!-- Экран 32.Установка ПИН. Результат (pin_result.xml) -->
-    <string name="text_pin_success">Пинкод успешно установлен</string>
-    <string name="text_pin_error">При установке пинкода возникла ошибка:\n%1$s</string>
+    <!-- Экран 32.Установка ПИН. Результат (enter_pin_result.xml) -->
 
-    <!-- Экран 33.Ввод ПИН (pin_enter.xml) -->
+    <!-- Экран 33.Ввод ПИН (enter_pin.xml) -->
     <string name="text_pin_enter">Введите ПИН-код для входа в приложение</string>
     <string name="edit_pin_enter">Пинкод</string>
 

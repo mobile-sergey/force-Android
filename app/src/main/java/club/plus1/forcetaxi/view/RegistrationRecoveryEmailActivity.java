@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.databinding.RegistrationFinishedBinding;
+import club.plus1.forcetaxi.databinding.RegistrationRecoveryEmailBinding;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.viewmodel.RegistrationViewModel;
 
-public class RegistrationFinishedActivity extends AppCompatActivity {
+public class RegistrationRecoveryEmailActivity extends AppCompatActivity {
 
     private RegistrationViewModel viewModel;
 
@@ -18,9 +18,9 @@ public class RegistrationFinishedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
+        RegistrationRecoveryEmailBinding binding = DataBindingUtil.setContentView(
+                this, R.layout.registration_recovery_email);
         viewModel = RegistrationViewModel.getInstance(this);
-        RegistrationFinishedBinding binding = DataBindingUtil.setContentView(
-                this, R.layout.registration_finished);
         binding.setViewModel(viewModel);
     }
 }

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.databinding.MenuInstructionBinding;
-import club.plus1.forcetaxi.model.ActiveLog;
+import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 
 public class MenuInstructionActivity extends AppCompatActivity {

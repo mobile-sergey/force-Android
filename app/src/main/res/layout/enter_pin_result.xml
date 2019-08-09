@@ -3,14 +3,14 @@
     <data>
         <variable
             name="viewModel"
-            type="club.plus1.forcetaxi.viewmodel.RecoveryViewModel" />
+            type="club.plus1.forcetaxi.viewmodel.EnterViewModel" />
     </data>
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:onClick="@{() -> viewModel.onEmailRecovery(context)}"
+        android:onClick="@{() -> viewModel.onPinResult(context)}"
         android:orientation="vertical"
         android:padding="20dp"
         tools:ignore="UseCompoundDrawables">
@@ -22,7 +22,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/textRecoveryEmail"
+            android:id="@+id/textPINResult"
             style="@style/AppTheme.ForceTaxi.Text"
             android:text="@{viewModel.result}" />
     </LinearLayout>
