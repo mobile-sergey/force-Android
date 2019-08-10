@@ -26,7 +26,7 @@ public class InnInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         viewModel = InnViewModel.getInstance(this);
         binding = DataBindingUtil.setContentView(this, R.layout.inn_info);
-        binding.webInnInfo.loadUrl(viewModel.urlInfo);
+        binding.webInnInfo.loadUrl(viewModel.urlInfo.get());
         binding.setViewModel(viewModel);
     }
 

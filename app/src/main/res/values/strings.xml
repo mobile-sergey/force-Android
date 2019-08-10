@@ -64,9 +64,6 @@
     <string name="text_search_inn_success">ИНН найден:\n%1$s</string>
     <string name="text_search_inn_error">При поиске ИНН возникла ошибка:\n%1$s</string>
 
-    <!-- Экран 15.	Мой налог. Просмотр инструкции (inn_info.xml) -->
-    <string name="url_inn_info">https://lknpd.nalog.ru/</string>
-
     <!-- Экран 16.Привязка ИНН (inn_bind.xml) -->
     <string name="text_bind">Привяжите учет доходов\nи выбивание чеков:</string>
     <string name="text_bind_info">

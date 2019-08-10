@@ -23,11 +23,12 @@ import club.plus1.forcetaxi.view.RegistrationRecoveryActivity;
 public class EnterViewModel extends BaseObservable {
 
     private static EnterViewModel mInstance;    // Ссылка для биндинга с View
-    // Поля экрана "0.Заставка"
-    public ObservableField<String> version = new ObservableField<>();
     // Поле экранов "30.Установка ПИН", "31.Подтверждение ПИН",
     // "32.Установка ПИН. Результат", "33.Ввод ПИН"
     public ObservableField<String> pin = new ObservableField<>();
+
+    // Поля экрана "0.Заставка"
+    public ObservableField<String> version = new ObservableField<>();
 
     // Поля экрана "1.Вход"
     public ObservableField<String> login = new ObservableField<>();

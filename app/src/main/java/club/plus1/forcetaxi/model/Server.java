@@ -21,6 +21,7 @@ public class Server {
     // Токены должны получаться с сервера, пока случайные строки
     private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     private static final String USER_TOKEN = "aec27f0f-b8a3-43cb-b076-e075a095abfe";
+    public final String URL_INFO = "https://lknpd.nalog.ru/";
     public User user;
     private ActiveLog log;
 
