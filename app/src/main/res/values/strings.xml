@@ -60,10 +60,6 @@
     <string name="button_search">Поиск в ФНС</string>
     <string name="link_inn_info">Как зарегистрироваться самозанятым</string>
 
-    <!-- Экран 14.Поиск ИНН. Результат (inn_search_result.xml) -->
-    <string name="text_search_inn_success">ИНН найден:\n%1$s</string>
-    <string name="text_search_inn_error">При поиске ИНН возникла ошибка:\n%1$s</string>
-
     <!-- Экран 16.Привязка ИНН (inn_bind.xml) -->
     <string name="text_bind">Привяжите учет доходов\nи выбивание чеков:</string>
     <string name="text_bind_info">
@@ -81,21 +77,16 @@
     <string name="button_bind">Привязать</string>
     <string name="link_bind_info">Как дать разрешения на работу площадки</string>
 
-    <!-- Экран 17.Привязка ИНН. Результат (inn_bind_result.xml) -->
-    <string name="text_bind_inn_success">ИНН %1$s привязан</string>
-    <string name="text_bind_inn_error">При привязке ИНН %1$s возникла ошибка:\n%2$s</string>
-
     <!-- Экран 18.Выбивание чека (check.xml) -->
     <string name="check_history"><u>История чеков</u></string>
-    <string name="check_number">Чек №1234567</string>
+    <string name="check_number">Чек №%1$s</string>
     <string name="check_text">
-    Услуга: Оказание услуг такси\n
-    Сумма: %1$s р.\n
-    Исполнитель: ФИО, ИНН\n
-    Дата расчета: 04.08.2019
+    Услуга: %1$s\n
+    Сумма: %2$s р.\n
+    Исполнитель: %3$s\n
+    Дата расчета: %4$s
     </string>
     <string name="qr">QR-код</string>
-    <string name="check_url">https://link.to/order/1234567</string>
     <string name="check_client">Клиент</string>
     <string name="button_clear">C</string>
     <string name="button_point">,</string>
@@ -115,8 +106,8 @@
 
     <!-- Экран 19.История чеков (check_history.xml) -->
     <string name="text_check_owner">
-        Иванов Вазген Куйран Оглы\n
-        ИНН: 1234567890
+        %1$s\n
+        ИНН: %2$s
     </string>
     <string name="check_storno"><u>Отмена</u></string>
 
@@ -124,9 +115,6 @@
     <string name="edit_reason">Причина отмены чека</string>
     <string name="check_agreement">Я понимаю ответственность за недобросовестные действия и то, что клиент будет уведомлен об отмене чека</string>
     <string name="button_storno">Сторнировать чек</string>
-
-    <!-- Экран 21.Сторнирование чека. Результат (check_storno_result.xml) -->
-    <string name="text_check_cancelled">Чек успешно сторнирован (уничтожен)</string>
 
     <!-- Экран 22.Баланс (balance.xml) -->
     <string name="text_balance_label">Баланс для уплаты налогов</string>
@@ -246,5 +234,11 @@
 
     <string name="text_refill_balance_success">Баланс пополнен на %1$s успешно</string>
     <string name="text_refill_balance_error">При пополнении баланса от %1$s возникла ошибка:\n%2$s</string>
+
+    <string name="text_check_success">Чек на сумму %1$s напечатан успешно</string>
+    <string name="text_check_error">При печати чека возникла ошибка:n/%1$s</string>
+
+    <string name="text_storno_success">Чек №%1$s успешно сторнирован (уничтожен)</string>
+    <string name="text_storno_error">При сторнировании(уничтожении) чека №%1$s возникла ошибка:n/%2$s</string>
 
 </resources>

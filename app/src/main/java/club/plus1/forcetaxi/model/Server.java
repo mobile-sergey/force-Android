@@ -2,10 +2,14 @@ package club.plus1.forcetaxi.model;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.provider.Settings;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import club.plus1.forcetaxi.R;
@@ -18,10 +22,20 @@ public class Server {
     private boolean ok;
     private ServerError error;
     private Map<String, Object> args;
+
     // Токены должны получаться с сервера, пока случайные строки
     private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     private static final String USER_TOKEN = "aec27f0f-b8a3-43cb-b076-e075a095abfe";
+
     public final String URL_INFO = "https://lknpd.nalog.ru/";
+
+    public Drawable imgQR;
+    public String serviceType;
+    public String[] history;
+    private String urlCheck;
+    private String checkNumber;
+    private String client;
+
     public User user;
     private ActiveLog log;
 
@@ -44,6 +58,19 @@ public class Server {
             this.setError(new ServerError(500, context.getString(R.string.text_server_error, e.toString())));
             this.args = new HashMap<>();
         }
+        String executor = user.getFio() + ", " + user.inn;
+        urlCheck = "https://link.to/order/1234567";
+        checkNumber = "1234567";
+        client = "89212345678";
+        serviceType = "Оказание услуг такси";
+        history = new String[]{
+                context.getString(R.string.check_text, serviceType, "1000", executor, "01.08.2019"),
+                context.getString(R.string.check_text, serviceType, "100", executor, "02.08.2019"),
+                context.getString(R.string.check_text, serviceType, "200", executor, "02.08.2019"),
+                context.getString(R.string.check_text, serviceType, "555.55", executor, "03.08.2019"),
+                context.getString(R.string.check_text, serviceType, "133.00", executor, "03.08.2019"),
+        };
+        imgQR = context.getDrawable(R.drawable.qr);
     }
 
     public static Server getInstance(Context context) {
@@ -239,6 +266,37 @@ public class Server {
         }
         ActiveLog.getInstance().logError(ok, error);
     }
+
+    public void generateCheck(Context context, String amount, String client) {
+        ActiveLog.getInstance().log();
+        try {
+            this.putArg("checkNumber", checkNumber);
+            this.putArg("serviceType", serviceType);
+            this.putArg("amount", amount);
+            this.putArg("executor", user.getFio() + ", " + user.inn);
+            this.putArg("date", new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT).format(Calendar.getInstance().getTime()));
+            this.putArg("url", urlCheck);
+            this.setOk(true);
+            this.setError(new ServerError(200, context.getString(R.string.text_check_success, amount)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_check_error, e.toString())));
+        }
+        ActiveLog.getInstance().logError(ok, error);
+    }
+
+    public void deleteCheck(Context context, String checkNumber, String reason) {
+        ActiveLog.getInstance().log();
+        try {
+            this.setOk(true);
+            this.setError(new ServerError(200, context.getString(R.string.text_storno_success, checkNumber)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_storno_error, checkNumber, e.toString())));
+        }
+        ActiveLog.getInstance().logError(ok, error);
+    }
+
 
     public boolean isOk() {
         return ok;

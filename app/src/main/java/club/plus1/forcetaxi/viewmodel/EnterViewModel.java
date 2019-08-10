@@ -22,7 +22,6 @@ import club.plus1.forcetaxi.view.RegistrationRecoveryActivity;
 
 public class EnterViewModel extends BaseObservable {
 
-    private static EnterViewModel mInstance;    // Ссылка для биндинга с View
     // Поле экранов "30.Установка ПИН", "31.Подтверждение ПИН",
     // "32.Установка ПИН. Результат", "33.Ввод ПИН"
     public ObservableField<String> pin = new ObservableField<>();
@@ -36,6 +35,9 @@ public class EnterViewModel extends BaseObservable {
 
     // Поле экрана "2.Результат входа"
     public ObservableField<String> result = new ObservableField<>();
+
+    // Ссылки MVVM
+    private static EnterViewModel mInstance;    // Ссылка для биндинга с View
     private Server server;                      // Ссылка на Model
 
     // Конструктор класса

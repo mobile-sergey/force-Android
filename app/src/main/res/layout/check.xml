@@ -62,7 +62,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="0dp"
-                            android:text="@string/check_number"
+                            android:text="@{@string/check_number(viewModel.number)}"
                             android:textAlignment="center" />
 
                         <TextView
@@ -71,7 +71,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="0dp"
-                            android:text="@{@string/check_text(viewModel.total)}"
+                            android:text="@{@string/check_text(viewModel.serviceType, viewModel.amount, viewModel.executor, viewModel.date)}"
                             android:textAlignment="viewStart" />
 
                         <TextView
@@ -80,7 +80,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="0dp"
-                            android:text="@string/check_url"
+                            android:text="@{viewModel.url}"
                             android:textAlignment="center" />
 
                         <ImageView
@@ -88,7 +88,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/qr"
-                            android:src="@drawable/qr" />
+                            android:src="@{viewModel.qr}" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -110,8 +110,9 @@
                         android:background="@color/colorPrimaryDark"
                         android:ems="10"
                         android:hint="@string/check_client"
-                        android:inputType="textPersonName"
+                        android:inputType="phone"
                         android:padding="10dp"
+                        android:text="@{viewModel.client}"
                         android:textColor="@color/colorAccent"
                         tools:ignore="Autofill,NestedWeights" />
 
@@ -129,7 +130,7 @@
                         android:paddingTop="10dp"
                         android:paddingEnd="20dp"
                         android:paddingBottom="10dp"
-                        android:text="@{viewModel.total}"
+                        android:text="@{viewModel.amount}"
                         android:textAlignment="textEnd"
                         android:textColor="@color/colorPrimary"
                         android:textColorHint="@color/colorPrimaryDark"

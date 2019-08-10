@@ -29,7 +29,6 @@ import club.plus1.forcetaxi.view.RegistrationVerificationActivity;
 
 public class RegistrationViewModel extends BaseObservable {
 
-    private static RegistrationViewModel mInstance; // Ссылка для биндинга с View
     // Поля экранов "3.Регистрация" и "9.Смена пароля"
     public ObservableField<String> password = new ObservableField<>();
 
@@ -49,6 +48,9 @@ public class RegistrationViewModel extends BaseObservable {
     public ObservableField<Drawable> srcPinSet = new ObservableField<>();
     // Поле экрана "7.Восстановление пароля по e-mail"
     public ObservableField<String> result = new ObservableField<>();
+
+    // Ссылки MVVM
+    private static RegistrationViewModel mInstance; // Ссылка для биндинга с View
     private Server server;                          // Ссылка на Model
 
     // Конструктор класса

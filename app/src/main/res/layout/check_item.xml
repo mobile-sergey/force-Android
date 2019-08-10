@@ -2,14 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.CheckViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
-                    android:text="@string/check_number"
+                    android:text="@{@string/check_number(viewModel.amount)}"
                     android:textAlignment="center" />
 
                 <TextView
@@ -65,7 +62,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginRight="10dp"
-                    android:text="@string/check_text"
+                    android:text="@{@string/check_text(viewModel.serviceType, viewModel.amount, viewModel.executor, viewModel.date)}"
                     android:textAlignment="viewStart" />
 
                 <TextView
@@ -74,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
-                    android:text="@string/check_url"
+                    android:text="@{viewModel.executor}"
                     android:textAlignment="center" />
 
                 <ImageView
@@ -84,7 +81,6 @@
                     android:contentDescription="@string/qr"
                     app:srcCompat="@drawable/qr" />
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 </layout>

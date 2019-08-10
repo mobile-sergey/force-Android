@@ -19,11 +19,12 @@ import club.plus1.forcetaxi.view.MenuCheckActivity;
 
 public class InnViewModel {
 
-    private static InnViewModel mInstance;  // Ссылка для биндинга с View
     // Поле экрана "11.Указание ИНН"
     public ObservableField<String> inn = new ObservableField<>();
+
     // Поле экрана "12.Указание ИНН. Результат"
     public ObservableField<String> result = new ObservableField<>();
+
     // Поля экрана "13.	Поиск ИНН"
     public ObservableField<String> phone = new ObservableField<>();
     public ObservableField<String> surname = new ObservableField<>();
@@ -31,8 +32,12 @@ public class InnViewModel {
     public ObservableField<String> patronymic = new ObservableField<>();
     public ObservableField<String> docSeries = new ObservableField<>();
     public ObservableField<String> docNumber = new ObservableField<>();
+
     // Поле экрана "15.	Мой налог. Просмотр инструкции"
     public ObservableField<String> urlInfo = new ObservableField<>();
+
+    // Ссылки MVVM
+    private static InnViewModel mInstance;  // Ссылка для биндинга с View
     private Server server;                  // Ссылка на Model
 
     // Конструктор класса

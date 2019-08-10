@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.CheckViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +16,7 @@
         <TextView
             android:id="@+id/textUserInfo"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@string/text_check_owner" />
+            android:text="@{@string/text_check_owner(viewModel.executor, viewModel.inn)}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
-                    android:text="@string/check_number"
+                    android:text="@{@string/check_number(viewModel.number)}"
                     android:textAlignment="center" />
 
                 <TextView
@@ -61,7 +58,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginRight="10dp"
-                    android:text="@string/check_text"
+                    android:text="@{@string/check_text(viewModel.serviceType, viewModel.amount, viewModel.executor, viewModel.date)}"
                     android:textAlignment="viewStart" />
 
                 <TextView
@@ -70,19 +67,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
-                    android:text="@string/check_url"
+                    android:text="@{viewModel.url}"
                     android:textAlignment="center" />
 
                 <ImageView
                     android:id="@+id/imageQR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/qr"
+                    android:src="@{viewModel.qr}"
                     tools:ignore="ContentDescription" />
             </LinearLayout>
-
         </LinearLayout>
-
         <EditText
             android:id="@+id/editReason"
             style="@style/AppTheme.ForceTaxi.Edit"

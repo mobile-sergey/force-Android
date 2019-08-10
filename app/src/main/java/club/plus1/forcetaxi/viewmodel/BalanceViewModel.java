@@ -3,7 +3,8 @@ package club.plus1.forcetaxi.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 
-import club.plus1.forcetaxi.R;
+import androidx.databinding.ObservableField;
+
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.BalanceRechargeActivity;
@@ -18,7 +19,7 @@ public class BalanceViewModel {
     private Server server;
 
     public int balance;
-    public String result;
+    public ObservableField<String> result = new ObservableField<>();
     public String status;
     public String amount;
     public String gett;
@@ -51,11 +52,7 @@ public class BalanceViewModel {
         ActiveLog.getInstance().log();
         server.refillBalance(context, amount, gett);
         status = server.getArgs().get("status").toString();
-        if (server.isOk()) {
-            result = context.getString(R.string.text_search_inn_success, status);
-        } else {
-            result = context.getString(R.string.text_search_inn_error, server.getError().getText());
-        }
+        result.set(server.getError().getText());
         Intent intent = new Intent(context, BalanceRechargeResultActivity.class);
         context.startActivity(intent);
     }

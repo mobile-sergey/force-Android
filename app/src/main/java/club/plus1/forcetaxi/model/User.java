@@ -9,15 +9,21 @@ public class User {
     private static final String PREF_USER_TOKEN = "userToken";
     private static final String PREF_DEVICE_TOKEN = "deviceToken";
     private static final String PREF_PIN = "pin";
-    public Boolean isTighten;
-    public Boolean isInFns;
-    public Boolean isForceAccepted;
-    public Boolean isPinSet;
+
     private SharedPreferences mSettings;
     private String appToken;
     private String userToken;
     private String deviceToken;
     private String pin;
+
+    public Boolean isTighten;
+    public Boolean isInFns;
+    public Boolean isForceAccepted;
+    public Boolean isPinSet;
+    public String name = "Вазген";
+    public String inn = "012345678943";
+    private String surname = "Иванов";
+    private String patronymic = "Куйран Оглы";
 
     User(Context context) {
         mSettings = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
@@ -76,5 +82,9 @@ public class User {
     public void setPin(String pin) {
         this.pin = pin;
         setStringPref(PREF_PIN, pin);
+    }
+
+    public String getFio() {
+        return surname + " " + name + " " + patronymic;
     }
 }

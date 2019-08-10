@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <data>
-
         <variable
             name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.CheckViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,14 +13,23 @@
         android:padding="20dp">
 
         <TextView
+            android:id="@+id/linkStorno"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:onClick='@{() -> viewModel.onCheckCancel(context)}'
+            android:text="@string/check_storno"
+            android:textAlignment="textEnd" />
+
+        <TextView
             android:id="@+id/textUserInfo"
             style="@style/AppTheme.ForceTaxi.Text"
-            android:text="@string/text_check_owner" />
+            android:text="@{@string/text_check_owner(viewModel.fio, viewModel.inn)}" />
 
         <ListView
             android:id="@+id/listHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </LinearLayout>
 </layout>
