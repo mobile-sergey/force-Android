@@ -7,6 +7,7 @@ import club.plus1.forcetaxi.model.ServerError;
 public class ActiveLog {
 
     private static final String TAG = "Force";
+    private static final int STACK_TRACE_NUMBER = 3;
     private static ActiveLog mInstance;
     private static boolean active;
 
@@ -29,10 +30,12 @@ public class ActiveLog {
     }
 
     public void log() {
-        if (isActive())
-            Log.d(TAG, ""
-                    + (Thread.currentThread().getStackTrace()[3].getFileName().replaceAll(".java\\s*$", ""))
-                    + "." + (Thread.currentThread().getStackTrace()[3].getMethodName()) + "()");
+        if (isActive()) {
+            StackTraceElement element = Thread.currentThread().getStackTrace()[STACK_TRACE_NUMBER];
+            String className = (element.getFileName().replaceAll(".java\\s*$", ""));
+            String methodName = element.getMethodName();
+            Log.d(TAG, "" + className + "." + methodName + "()");
+        }
     }
 
     public void logError(boolean ok, ServerError error) {

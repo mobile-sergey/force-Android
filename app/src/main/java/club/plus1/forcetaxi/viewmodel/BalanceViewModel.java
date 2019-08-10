@@ -10,7 +10,7 @@ import club.plus1.forcetaxi.view.BalanceRechargeActivity;
 import club.plus1.forcetaxi.view.BalanceRechargeResultActivity;
 import club.plus1.forcetaxi.view.BalanceSberbankActivity;
 import club.plus1.forcetaxi.view.BalanceSberbankResultActivity;
-import club.plus1.forcetaxi.view.SplashActivity;
+import club.plus1.forcetaxi.view.EnterSplashActivity;
 
 public class BalanceViewModel {
 
@@ -68,7 +68,7 @@ public class BalanceViewModel {
 
     public void onResult(Context context) {
         ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, SplashActivity.class);
+        Intent intent = new Intent(context, EnterSplashActivity.class);
         context.startActivity(intent);
     }
 
@@ -81,7 +81,7 @@ public class BalanceViewModel {
 
     public void onSberbankResult(Context context) {
         ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, SplashActivity.class);
+        Intent intent = new Intent(context, EnterSplashActivity.class);
         context.startActivity(intent);
     }
 }

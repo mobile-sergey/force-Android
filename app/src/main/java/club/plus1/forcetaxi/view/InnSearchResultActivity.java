@@ -18,13 +18,14 @@ import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 public class InnSearchResultActivity extends AppCompatActivity {
 
     private InnViewModel viewModel;
+    private InnSearchResultBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        InnSearchResultBinding binding = DataBindingUtil.setContentView(this, R.layout.inn_search_result);
         viewModel = InnViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.inn_search_result);
         binding.setViewModel(viewModel);
     }
 

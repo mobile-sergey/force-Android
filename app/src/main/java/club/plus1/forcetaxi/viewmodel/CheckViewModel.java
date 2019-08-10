@@ -15,7 +15,7 @@ import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.CheckStornoActivity;
 import club.plus1.forcetaxi.view.CheckStornoResultActivity;
-import club.plus1.forcetaxi.view.SplashActivity;
+import club.plus1.forcetaxi.view.EnterSplashActivity;
 
 public class CheckViewModel extends BaseObservable {
 
@@ -111,7 +111,7 @@ public class CheckViewModel extends BaseObservable {
     // TODO: Когда появится экран "34.Закрытое меню" - нужно будет перенаправлять туда
     public void onResult(Context context) {
         ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, SplashActivity.class);
+        Intent intent = new Intent(context, EnterSplashActivity.class);
         context.startActivity(intent);
     }
 

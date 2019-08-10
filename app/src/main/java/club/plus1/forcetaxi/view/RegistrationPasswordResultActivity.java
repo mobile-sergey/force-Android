@@ -13,14 +13,14 @@ import club.plus1.forcetaxi.viewmodel.RegistrationViewModel;
 public class RegistrationPasswordResultActivity extends AppCompatActivity {
 
     private RegistrationViewModel viewModel;
+    private RegistrationPasswordResultBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        RegistrationPasswordResultBinding binding = DataBindingUtil.setContentView(
-                this, R.layout.registration_password_result);
         viewModel = RegistrationViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.registration_password_result);
         binding.setViewModel(viewModel);
     }
 }

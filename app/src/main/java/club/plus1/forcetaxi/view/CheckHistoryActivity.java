@@ -18,13 +18,14 @@ import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 public class CheckHistoryActivity extends AppCompatActivity {
 
     private CheckViewModel viewModel;
+    private CheckHistoryBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        CheckHistoryBinding binding = DataBindingUtil.setContentView(this, R.layout.check_history);
         viewModel = CheckViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.check_history);
         binding.setViewModel(viewModel);
         binding.listHistory.setAdapter(viewModel.adapter);
     }

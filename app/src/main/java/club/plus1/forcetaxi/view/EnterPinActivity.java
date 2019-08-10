@@ -13,13 +13,14 @@ import club.plus1.forcetaxi.viewmodel.EnterViewModel;
 public class EnterPinActivity extends AppCompatActivity {
 
     private EnterViewModel viewModel;
+    private EnterPinBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        EnterPinBinding binding = DataBindingUtil.setContentView(this, R.layout.enter_pin);
         viewModel = EnterViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.enter_pin);
         binding.setViewModel(viewModel);
     }
 }

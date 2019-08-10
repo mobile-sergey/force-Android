@@ -13,13 +13,14 @@ import club.plus1.forcetaxi.viewmodel.EnterViewModel;
 public class EnterPinConfirmActivity extends AppCompatActivity {
 
     private EnterViewModel viewModel;
+    private EnterPinConfirmBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        EnterPinConfirmBinding binding = DataBindingUtil.setContentView(this, R.layout.enter_pin_confirm);
         viewModel = EnterViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.enter_pin_confirm);
         binding.setViewModel(viewModel);
     }
 }

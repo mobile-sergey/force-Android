@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Force Taxi</string>
 
-    <!-- Экран 0.Заставка (splash.xml) -->
+    <!-- Экран 0.Заставка (enter_splash.xml) -->
     <string name="text_version">version %1$s</string>
 
     <!-- Экран 1.Вход (enter.xml) -->
@@ -10,8 +10,6 @@
     <string name="button_enter">Войти</string>
     <string name="link_register"><u>Зарегистрироваться</u></string>
     <string name="link_recovery"><u>Забыл пароль</u></string>
-
-    <!-- Экран 2.Результат входа (enter_result.xml) -->
 
     <!-- Экран 3.Регистрация (registration.xml) -->
     <string name="edit_confirmation">Подтверждение пароля</string>
@@ -39,15 +37,9 @@
     <string name="button_recovery">Восстановить</string>
     <string name="text_need_login">Введите номер телефона или адрес электронной почты</string>
 
-    <!-- Экран 7.Восстановление пароля по e-mail (registration_recovery_email.xml) -->
-
-    <!-- Экран 8.Восстановление пароля по телефону (registration_recovery_phone.xml) -->
-
     <!-- Экран 9.Смена пароля (registration_password.xml) -->
     <string name="text_password">Придумайте новый пароль:</string>
     <string name="button_change_password">Сменить пароль</string>
-
-    <!-- Экран 10.Смена пароля. Результат (registration_password_result.xml) -->
 
     <!-- Экран 11.Указание ИНН (inn_set.xml) -->
     <string name="text_inn">Укажите ваш ИНН</string>
@@ -191,8 +183,6 @@
     <!-- Экран 31.Подтверждение ПИН (enter_pin_confirm.xml) -->
     <string name="text_pin_confirm">Подтвердите пинкод</string>
     <string name="edit_pin_confirm">Пинкод повторно</string>
-
-    <!-- Экран 32.Установка ПИН. Результат (enter_pin_result.xml) -->
 
     <!-- Экран 33.Ввод ПИН (enter_pin.xml) -->
     <string name="text_pin_enter">Введите ПИН-код для входа в приложение</string>

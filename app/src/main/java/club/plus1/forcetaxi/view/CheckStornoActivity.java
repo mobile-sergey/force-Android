@@ -18,13 +18,14 @@ import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 public class CheckStornoActivity extends AppCompatActivity {
 
     private CheckViewModel viewModel;
+    private CheckStornoBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        CheckStornoBinding binding = DataBindingUtil.setContentView(this, R.layout.check_storno);
         viewModel = CheckViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.check_storno);
         binding.setViewModel(viewModel);
     }
 

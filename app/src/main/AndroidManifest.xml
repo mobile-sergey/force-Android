@@ -14,7 +14,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".view.EnterSplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>

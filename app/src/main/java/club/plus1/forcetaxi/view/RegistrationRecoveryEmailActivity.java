@@ -13,14 +13,14 @@ import club.plus1.forcetaxi.viewmodel.RegistrationViewModel;
 public class RegistrationRecoveryEmailActivity extends AppCompatActivity {
 
     private RegistrationViewModel viewModel;
+    private RegistrationRecoveryEmailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        RegistrationRecoveryEmailBinding binding = DataBindingUtil.setContentView(
-                this, R.layout.registration_recovery_email);
         viewModel = RegistrationViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.registration_recovery_email);
         binding.setViewModel(viewModel);
     }
 }

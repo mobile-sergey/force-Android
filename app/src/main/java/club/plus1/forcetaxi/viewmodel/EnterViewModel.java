@@ -2,6 +2,9 @@ package club.plus1.forcetaxi.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Handler;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
@@ -9,6 +12,7 @@ import androidx.databinding.ObservableField;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.EnterActivity;
+import club.plus1.forcetaxi.view.EnterPinActivity;
 import club.plus1.forcetaxi.view.EnterPinConfirmActivity;
 import club.plus1.forcetaxi.view.EnterPinResultActivity;
 import club.plus1.forcetaxi.view.EnterResultActivity;
@@ -19,6 +23,8 @@ import club.plus1.forcetaxi.view.RegistrationRecoveryActivity;
 public class EnterViewModel extends BaseObservable {
 
     private static EnterViewModel mInstance;    // Ссылка для биндинга с View
+    // Поля экрана "0.Заставка"
+    public ObservableField<String> version = new ObservableField<>();
     // Поле экранов "30.Установка ПИН", "31.Подтверждение ПИН",
     // "32.Установка ПИН. Результат", "33.Ввод ПИН"
     public ObservableField<String> pin = new ObservableField<>();
@@ -35,6 +41,8 @@ public class EnterViewModel extends BaseObservable {
     private EnterViewModel(Context context) {
         ActiveLog.getInstance().log();
         server = Server.getInstance(context);
+        version.set(getVersion(context));
+        startEnterActivity(context);
         pin.set("");
     }
 
@@ -45,6 +53,28 @@ public class EnterViewModel extends BaseObservable {
             mInstance = new EnterViewModel(context);
         }
         return mInstance;
+    }
+
+    // "0.Заставка" -> "1.Вход"
+    // "0.Заставка" -> "33.Ввод ПИН"
+    // Выполняется после завершения загрузки приложения
+    // В зависимости от наличия пинкода. Если пинкод установлен ->33, если не установлен ->1
+    private void startEnterActivity(final Context context) {
+        ActiveLog.getInstance().log();
+        final int SPLASH_TIME = 1000;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // По истечении времени, запускаем главный активити или экран ввода пинкода
+                Intent mainIntent;
+                if (server.user.getPin().isEmpty()) {
+                    mainIntent = new Intent(context, EnterActivity.class);
+                } else {
+                    mainIntent = new Intent(context, EnterPinActivity.class);
+                }
+                context.startActivity(mainIntent);
+            }
+        }, SPLASH_TIME);
     }
 
     // "1.Вход" -> "2.Результат входа"
@@ -130,4 +160,23 @@ public class EnterViewModel extends BaseObservable {
         ActiveLog.getInstance().log();
         pin.set(pin.get() + number);
     }
+
+    // Получение номера версии из настроек проекта
+    private String getVersion(Context context) {
+        // Получаем информацию о пакете из которого получим версию и номер сборки
+        // Если не удалось обратиться к пакету - создаём каркас с необходимыми нам полями
+        PackageInfo pInfo = null;
+        try {
+            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (pInfo == null) {
+            pInfo = new PackageInfo();
+            pInfo.versionName = "0.0";
+            pInfo.versionCode = 0;
+        }
+        return pInfo.versionName + "." + pInfo.versionCode;
+    }
+
 }

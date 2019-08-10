@@ -18,13 +18,14 @@ import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 public class BalanceSberbankResultActivity extends AppCompatActivity {
 
     private BalanceViewModel viewModel;
+    private BalanceSberbankResultBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        BalanceSberbankResultBinding binding = DataBindingUtil.setContentView(this, R.layout.balance_sberbank_result);
         viewModel = BalanceViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.balance_sberbank_result);
         binding.setViewModel(viewModel);
     }
 

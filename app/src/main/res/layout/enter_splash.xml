@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="club.plus1.forcetaxi.viewmodel.SplashViewModel" />
+            type="club.plus1.forcetaxi.viewmodel.EnterViewModel" />
     </data>
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"

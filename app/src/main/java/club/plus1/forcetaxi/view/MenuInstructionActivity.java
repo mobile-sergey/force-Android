@@ -17,13 +17,14 @@ import club.plus1.forcetaxi.viewmodel.MenuViewModel;
 public class MenuInstructionActivity extends AppCompatActivity {
 
     private MenuViewModel viewModel;
+    private MenuInstructionBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        MenuInstructionBinding binding = DataBindingUtil.setContentView(this, R.layout.menu_instruction);
         viewModel = MenuViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.menu_instruction);
         binding.setViewModel(viewModel);
     }
 

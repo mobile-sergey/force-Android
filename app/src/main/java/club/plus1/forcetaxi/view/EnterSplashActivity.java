@@ -6,20 +6,21 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.databinding.SplashBinding;
+import club.plus1.forcetaxi.databinding.EnterSplashBinding;
 import club.plus1.forcetaxi.service.ActiveLog;
-import club.plus1.forcetaxi.viewmodel.SplashViewModel;
+import club.plus1.forcetaxi.viewmodel.EnterViewModel;
 
-public class SplashActivity extends Activity {
+public class EnterSplashActivity extends Activity {
 
-    private SplashViewModel viewModel;
+    private EnterViewModel viewModel;
+    private EnterSplashBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        SplashBinding binding = DataBindingUtil.setContentView(this, R.layout.splash);
-        viewModel = SplashViewModel.getInstance(this);
+        viewModel = EnterViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.enter_splash);
         binding.setViewModel(viewModel);
     }
 }
