@@ -17,31 +17,29 @@ import club.plus1.forcetaxi.service.ActiveLog;
 
 public class Server {
 
-    private static Server mInstance;
-
-    private boolean ok;
-    private ServerError error;
-    private Map<String, Object> args;
-
-    // Токены должны получаться с сервера, пока случайные строки
+    // Заглушка с данными сервера
     private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
+    // Основные поля класса
+    private static Server mInstance;    // Единственный объект этого класса
+    public User user;                   // Связанный с сервером пользователь
+    // Различные параметры, которые должны храниться на сервере
+    public String serviceType;
+    public String client;
+    public String urlCheck;
+    public String checkNumber;
+    public String[] history;
+    public String[] transactions;
+    public Drawable imgQR;
+    // Параметры, возращаемые методами сервера
+    private boolean ok;                 // Результат работы метода
+    private ServerError error;          // Описание результата работы с кодом и текстом
+    private Map<String, Object> args;   // Набор дополнительных параметров
     private static final String USER_TOKEN = "aec27f0f-b8a3-43cb-b076-e075a095abfe";
-
     public final String URL_APP = "link.to/app/";
     public final String URL_INFO = "https://npd.nalog.ru/#start";
     public final String URL_INSTRUCTIONS = "https://www.nalog.ru/rn77/fl/interest/inn/calculation/";
 
-    public Drawable imgQR;
-    public String serviceType;
-    public String[] history;
-    public String[] transactions;
-    public String client;
-    public String urlCheck;
-    public String checkNumber;
-
-    public User user;
-    private ActiveLog log;
-
+    // Конструктор класса с заполнением заглушечных данных
     @SuppressLint("HardwareIds")
     private Server(Context context) {
         ActiveLog.getInstance().log();
@@ -83,6 +81,7 @@ public class Server {
         imgQR = context.getDrawable(R.drawable.qr);
     }
 
+    // Получение единственного экземпляра класса
     public static Server getInstance(Context context) {
         ActiveLog.getInstance().log();
         if (mInstance == null) {
@@ -91,6 +90,8 @@ public class Server {
         return mInstance;
     }
 
+    // Валидация почты – отправляется письмо с инструкциями.
+    // Вызывается в экране «7. Восстановление пароля по e-mail» и результат отображается там же.
     public void sendMail(Context context, String email) {
         ActiveLog.getInstance().log();
         try {
@@ -103,6 +104,9 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // В методе производится проверка логина и зашифрованного пароля на сервере
+    // Вызывается после нажатия кнопки «Войти» на экране «1. Вход»
+    // Результат метода показывается на экране «2. Результат входа»
     public void login(Context context, String login, String password) {
         ActiveLog.getInstance().log();
         try {
@@ -116,6 +120,9 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // Метод вызывается в экране «3. Регистрация» при нажатии кнопки «Регистрация»
+    // В методе производится попытка зарегистрировать пользователя приложения на сервере.
+    // В случае успешного выполнения метода – вызывается отправляется СМС пользователю через POST sendSMS
     public void signUp(Context context, String phone, String email, String password) {
         ActiveLog.getInstance().log();
         try {
@@ -128,6 +135,10 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // В методе отправляется СМС по указанному номеру телефона.
+    // Используется в экранах «4. Регистрация. Подтверждение телефона»
+    // и «8. Восстановление пароля по телефону» для отправки кода подтверждения и в экране
+    // «25. Пополнение баланса. Ссылка на Сбербанк» для отправки ссылки для оплаты на Сбербанк
     public void sendSMS(Context context, String phone) {
         ActiveLog.getInstance().log();
         try {
@@ -140,6 +151,8 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // В методе проверяется статус выполнения шагов и получается информация по пользователю.
+    // Используется в экране «5. Регистрация завершена» и в экране «27. Профиль»
     public void getUser(Context context) {
         ActiveLog.getInstance().log();
         try {
@@ -164,42 +177,10 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
-    public void reserPassword(Context context, String login, LoginType loginType) {
-        ActiveLog.getInstance().log();
-        try {
-            this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_resetpassword_success)));
-        } catch (Exception e) {
-            this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_resetpassword_error, e.toString())));
-        }
-        ActiveLog.getInstance().logError(ok, error);
-    }
-
-    public void acceptResetPass(Context context, String code, String newPassword) {
-        ActiveLog.getInstance().log();
-        try {
-            this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_acceptresetpass_success)));
-        } catch (Exception e) {
-            this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_acceptresetpass_error, e.toString())));
-        }
-        ActiveLog.getInstance().logError(ok, error);
-    }
-
-    public void setPassword(Context context, String oldPassword, String newPassword) {
-        ActiveLog.getInstance().log();
-        try {
-            this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_setpassword_success)));
-        } catch (Exception e) {
-            this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_setpassword_error, e.toString())));
-        }
-        ActiveLog.getInstance().logError(ok, error);
-    }
-
+    // Метод сохраняет ИНН введенный пользователем на сервере
+    // Вызывается в экране «11. Указание ИНН» при нажатии на кнопку «Продолжить»
+    // и результаты выполнения метода (найден ли ИНН, привязан ли и т. д.) отображаются
+    // на экране «12. Указание ИНН. Результат»
     public void setINN(Context context, String inn) {
         ActiveLog.getInstance().log();
         try {
@@ -213,6 +194,24 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // Метод привязывает учет доходов и выписку чеков к указанному ИНН.
+    // Метод вызывается в экране «16. Привязка ИНН» при нажатии на кнопку «Привязать».
+    // Далее результат привязки отображается на экране «17. Привязка ИНН. Результат»
+    public void tightenIncome(Context context, String inn) {
+        ActiveLog.getInstance().log();
+        try {
+            this.setOk(true);
+            this.setError(new ServerError(200, context.getString(R.string.text_tightenincome_success, inn)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_tightenincome_error, inn, e.toString())));
+        }
+        ActiveLog.getInstance().logError(ok, error);
+    }
+
+    // Метод ищет ИНН в ФНС по переданным параметрам.
+    // Метод вызывается при нажатии кнопки «Поиск в ФНС» в экране «13. Поиск ИНН»
+    // и результат поиска отображается на экране «14. Поиск ИНН. Результат»
     public void searchINN(Context context, String phone,
                           String surname, String name, String patronymic,
                           String docSeries, String docNumber) {
@@ -227,56 +226,57 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
-    public void tightenIncome(Context context, String inn) {
+    // В методе запускается процесс восстановления пароля в зависимости от того, что введено:
+    // телефон или электронная почта.
+    // Если электронная почта – то на неё отправляется письмо.
+    // Если телефон – то на него отправляется код.
+    // Метод вызывается при нажатии кнопки «Восстановить» на экране «6. Восстановление пароля»,
+    // а результат выполнения показывается на экране «7. Восстановление пароля по e-mail»
+    public void reserPassword(Context context, String login, LoginType loginType) {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_tightenincome_success, inn)));
+            this.setError(new ServerError(200, context.getString(R.string.text_resetpassword_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_tightenincome_error, inn, e.toString())));
+            this.setError(new ServerError(500, context.getString(R.string.text_resetpassword_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
 
-    public void balance(Context context) {
+    // Метод изменяет пароль на сервере
+    // Метод называется в экране «9. Смена пароля» при нажатии на кнопку «Сменить пароль».
+    // Результат метода показывается на экране «10. Смена пароля. Результат»
+    public void setPassword(Context context, String oldPassword, String newPassword) {
         ActiveLog.getInstance().log();
         try {
-            this.putArg("balance", "1000");
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_balance_success)));
+            this.setError(new ServerError(200, context.getString(R.string.text_setpassword_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_balance_error, e.toString())));
+            this.setError(new ServerError(500, context.getString(R.string.text_setpassword_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
 
-    public void getCheckHistory(Context context, int startPosition, int endPosition) {
+    // В методе проверяется введенный код с кодом, отправленным по СМС.
+    // Метод вызывается на экранах «4. Регистрация. Подтверждение телефона»
+    // и «8. Восстановление пароля по телефону» при нажатии на кнопку «Подтвердить»
+    public void acceptResetPass(Context context, String code, String newPassword) {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_check_history_success)));
+            this.setError(new ServerError(200, context.getString(R.string.text_acceptresetpass_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_check_history_error, e.toString())));
+            this.setError(new ServerError(500, context.getString(R.string.text_acceptresetpass_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
 
-    public void refillBalance(Context context, String amount, String from) {
-        ActiveLog.getInstance().log();
-        try {
-            this.putArg("status", "В обработке");
-            this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_refill_balance_success, amount)));
-        } catch (Exception e) {
-            this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_refill_balance_error, from, e.toString())));
-        }
-        ActiveLog.getInstance().logError(ok, error);
-    }
-
+    // Метод получает всю необходимую информацию для печати виртуального чека
+    // Метод вызывается в экране «18. Выбивание чека» при нажатии на кнопку печати чека,
+    // далее полученные данные показываются прямо на виртуальном чеке.
     public void generateCheck(Context context, String amount, String client) {
         ActiveLog.getInstance().log();
         try {
@@ -295,6 +295,23 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // Метод получает список всех чеков или порцию чеков с … по …
+    // Метод вызывается при открытии и проматывании экранов «18. История чеков» и «22. Баланс»
+    public void getCheckHistory(Context context, int startPosition, int endPosition) {
+        ActiveLog.getInstance().log();
+        try {
+            this.setOk(true);
+            this.setError(new ServerError(200, context.getString(R.string.text_check_history_success)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_check_history_error, e.toString())));
+        }
+        ActiveLog.getInstance().logError(ok, error);
+    }
+
+    // Отменяется выбранный чек
+    // Метод вызывается из экрана «20. Сторнирование чека» при нажатии кнопки «Сторнировать чек».
+    // Результат метода показывается на экране «21. Сторнирование чека. Результат»
     public void deleteCheck(Context context, String checkNumber, String reason) {
         ActiveLog.getInstance().log();
         try {
@@ -307,35 +324,71 @@ public class Server {
         ActiveLog.getInstance().logError(ok, error);
     }
 
+    // Получается баланс пользователя
+    public void balance(Context context) {
+        ActiveLog.getInstance().log();
+        try {
+            this.putArg("balance", "1000");
+            this.setOk(true);
+            this.setError(new ServerError(200, context.getString(R.string.text_balance_success)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_balance_error, e.toString())));
+        }
+        ActiveLog.getInstance().logError(ok, error);
+    }
 
+    // Асинхронное пополнение баланса
+    // Метод вызывается в экране «23. Пополнение баланса»
+    public void refillBalance(Context context, String amount, String from) {
+        ActiveLog.getInstance().log();
+        try {
+            this.putArg("status", "В обработке");
+            this.setOk(true);
+            this.setError(new ServerError(200, context.getString(R.string.text_refill_balance_success, amount)));
+        } catch (Exception e) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_refill_balance_error, from, e.toString())));
+        }
+        ActiveLog.getInstance().logError(ok, error);
+    }
+
+    // Получение результата вызова последнего метода
     public boolean isOk() {
         return ok;
     }
 
+    // Установка результата вызова последнего метода
     private void setOk(boolean ok) {
         this.ok = ok;
     }
 
+    // Получение описания результата вызова последнего метода
     public ServerError getError() {
         return error;
     }
 
+    // Установка описания результата вызова последнего метода
     private void setError(ServerError error) {
         this.error = error;
     }
 
+    // Получение дополнительных параметров
     public Map<String, Object> getArgs() {
         return args;
     }
 
+    // Загрузка всех дополнительных параметров
     public void setArgs(Map<String, Object> args) {
         this.args = args;
     }
 
+    // Установка конкретного дополнительного параметра
     private void putArg(String key, Object object) {
         this.args.put(key, object);
     }
 
+    // Получение конкретного дополнительного параметра
     public Object getArg(String key) {
         return args.get(key);
     }

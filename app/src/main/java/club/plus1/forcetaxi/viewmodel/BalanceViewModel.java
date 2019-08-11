@@ -18,24 +18,29 @@ import club.plus1.forcetaxi.view.MenuCheckActivity;
 
 public class BalanceViewModel {
 
-    // Ссылки MVVM
-    private static BalanceViewModel mInstance;  // Ссылка для биндинга с View
     // Поля экрана "22.Баланс"
     public ObservableField<String> fio = new ObservableField<>();
     public ObservableField<String> inn = new ObservableField<>();
     public ObservableInt balance = new ObservableInt();
+
     // Поля экрана "23.Пополнение баланса"
     public ObservableField<String> amount = new ObservableField<>();
     public ObservableField<String> gett = new ObservableField<>();
     public ObservableField<String> ytaxi = new ObservableField<>();
     public ObservableField<String> city = new ObservableField<>();
     public ObservableField<String> bolt = new ObservableField<>();
+
     // Поле экрана "24.	Пополнение баланса. Результат"
     public ObservableField<String> status = new ObservableField<>();
+
     // Поля экрана "25.Пополнение баланса. Ссылка на Сбербанк"
     public ObservableField<String> phone = new ObservableField<>();
+
     // Поле экрана "26.	Пополнение баланса. Сбербанк. Результат"
     public ObservableField<String> result = new ObservableField<>();
+
+    private static BalanceViewModel mInstance;  // Ссылка для биндинга с View
+    // Ссылки MVVM
     public ArrayAdapter<String> adapter;        // Ссылка на адаптер во View
     private Server server;                      // Ссылка на Model
 
