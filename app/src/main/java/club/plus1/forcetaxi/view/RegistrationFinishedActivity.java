@@ -20,6 +20,7 @@ public class RegistrationFinishedActivity extends AppCompatActivity {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
         viewModel = RegistrationViewModel.getInstance(this);
+        viewModel.onRegistrationFinished(this);
         binding = DataBindingUtil.setContentView(this, R.layout.registration_finished);
         binding.setViewModel(viewModel);
     }

@@ -25,6 +25,7 @@ public class RegistrationProfileActivity extends AppCompatActivity {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
         viewModel = RegistrationViewModel.getInstance(this);
+        viewModel.onRegistrationProfile(this);
         binding = DataBindingUtil.setContentView(this, R.layout.registration_profile);
         binding.setViewModel(viewModel);
     }
