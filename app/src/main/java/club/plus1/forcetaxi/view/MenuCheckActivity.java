@@ -24,6 +24,7 @@ public class MenuCheckActivity extends AppCompatActivity {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
         viewModel = MenuViewModel.getInstance(this);
+        viewModel.onMenuCheck(this);
         binding = DataBindingUtil.setContentView(this, R.layout.menu_check);
         binding.setViewModel(viewModel);
     }

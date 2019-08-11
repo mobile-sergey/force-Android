@@ -47,10 +47,6 @@
     <string name="link_inn_remind">Напомнить ИНН</string>
     <string name="button_inn_set">Продолжить</string>
 
-    <!-- Экран 12.Указание ИНН. Результат (inn_set_result.xml) -->
-    <string name="text_set_inn_success">Удалось указать ИНН</string>
-    <string name="text_set_inn_error">При указании ИНН возникла ошибка:\n%1$s</string>
-
     <!-- Экран 13.Поиск ИНН (inn_search.xml) -->
     <string name="edit_surname">Фамилия</string>
     <string name="edit_name">Имя</string>
@@ -64,13 +60,13 @@
     <string name="text_bind">Привяжите учет доходов\nи выбивание чеков:</string>
     <string name="text_bind_info">
         ФИО\n
-        <b>Иванов Вазген Куйран Оглы</b>\n
+        <b>%1$s</b>\n
         ИНН\n
-        <b>1234567</b>\n
+        <b>%2$s</b>\n
         ОКТМО\n
-        <b>46748000890</b>\n
+        <b>%3$s</b>\n
         Дата постановки на учет\n
-        <b>01.07.2019</b>\n
+        <b>%4$s</b>\n
         Виды деятельности\n
         <b>- Такси</b>
     </string>
@@ -147,17 +143,14 @@
     <string name="text_sberbank_success">Ссылка на Сбербанк отправлена на телефон %1$s</string>
     <string name="text_sberbank_error">При отправке ссылки на телефон %1$s возникла ошибка:\n%2$s</string>
 
-    <!-- Экран 27.Профиль (menu_profile.xml) -->
+    <!-- Экран 27.Профиль (registration_profile.xml) -->
     <string name="link_invite">Пригласить друга</string>
     <string name="link_exit">Выйти из профиля</string>
 
-    <!-- Экран 28.Инструкция (menu_instruction.xml) -->
-    <string name="url_instruction">http://google.com</string>
-
     <!-- Экран 29.Пригласить друга (menu_invite.xml) -->
     <string name="text_invite_label">Поделитесь ссылкой с другом:</string>
-    <string name="url_link_app">link.to/app/</string>
     <string name="button_copy_link">Скопировать ссылку</string>
+    <string name="button_share">Поделиться</string>
     <string name="text_buffer_copy">Текст скопирован</string>
 
     <!-- Экран 30.Установка ПИН (enter_pin_set.xml) -->

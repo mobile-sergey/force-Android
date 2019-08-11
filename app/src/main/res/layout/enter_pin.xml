@@ -41,21 +41,21 @@
             <Button
                 android:id="@+id/buttonClear"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "7")}'
+                android:onClick='@{() -> viewModel.addNumber("7")}'
                 android:layout_weight="1"
                 android:text="@string/button_7" />
 
             <Button
                 android:id="@+id/buttonEmpty"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "8")}'
+                android:onClick='@{() -> viewModel.addNumber("8")}'
                 android:layout_weight="1"
                 android:text="@string/button_8" />
 
             <Button
                 android:id="@+id/buttonBack"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "9")}'
+                android:onClick='@{() -> viewModel.addNumber("9")}'
                 android:layout_weight="1"
                 android:text="@string/button_9" />
 
@@ -69,21 +69,21 @@
             <Button
                 android:id="@+id/button4"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "4")}'
+                android:onClick='@{() -> viewModel.addNumber("4")}'
                 android:layout_weight="1"
                 android:text="@string/button_4" />
 
             <Button
                 android:id="@+id/button5"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "5")}'
+                android:onClick='@{() -> viewModel.addNumber("5")}'
                 android:layout_weight="1"
                 android:text="@string/button_5" />
 
             <Button
                 android:id="@+id/button6"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "6")}'
+                android:onClick='@{() -> viewModel.addNumber("6")}'
                 android:layout_weight="1"
                 android:text="@string/button_6" />
 
@@ -97,21 +97,21 @@
             <Button
                 android:id="@+id/button1"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "1")}'
+                android:onClick='@{() -> viewModel.addNumber("1")}'
                 android:layout_weight="1"
                 android:text="@string/button_1" />
 
             <Button
                 android:id="@+id/button2"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "2")}'
+                android:onClick='@{() -> viewModel.addNumber("2")}'
                 android:layout_weight="1"
                 android:text="@string/button_2" />
 
             <Button
                 android:id="@+id/button3"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "3")}'
+                android:onClick='@{() -> viewModel.addNumber("3")}'
                 android:layout_weight="1"
                 android:text="@string/button_3" />
 
@@ -125,7 +125,7 @@
             <Button
                 android:id="@+id/button0"
                 style="@style/AppTheme.ForceTaxi.Button"
-                android:onClick='@{() -> viewModel.addNumber(context, "0")}'
+                android:onClick='@{() -> viewModel.addNumber("0")}'
                 android:layout_weight="2"
                 android:text="@string/button_0" />
 

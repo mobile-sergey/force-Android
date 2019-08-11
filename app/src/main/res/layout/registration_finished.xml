@@ -32,7 +32,7 @@
             <ImageView
                 android:id="@+id/statusTighten"
                 style="@style/AppTheme.ForceTaxi.Status.Image"
-                android:src='@{viewModel.srcTighten.get()}'
+                android:src="@{viewModel.srcTighten}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.srcInFns.get()}'
+                android:src="@{viewModel.srcInFns}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.srcForceAccepted.get()}'
+                android:src="@{viewModel.srcForceAccepted}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src='@{viewModel.srcPinSet.get()}'
+                android:src="@{viewModel.srcPinSet}"
                 tools:ignore="ContentDescription" />
 
             <TextView

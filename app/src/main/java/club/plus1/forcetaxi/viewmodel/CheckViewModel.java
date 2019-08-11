@@ -51,6 +51,9 @@ public class CheckViewModel extends BaseObservable {
         qr.set(server.imgQR);
         fio.set(server.user.getFio());
         inn.set(server.user.inn);
+        client.set(server.client);
+        number.set(server.checkNumber);
+        url.set(server.urlCheck);
         adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, server.history);
     }
 

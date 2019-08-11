@@ -39,7 +39,7 @@
                 <TextView
                     android:id="@+id/textBindInfo"
                     style="@style/AppTheme.ForceTaxi.Text"
-                    android:text="@string/text_bind_info"
+                    android:text="@{@string/text_bind_info(viewModel.fio, viewModel.inn, viewModel.oktmo, viewModel.dateFNS)}"
                     android:textAlignment="viewStart" />
             </LinearLayout>
         </ScrollView>

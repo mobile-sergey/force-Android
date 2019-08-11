@@ -34,7 +34,12 @@ public class InnViewModel {
     public ObservableField<String> docNumber = new ObservableField<>();
 
     // Поле экрана "15.	Мой налог. Просмотр инструкции"
-    public ObservableField<String> urlInfo = new ObservableField<>();
+    public ObservableField<String> url = new ObservableField<>();
+
+    // Поле экрана "16.Привязка ИНН"
+    public ObservableField<String> fio = new ObservableField<>();
+    public ObservableField<String> oktmo = new ObservableField<>();
+    public ObservableField<String> dateFNS = new ObservableField<>();
 
     // Ссылки MVVM
     private static InnViewModel mInstance;  // Ссылка для биндинга с View
@@ -44,8 +49,11 @@ public class InnViewModel {
     private InnViewModel(Context context) {
         ActiveLog.getInstance().log();
         server = Server.getInstance(context);
-        urlInfo.set(server.URL_INFO);
+        url.set(server.URL_INFO);
         inn.set("");
+        fio.set(server.user.getFio());
+        oktmo.set(server.user.oktmo);
+        dateFNS.set(server.user.dateFNS);
     }
 
     // Получение единственного экземпляра класса

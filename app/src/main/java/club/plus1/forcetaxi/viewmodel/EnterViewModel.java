@@ -159,7 +159,7 @@ public class EnterViewModel extends BaseObservable {
     }
 
     // Числовая клаввиатура для набора ПИНкода
-    public void addNumber(Context context, String number) {
+    public void addNumber(String number) {
         ActiveLog.getInstance().log();
         pin.set(pin.get() + number);
     }

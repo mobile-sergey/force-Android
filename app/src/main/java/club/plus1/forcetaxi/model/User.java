@@ -20,10 +20,13 @@ public class User {
     public Boolean isInFns;
     public Boolean isForceAccepted;
     public Boolean isPinSet;
-    public String name = "Вазген";
     public String inn = "012345678943";
+    public String oktmo = "46748000890";
+    public String dateFNS = "01.07.2019";
+    private String name = "Вазген";
     private String surname = "Иванов";
     private String patronymic = "Куйран Оглы";
+
 
     User(Context context) {
         mSettings = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);

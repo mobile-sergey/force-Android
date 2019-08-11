@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
 
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.MenuViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical"
         android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/splash_screen"
+            style="@style/AppTheme.ForceTaxi.Logo"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textRegistration"
+            style="@style/AppTheme.ForceTaxi.Text"
+            android:text="@string/text_registration" />
 
         <Button
             android:id="@+id/buttonInFns"
             style="@style/AppTheme.ForceTaxi.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isInFns ? View.GONE : View.VISIBLE}"
             android:onClick="@{() -> viewModel.onInFns(context)}"
             android:text="@string/button_in_fns" />
 
@@ -29,6 +40,7 @@
             style="@style/AppTheme.ForceTaxi.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isForceAccepted ? View.GONE : View.VISIBLE}"
             android:onClick="@{() -> viewModel.onForceAccepted(context)}"
             android:text="@string/button_force_accepted" />
 

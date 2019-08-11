@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/urlLinkApp"
             style="@style/AppTheme.ForceTaxi.Link"
-            android:text="@string/url_link_app"
+            android:text="@{viewModel.urlApp}"
             android:textSize="36sp"
             android:textStyle="bold" />
 
@@ -41,6 +41,14 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.onCopyLink(context)}"
             android:text="@string/button_copy_link" />
+
+        <Button
+            android:id="@+id/buttonShare"
+            style="@style/AppTheme.ForceTaxi.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onShare(context)}"
+            android:text="@string/button_share" />
 
     </LinearLayout>
 </layout>

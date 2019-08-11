@@ -25,6 +25,7 @@ public class MenuInstructionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         viewModel = MenuViewModel.getInstance(this);
         binding = DataBindingUtil.setContentView(this, R.layout.menu_instruction);
+        binding.webInnInfo.loadUrl(viewModel.url.get());
         binding.setViewModel(viewModel);
     }
 

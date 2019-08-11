@@ -24,6 +24,7 @@ public class MenuBalanceActivity extends AppCompatActivity {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
         viewModel = MenuViewModel.getInstance(this);
+        viewModel.onMenuBalance(this);
         binding = DataBindingUtil.setContentView(this, R.layout.menu_balance);
         binding.setViewModel(viewModel);
     }

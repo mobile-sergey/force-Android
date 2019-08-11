@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="viewModel"
-            type="club.plus1.forcetaxi.viewmodel.MenuViewModel" />
+            type="club.plus1.forcetaxi.viewmodel.RegistrationViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +37,7 @@
                     <TextView
                         android:id="@+id/textBindInfo"
                         style="@style/AppTheme.ForceTaxi.Text"
-                        android:text="@string/text_bind_info"
+                        android:text="@{@string/text_bind_info(viewModel.fio, viewModel.inn, viewModel.oktmo, viewModel.dateFNS)}"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
 
@@ -53,7 +50,7 @@
                     <ImageView
                         android:id="@+id/statusTighten"
                         style="@style/AppTheme.ForceTaxi.Status.Image"
-                        android:src='@{viewModel.isTighten == null ? @drawable/wait : (viewModel.isTighten ? @drawable/yes : @drawable/no)}'
+                        android:src="@{viewModel.srcTighten}"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -76,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src='@{viewModel.isInFns == null ? @drawable/wait : (viewModel.isInFns ? @drawable/yes : @drawable/no)}'
+                        android:src="@{viewModel.srcInFns}"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -102,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src='@{viewModel.isForceAccepted == null ? @drawable/wait : (viewModel.isForceAccepted ? @drawable/yes : @drawable/no)}'
+                        android:src="@{viewModel.srcForceAccepted}"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -128,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src='@{viewModel.isPinSet == null ? @drawable/wait : (viewModel.isPinSet ? @drawable/yes : @drawable/no)}'
+                        android:src="@{viewModel.srcPinSet}"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -161,6 +158,5 @@
                     android:textSize="18sp" />
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
 </layout>

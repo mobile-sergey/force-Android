@@ -6,45 +6,48 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
 
-import club.plus1.forcetaxi.BR;
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.EnterActivity;
-import club.plus1.forcetaxi.view.EnterPinSetActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
 import club.plus1.forcetaxi.view.InnSetActivity;
 import club.plus1.forcetaxi.view.MenuBalanceActivity;
 import club.plus1.forcetaxi.view.MenuInstructionActivity;
 import club.plus1.forcetaxi.view.MenuInviteActivity;
-import club.plus1.forcetaxi.view.MenuProfileActivity;
+import club.plus1.forcetaxi.view.RegistrationProfileActivity;
 
 public class MenuViewModel extends BaseObservable {
 
-    private static MenuViewModel mInstance;
-    private Server server;
+    // Ссылки MVVM
+    private static MenuViewModel mInstance;     // Ссылка для биндинга с View
+    // Поле экрана "2.Результат входа"
+    public ObservableField<String> result = new ObservableField<>();
+    // Поле экрана "28.Инструкция"
+    public ObservableField<String> url = new ObservableField<>();
+    // Поле экрана "29.Пригласить друга"
+    public ObservableField<String> urlApp = new ObservableField<>();
+    // Поля экрана "5.Регистрация завершена"
+    public ObservableBoolean isInFns = new ObservableBoolean();
+    public ObservableBoolean isForceAccepted = new ObservableBoolean();
+    private Server server;                      // Ссылка на Model
 
-    @Nullable
-    private Boolean isTighten;
-    @Nullable
-    private Boolean isInFns;
-    @Nullable
-    private Boolean isForceAccepted;
-    @Nullable
-    private Boolean isPinSet;
-
-
+    // Конструктор класса
     private MenuViewModel(Context context) {
         ActiveLog.getInstance().log();
         server = Server.getInstance(context);
+        url.set(server.URL_INSTRUCTIONS);
+        urlApp.set(server.URL_APP);
     }
 
+    // Получение единственного экземпляра класса
     public static MenuViewModel getInstance(Context context) {
         ActiveLog.getInstance().log();
         if (mInstance == null) {
@@ -53,6 +56,13 @@ public class MenuViewModel extends BaseObservable {
         return mInstance;
     }
 
+    // Меню "Выбить чек " -> "18.Выбивание чека"
+    // Меню "История"-> "19.История чеков"
+    // Меню "Баланс" -> "35.Закрытый баланс"
+    // Меню "Профиль" -> "27.Профиль"
+    // Меню "Инструкции" -> "28.Инструкция"
+    // Меню "Пригласить друга" -> "29.Пригласить друга"
+    // Меню "Выход" -> "1.Вход"
     public static boolean onOptionsItemSelected(Context context, int id) {
         ActiveLog.getInstance().log();
         Intent intent;
@@ -70,19 +80,19 @@ public class MenuViewModel extends BaseObservable {
                 context.startActivity(intent);
                 return true;
             case R.id.actionProfile:
-                intent = new Intent(context, MenuProfileActivity.class);
+                intent = new Intent(context, RegistrationProfileActivity.class);
                 context.startActivity(intent);
                 return true;
             case R.id.actionInstructions:
                 intent = new Intent(context, MenuInstructionActivity.class);
                 context.startActivity(intent);
                 return true;
-            case R.id.actionExit:
-                intent = new Intent(context, EnterActivity.class);
-                context.startActivity(intent);
-                return true;
             case R.id.actionInvite:
                 intent = new Intent(context, MenuInviteActivity.class);
+                context.startActivity(intent);
+                return true;
+            case R.id.actionExit:
+                intent = new Intent(context, EnterActivity.class);
                 context.startActivity(intent);
                 return true;
             default:
@@ -90,9 +100,60 @@ public class MenuViewModel extends BaseObservable {
         }
     }
 
+    // "34.Закрытое меню" -> "18.Выбивание чека"
+    // Выполняется при при загрузке экрана
+    public void onMenuCheck(Context context) {
+        ActiveLog.getInstance().log();
+        if (server.user.isTighten) {
+            Intent intent = new Intent(context, CheckActivity.class);
+            context.startActivity(intent);
+        }
+    }
+
+    // "34.Закрытое меню" -> "11.Указание ИНН"
+    // Выполняется при нажатии ссылки "Привязать учет доходов и выбивание чеков"
+    public void onTighten(Context context) {
+        ActiveLog.getInstance().log();
+        Intent intent = new Intent(context, InnSetActivity.class);
+        context.startActivity(intent);
+    }
+
+    // "35.Закрытый баланс" -> "22.Баланс"
+    // Выполняется при при загрузке экрана
+    public void onMenuBalance(Context context) {
+        ActiveLog.getInstance().log();
+        isInFns.set(server.user.isInFns == null ? false : server.user.isInFns);
+        isForceAccepted.set(server.user.isForceAccepted == null ? false : server.user.isForceAccepted);
+        if (isInFns.get() && isForceAccepted.get()) {
+            server.balance(context);
+            result.set(server.getError().getText());
+            Intent intent = new Intent(context, BalanceActivity.class);
+            context.startActivity(intent);
+        }
+    }
+
+    // "35.Закрытый баланс" -> "15.Мой налог. Просмотре инструкции"
+    // Выполняется при нажатии ссылки "Зарегистрироваться в ФНС"
+    public void onInFns(Context context) {
+        ActiveLog.getInstance().log();
+        Intent intent = new Intent(context, InnInfoActivity.class);
+        context.startActivity(intent);
+    }
+
+    // "35.Закрытый баланс" -> "28. Инструкция"
+    // Выполняется при нажатии ссылки "Предоставить права площадке ..."
+    public void onForceAccepted(Context context) {
+        ActiveLog.getInstance().log();
+        Intent intent = new Intent(context, MenuInstructionActivity.class);
+        context.startActivity(intent);
+    }
+
+    // "29.Пригласить друга"
+    // Выполняется при нажатии ссылки "Скопировать ссылку"
+    // Копирует ссылку на приложение в буфер обмена
     public void onCopyLink(Context context) {
         ActiveLog.getInstance().log();
-        ClipData clipData = ClipData.newPlainText("text", context.getString(R.string.url_link_app));
+        ClipData clipData = ClipData.newPlainText("text", urlApp.get());
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboardManager != null) {
             clipboardManager.setPrimaryClip(clipData);
@@ -100,94 +161,14 @@ public class MenuViewModel extends BaseObservable {
         Toast.makeText(context, context.getString(R.string.text_buffer_copy), Toast.LENGTH_SHORT).show();
     }
 
-    // Запуск экрана "11.Указание ИНН" при нажатии ссылки "Привязать учет доходов и выбивание чеков"
-    // в экране "5.Регистрация завершена"
-    public void onTighten(Context context) {
+    // "29.Пригласить друга"
+    // Выполняется при нажатии ссылки "Поделться"
+    // Делится ссылкой в любых приложениях, которые принимают текст
+    public void onShare(Context context) {
         ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, InnSetActivity.class);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, urlApp.get());
         context.startActivity(intent);
     }
-
-    // Запуск экрана "15.Мой налог. Просмотре инструкции" при нажатии ссылки "Зарегистрироваться в ФНС"
-    // в экране "5.Регистрация завершена"
-    public void onInFns(Context context) {
-        ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, InnInfoActivity.class);
-        context.startActivity(intent);
-    }
-
-    // Запуск экрана "22.Баланс" при нажатии ссылки "Предоставить права площадке ..."
-    // в экране "5.Регистрация завершена"
-    public void onForceAccepted(Context context) {
-        ActiveLog.getInstance().log();
-        server.balance(context);
-        server.getCheckHistory(context, 0, 0);
-        Intent intent = new Intent(context, MenuInstructionActivity.class);
-        context.startActivity(intent);
-    }
-
-    // Запуск экрана "30.Установка ПИН" при нажатии ссылки "Установить ПИН"
-    // в экране "5.Регистрация завершена"
-    public void onPIN(Context context) {
-        ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, EnterPinSetActivity.class);
-        context.startActivity(intent);
-    }
-
-    public void onInvite(Context context) {
-        ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, MenuInviteActivity.class);
-        context.startActivity(intent);
-    }
-
-    public void onExit(Context context) {
-        ActiveLog.getInstance().log();
-        Intent intent = new Intent(context, EnterActivity.class);
-        context.startActivity(intent);
-    }
-
-    @Bindable
-    @Nullable
-    public Boolean getIsTighten() {
-        return isTighten;
-    }
-
-    public void setIsTighten(@Nullable Boolean is) {
-        this.isTighten = is;
-        notifyPropertyChanged(BR.isTighten);
-    }
-
-    @Bindable
-    @Nullable
-    public Boolean getIsInFns() {
-        return isInFns;
-    }
-
-    public void setIsInFns(@Nullable Boolean is) {
-        this.isInFns = is;
-        notifyPropertyChanged(BR.isInFns);
-    }
-
-    @Bindable
-    @Nullable
-    public Boolean getIsForceAccepted() {
-        return isForceAccepted;
-    }
-
-    public void setIsForceAccepted(@Nullable Boolean is) {
-        this.isForceAccepted = is;
-        notifyPropertyChanged(BR.isForceAccepted);
-    }
-
-    @Bindable
-    @Nullable
-    public Boolean getIsPinSet() {
-        return isPinSet;
-    }
-
-    public void setIsPinSet(@Nullable Boolean is) {
-        this.isPinSet = is;
-        notifyPropertyChanged(BR.isPinSet);
-    }
-
 }

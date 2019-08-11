@@ -67,6 +67,9 @@
         <activity
             android:name=".view.RegistrationPasswordResultActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RegistrationProfileActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".view.InnSetActivity"
@@ -124,9 +127,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.MenuBalanceActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.MenuProfileActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.MenuInstructionActivity"

@@ -27,14 +27,16 @@ public class Server {
     private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     private static final String USER_TOKEN = "aec27f0f-b8a3-43cb-b076-e075a095abfe";
 
-    public final String URL_INFO = "https://lknpd.nalog.ru/";
+    public final String URL_APP = "link.to/app/";
+    public final String URL_INFO = "https://npd.nalog.ru/#start";
+    public final String URL_INSTRUCTIONS = "https://www.nalog.ru/rn77/fl/interest/inn/calculation/";
 
     public Drawable imgQR;
     public String serviceType;
     public String[] history;
-    private String urlCheck;
-    private String checkNumber;
-    private String client;
+    public String client;
+    public String urlCheck;
+    public String checkNumber;
 
     public User user;
     private ActiveLog log;
@@ -46,8 +48,8 @@ public class Server {
         user.setAppToken(APP_TOKEN);
         user.setUserToken(USER_TOKEN);
         user.setDeviceToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
-        user.isTighten = true;
-        user.isInFns = false;
+        user.isTighten = false;
+        user.isInFns = true;
         user.isForceAccepted = null;
         try {
             this.setOk(true);

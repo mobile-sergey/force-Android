@@ -20,6 +20,7 @@ import club.plus1.forcetaxi.view.InnInfoActivity;
 import club.plus1.forcetaxi.view.InnSetActivity;
 import club.plus1.forcetaxi.view.MenuCheckActivity;
 import club.plus1.forcetaxi.view.MenuInstructionActivity;
+import club.plus1.forcetaxi.view.MenuInviteActivity;
 import club.plus1.forcetaxi.view.RegistrationFinishedActivity;
 import club.plus1.forcetaxi.view.RegistrationPasswordActivity;
 import club.plus1.forcetaxi.view.RegistrationPasswordResultActivity;
@@ -46,8 +47,15 @@ public class RegistrationViewModel extends BaseObservable {
     public ObservableField<Drawable> srcInFns = new ObservableField<>();
     public ObservableField<Drawable> srcForceAccepted = new ObservableField<>();
     public ObservableField<Drawable> srcPinSet = new ObservableField<>();
+
     // Поле экрана "7.Восстановление пароля по e-mail"
     public ObservableField<String> result = new ObservableField<>();
+
+    // Поле экрана "27.Профиль"
+    public ObservableField<String> inn = new ObservableField<>();
+    public ObservableField<String> fio = new ObservableField<>();
+    public ObservableField<String> oktmo = new ObservableField<>();
+    public ObservableField<String> dateFNS = new ObservableField<>();
 
     // Ссылки MVVM
     private static RegistrationViewModel mInstance; // Ссылка для биндинга с View
@@ -61,6 +69,10 @@ public class RegistrationViewModel extends BaseObservable {
         srcInFns.set(getDrawable(context, server.user.isInFns));
         srcForceAccepted.set(getDrawable(context, server.user.isForceAccepted));
         srcPinSet.set(getDrawable(context, server.user.isPinSet));
+        fio.set(server.user.getFio());
+        inn.set(server.user.inn);
+        oktmo.set(server.user.oktmo);
+        dateFNS.set(server.user.dateFNS);
     }
 
     // Получение единственного экземпляра класса
@@ -106,6 +118,7 @@ public class RegistrationViewModel extends BaseObservable {
     }
 
     // "5.Регистрация завершена" -> "11.Указание ИНН"
+    // "27.Профиль" -> "11.Указание ИНН"
     // Выполняется при нажатии ссылки "Привязать учет доходов и выбивание чеков"
     public void onTighten(Context context) {
         ActiveLog.getInstance().log();
@@ -114,6 +127,7 @@ public class RegistrationViewModel extends BaseObservable {
     }
 
     // "5.Регистрация завершена" -> "15.Мой налог. Просмотре инструкции"
+    // "27.Профиль" -> "15.Мой налог. Просмотре инструкции"
     // Выполняется при нажатии ссылки "Зарегистрироваться в ФНС"
     public void onInFns(Context context) {
         ActiveLog.getInstance().log();
@@ -122,6 +136,7 @@ public class RegistrationViewModel extends BaseObservable {
     }
 
     // "5.Регистрация завершена" -> "28.Инструкция"
+    // "27.Профиль" -> "28.Инструкция"
     // Выполняется при нажатии ссылки "Предоставить права площадке ..."
     public void onForceAccepted(Context context) {
         ActiveLog.getInstance().log();
@@ -130,6 +145,7 @@ public class RegistrationViewModel extends BaseObservable {
     }
 
     // "5.Регистрация завершена" -> "30.Установка ПИН"
+    // "27.Профиль" -> "30.Установка ПИН"
     // Выполняется при нажатии ссылки "Установить ПИН"
     public void onPIN(Context context) {
         ActiveLog.getInstance().log();
@@ -204,6 +220,22 @@ public class RegistrationViewModel extends BaseObservable {
     // "10.Смена пароля. Результат" -> "1.Вход"
     // Выполняется при нажатии на экране
     public void onResult(Context context) {
+        ActiveLog.getInstance().log();
+        Intent intent = new Intent(context, EnterActivity.class);
+        context.startActivity(intent);
+    }
+
+    // "27.Профиль" -> "29.Пригласить друга"
+    // Выполняется при нажатии на ссылке "Пригласить друга"
+    public void onInvite(Context context) {
+        ActiveLog.getInstance().log();
+        Intent intent = new Intent(context, MenuInviteActivity.class);
+        context.startActivity(intent);
+    }
+
+    // "27.Профиль" -> "1.Вход"
+    // Выполняется при нажатии на ссылке "Выйти из профиля"
+    public void onExit(Context context) {
         ActiveLog.getInstance().log();
         Intent intent = new Intent(context, EnterActivity.class);
         context.startActivity(intent);

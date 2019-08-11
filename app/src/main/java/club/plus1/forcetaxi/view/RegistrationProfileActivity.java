@@ -10,21 +10,22 @@ import androidx.databinding.DataBindingUtil;
 import org.jetbrains.annotations.NotNull;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.databinding.MenuProfileBinding;
+import club.plus1.forcetaxi.databinding.RegistrationProfileBinding;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.viewmodel.MenuViewModel;
+import club.plus1.forcetaxi.viewmodel.RegistrationViewModel;
 
-public class MenuProfileActivity extends AppCompatActivity {
+public class RegistrationProfileActivity extends AppCompatActivity {
 
-    private MenuViewModel viewModel;
-    private MenuProfileBinding binding;
+    private RegistrationViewModel viewModel;
+    private RegistrationProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActiveLog.getInstance().log();
         super.onCreate(savedInstanceState);
-        viewModel = MenuViewModel.getInstance(this);
-        binding = DataBindingUtil.setContentView(this, R.layout.menu_profile);
+        viewModel = RegistrationViewModel.getInstance(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.registration_profile);
         binding.setViewModel(viewModel);
     }
 
