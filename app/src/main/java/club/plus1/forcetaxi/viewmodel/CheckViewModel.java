@@ -21,10 +21,6 @@ import club.plus1.forcetaxi.view.EnterSplashActivity;
 
 public class CheckViewModel extends BaseObservable {
 
-    private static CheckViewModel mInstance;
-    private Server server;
-    public ArrayAdapter<String> adapter;
-
     // Поля экрана "18.	Выбивание чека"
     public ObservableBoolean showCheck = new ObservableBoolean();
     public ObservableField<String> number = new ObservableField<>();
@@ -41,6 +37,11 @@ public class CheckViewModel extends BaseObservable {
 
     // Поле экрана "20.	Сторнирование чека"
     public ObservableField<String> reason = new ObservableField<>();
+
+    // Ссылки MVVM
+    private static CheckViewModel mInstance;    // Ссылка для биндинга с View
+    public ArrayAdapter<String> adapter;        // Ссылка на адаптер во View
+    private Server server;                      // Ссылка на Model
 
     // Конструктор класса
     private CheckViewModel(Context context) {

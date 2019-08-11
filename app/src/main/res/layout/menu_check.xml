@@ -6,7 +6,6 @@
             name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.MenuViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

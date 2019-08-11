@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <data>
-
         <variable
             name="viewModel"
             type="club.plus1.forcetaxi.viewmodel.BalanceViewModel" />
     </data>
-
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,6 +24,7 @@
             android:hint="@string/edit_recharge_amount"
             android:inputType="number"
             android:text="@={viewModel.amount}"
+            android:textSize="18sp"
             tools:ignore="Autofill" />
 
         <EditText
@@ -35,6 +33,7 @@
             android:hint="@string/edit_recharge_gett"
             android:inputType="text"
             android:text="@={viewModel.gett}"
+            android:textSize="18sp"
             tools:ignore="Autofill" />
 
         <EditText
@@ -43,6 +42,7 @@
             android:hint="@string/edit_recharge_ytaxi"
             android:inputType="text"
             android:text="@={viewModel.ytaxi}"
+            android:textSize="18sp"
             tools:ignore="Autofill" />
 
         <EditText
@@ -51,6 +51,7 @@
             android:hint="@string/edit_recharge_city"
             android:inputType="text"
             android:text="@={viewModel.city}"
+            android:textSize="18sp"
             tools:ignore="Autofill" />
 
         <EditText
@@ -59,6 +60,7 @@
             android:hint="@string/edit_recharge_bolt"
             android:inputType="text"
             android:text="@={viewModel.bolt}"
+            android:textSize="18sp"
             tools:ignore="Autofill" />
 
         <TextView
@@ -72,7 +74,7 @@
             android:id="@+id/buttonRecharge"
             style="@style/AppTheme.ForceTaxi.Button"
             android:onClick="@{() -> viewModel.onRechargeSberbank(context)}"
-            android:text="@string/button_recharge" />
-
+            android:text="@string/button_recharge"
+            android:textSize="18sp" />
     </LinearLayout>
 </layout>

@@ -34,6 +34,7 @@ public class Server {
     public Drawable imgQR;
     public String serviceType;
     public String[] history;
+    public String[] transactions;
     public String client;
     public String urlCheck;
     public String checkNumber;
@@ -50,7 +51,7 @@ public class Server {
         user.setDeviceToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
         user.isTighten = false;
         user.isInFns = true;
-        user.isForceAccepted = null;
+        user.isForceAccepted = true;
         try {
             this.setOk(true);
             this.setError(new ServerError(200, context.getString(R.string.text_server_success)));
@@ -71,6 +72,13 @@ public class Server {
                 context.getString(R.string.check_text, serviceType, "200", executor, "02.08.2019"),
                 context.getString(R.string.check_text, serviceType, "555.55", executor, "03.08.2019"),
                 context.getString(R.string.check_text, serviceType, "133.00", executor, "03.08.2019"),
+        };
+        transactions = new String[]{
+                context.getString(R.string.text_transaction_status, "В обработке"),
+                context.getString(R.string.text_transaction_status, "Отклонено"),
+                context.getString(R.string.text_transaction_status, "Успешно"),
+                context.getString(R.string.text_transaction_status, "Успешно"),
+                context.getString(R.string.text_transaction_status, "Успешно"),
         };
         imgQR = context.getDrawable(R.drawable.qr);
     }

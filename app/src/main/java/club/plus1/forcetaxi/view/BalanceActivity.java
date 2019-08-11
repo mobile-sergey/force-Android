@@ -27,6 +27,7 @@ public class BalanceActivity extends AppCompatActivity {
         viewModel = BalanceViewModel.getInstance(this);
         binding = DataBindingUtil.setContentView(this, R.layout.balance);
         binding.setViewModel(viewModel);
+        binding.listTransactions.setAdapter(viewModel.adapter);
     }
 
     @Override
