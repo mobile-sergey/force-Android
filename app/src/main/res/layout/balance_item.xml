@@ -14,14 +14,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textAmount"
                 style="@style/AppTheme.ForceTaxi.Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_transaction_amount" />
+                android:text="@string/text_transaction_amount"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/textDate"

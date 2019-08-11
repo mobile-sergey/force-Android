@@ -11,12 +11,14 @@ public class User {
     private static final String PREF_USER_TOKEN = "userToken";
     private static final String PREF_DEVICE_TOKEN = "deviceToken";
     private static final String PREF_PIN = "pin";
+
     // Статусы работы
     public Boolean isTighten;
     private String appToken;
     private String userToken;
     private String deviceToken;
     private String pin;
+
     // Заглушка с данными пользователя
     public String inn = "012345678943";
     public Boolean isInFns;

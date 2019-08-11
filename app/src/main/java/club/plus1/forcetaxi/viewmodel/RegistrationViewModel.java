@@ -65,10 +65,6 @@ public class RegistrationViewModel extends BaseObservable {
     private RegistrationViewModel(Context context) {
         ActiveLog.getInstance().log();
         server = Server.getInstance(context);
-        srcTighten.set(getDrawable(context, server.user.isTighten));
-        srcInFns.set(getDrawable(context, server.user.isInFns));
-        srcForceAccepted.set(getDrawable(context, server.user.isForceAccepted));
-        srcPinSet.set(getDrawable(context, server.user.isPinSet));
         fio.set(server.user.getFio());
         inn.set(server.user.inn);
         oktmo.set(server.user.oktmo);
@@ -89,11 +85,20 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверные методы signUp и sendSMS
     public void onRegistration(Context context) {
         ActiveLog.getInstance().log();
-        server.signUp(context, phone.get(), email.get(), password.get());
-        server.sendSMS(context, phone.get());
-        result.set(server.getError().getText());
-        Intent intent = new Intent(context, RegistrationVerificationActivity.class);
-        context.startActivity(intent);
+        if (Objects.requireNonNull(password.get()).equals(confirm.get())) {
+            server.signUp(context, phone.get(), email.get(), password.get());
+            result.set(server.getError().getText());
+            if (server.isOk()) {
+                server.sendSMS(context, phone.get());
+                result.set(server.getError().getText());
+                Intent intent = new Intent(context, RegistrationVerificationActivity.class);
+                context.startActivity(intent);
+            } else {
+                Toast.makeText(context, result.get(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(context, context.getString(R.string.text_signup_confirm_error), Toast.LENGTH_LONG).show();
+        }
     }
 
     // "4.Регистрация. Подтверждение телефона" или "8.Восстановление пароля по телефону"
@@ -103,6 +108,7 @@ public class RegistrationViewModel extends BaseObservable {
         ActiveLog.getInstance().log();
         server.sendSMS(context, phone.get());
         result.set(server.getError().getText());
+        Toast.makeText(context, result.get(), Toast.LENGTH_LONG).show();
     }
 
     // "4.Регистрация. Подтверждение телефона" -> "5.Регистрация завершена"
@@ -131,6 +137,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Выполняется при нажатии ссылки "Зарегистрироваться в ФНС"
     public void onInFns(Context context) {
         ActiveLog.getInstance().log();
+        server.user.isInFns = true;
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
@@ -140,6 +147,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Выполняется при нажатии ссылки "Предоставить права площадке ..."
     public void onForceAccepted(Context context) {
         ActiveLog.getInstance().log();
+        server.user.isForceAccepted = true;
         Intent intent = new Intent(context, MenuInstructionActivity.class);
         context.startActivity(intent);
     }
@@ -211,10 +219,14 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверный метод setPassword
     public void onPasswordChange(Context context) {
         ActiveLog.getInstance().log();
-        server.setPassword(context, password.get(), confirm.get());
-        result.set(server.getError().getText());
-        Intent intent = new Intent(context, RegistrationPasswordResultActivity.class);
-        context.startActivity(intent);
+        if (Objects.requireNonNull(password.get()).equals(confirm.get())) {
+            server.setPassword(context, login.get(), password.get());
+            result.set(server.getError().getText());
+            Intent intent = new Intent(context, RegistrationPasswordResultActivity.class);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, context.getString(R.string.text_signup_confirm_error), Toast.LENGTH_LONG).show();
+        }
     }
 
     // "10.Смена пароля. Результат" -> "1.Вход"
@@ -239,6 +251,22 @@ public class RegistrationViewModel extends BaseObservable {
         ActiveLog.getInstance().log();
         Intent intent = new Intent(context, EnterActivity.class);
         context.startActivity(intent);
+    }
+
+    public void onRegistrationFinished(Context context) {
+        ActiveLog.getInstance().log();
+        srcTighten.set(getDrawable(context, server.user.isTighten));
+        srcInFns.set(getDrawable(context, server.user.isInFns));
+        srcForceAccepted.set(getDrawable(context, server.user.isForceAccepted));
+        srcPinSet.set(getDrawable(context, server.user.isPinSet));
+    }
+
+    public void onRegistrationProfile(Context context) {
+        ActiveLog.getInstance().log();
+        srcTighten.set(getDrawable(context, server.user.isTighten));
+        srcInFns.set(getDrawable(context, server.user.isInFns));
+        srcForceAccepted.set(getDrawable(context, server.user.isForceAccepted));
+        srcPinSet.set(getDrawable(context, server.user.isPinSet));
     }
 
     // Получение картинки в зависимости от булевого значения

@@ -5,16 +5,21 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
+import java.util.Objects;
+
+import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.EnterPinActivity;
 import club.plus1.forcetaxi.view.EnterPinConfirmActivity;
 import club.plus1.forcetaxi.view.EnterPinResultActivity;
+import club.plus1.forcetaxi.view.EnterPinSetActivity;
 import club.plus1.forcetaxi.view.EnterResultActivity;
 import club.plus1.forcetaxi.view.MenuCheckActivity;
 import club.plus1.forcetaxi.view.RegistrationActivity;
@@ -25,6 +30,7 @@ public class EnterViewModel extends BaseObservable {
     // Поле экранов "30.Установка ПИН", "31.Подтверждение ПИН",
     // "32.Установка ПИН. Результат", "33.Ввод ПИН"
     public ObservableField<String> pin = new ObservableField<>();
+    private ObservableField<String> firstPin = new ObservableField<>();
 
     // Поля экрана "0.Заставка"
     public ObservableField<String> version = new ObservableField<>();
@@ -87,8 +93,12 @@ public class EnterViewModel extends BaseObservable {
         ActiveLog.getInstance().log();
         server.login(context, login.get(), password.get());
         result.set(server.getError().getText());
-        Intent intent = new Intent(context, EnterResultActivity.class);
-        context.startActivity(intent);
+        if (server.isOk()) {
+            Intent intent = new Intent(context, EnterResultActivity.class);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, result.get(), Toast.LENGTH_LONG).show();
+        }
     }
 
     // "1.Вход" -> "3.Регистрация"
@@ -127,6 +137,7 @@ public class EnterViewModel extends BaseObservable {
     // Выполняется при нажатии кнопки "Продолжить"
     public void onPinSet(Context context) {
         ActiveLog.getInstance().log();
+        firstPin.set(pin.get());
         pin.set("");
         Intent intent = new Intent(context, EnterPinConfirmActivity.class);
         context.startActivity(intent);
@@ -136,9 +147,16 @@ public class EnterViewModel extends BaseObservable {
     // Выполняется при нажатии кнопки "Продолжить"
     public void onPinConfirm(Context context) {
         ActiveLog.getInstance().log();
-        // TODO: Добавить сравнение пинкода с введённым на предыдущем экране и собщение при отличии
-        Intent intent = new Intent(context, EnterPinResultActivity.class);
-        context.startActivity(intent);
+        if (Objects.requireNonNull(firstPin.get()).equals(pin.get())) {
+            server.user.setPin(pin.get());
+            server.user.isPinSet = true;
+            Intent intent = new Intent(context, EnterPinResultActivity.class);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, context.getString(R.string.text_pin_confirm_error), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, EnterPinSetActivity.class);
+            context.startActivity(intent);
+        }
     }
 
     // "32.Установка ПИН. Результат" -> "34.Закрытое меню"
@@ -153,9 +171,12 @@ public class EnterViewModel extends BaseObservable {
     // Выполняется при нажатии кнопки "Продолжить"
     public void onPinEnter(Context context) {
         ActiveLog.getInstance().log();
-        // TODO: Добавить сравнение пинкода с оригинальным и собщение при отличии
-        Intent intent = new Intent(context, MenuCheckActivity.class);
-        context.startActivity(intent);
+        if (Objects.requireNonNull(pin.get()).equals(server.user.getPin())) {
+            Intent intent = new Intent(context, MenuCheckActivity.class);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, context.getString(R.string.text_pin_error), Toast.LENGTH_LONG).show();
+        }
     }
 
     // Числовая клаввиатура для набора ПИНкода

@@ -7,7 +7,6 @@ import android.provider.Settings;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -17,11 +16,10 @@ import club.plus1.forcetaxi.service.ActiveLog;
 
 public class Server {
 
-    // Заглушка с данными сервера
-    private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     // Основные поля класса
     private static Server mInstance;    // Единственный объект этого класса
     public User user;                   // Связанный с сервером пользователь
+
     // Различные параметры, которые должны храниться на сервере
     public String serviceType;
     public String client;
@@ -30,14 +28,21 @@ public class Server {
     public String[] history;
     public String[] transactions;
     public Drawable imgQR;
+
     // Параметры, возращаемые методами сервера
     private boolean ok;                 // Результат работы метода
     private ServerError error;          // Описание результата работы с кодом и текстом
     private Map<String, Object> args;   // Набор дополнительных параметров
+
+    // Заглушка с данными сервера
+    private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     private static final String USER_TOKEN = "aec27f0f-b8a3-43cb-b076-e075a095abfe";
     public final String URL_APP = "link.to/app/";
-    public final String URL_INFO = "https://npd.nalog.ru/#start";
+    public final String URL_INFO = "https://npd.nalog.ru/";
     public final String URL_INSTRUCTIONS = "https://www.nalog.ru/rn77/fl/interest/inn/calculation/";
+
+    // Заглушки для хранения локальных данных
+    private Map<String, String> userpass = new HashMap<>();
 
     // Конструктор класса с заполнением заглушечных данных
     @SuppressLint("HardwareIds")
@@ -48,8 +53,8 @@ public class Server {
         user.setUserToken(USER_TOKEN);
         user.setDeviceToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
         user.isTighten = false;
-        user.isInFns = true;
-        user.isForceAccepted = true;
+        user.isInFns = false;
+        user.isForceAccepted = false;
         try {
             this.setOk(true);
             this.setError(new ServerError(200, context.getString(R.string.text_server_success)));
@@ -72,11 +77,16 @@ public class Server {
                 context.getString(R.string.check_text, serviceType, "133.00", executor, "03.08.2019"),
         };
         transactions = new String[]{
-                context.getString(R.string.text_transaction_status, "В обработке"),
-                context.getString(R.string.text_transaction_status, "Отклонено"),
-                context.getString(R.string.text_transaction_status, "Успешно"),
-                context.getString(R.string.text_transaction_status, "Успешно"),
-                context.getString(R.string.text_transaction_status, "Успешно"),
+                context.getString(R.string.text_transaction_status,
+                        "Сумма: 650 рублей\nВ обработке\nДата: 06.07.2019"),
+                context.getString(R.string.text_transaction_status,
+                        "Сумма: 240 рублей\nОтклонено\nДата: 05.07.2019"),
+                context.getString(R.string.text_transaction_status,
+                        "Сумма: 210 рублей\nУспешно\nДата: 04.07.2019"),
+                context.getString(R.string.text_transaction_status,
+                        "Сумма: 1650 рублей\nУспешно\nДата: 03.07.2019"),
+                context.getString(R.string.text_transaction_status,
+                        "Сумма: 30 рублей\nУспешно\nДата: 01.07.2019"),
         };
         imgQR = context.getDrawable(R.drawable.qr);
     }
@@ -109,13 +119,17 @@ public class Server {
     // Результат метода показывается на экране «2. Результат входа»
     public void login(Context context, String login, String password) {
         ActiveLog.getInstance().log();
-        try {
-            this.putArg("signUpStep", null);
-            this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_login_success, login)));
-        } catch (Exception e) {
+        if (userpass.containsKey(login)) {
+            if (userpass.get(login).equals(password)) {
+                this.setOk(true);
+                this.setError(new ServerError(200, context.getString(R.string.text_login_success, login)));
+            } else {
+                this.setOk(false);
+                this.setError(new ServerError(500, context.getString(R.string.text_login_password_error, login)));
+            }
+        } else {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_login_error, login, e.toString())));
+            this.setError(new ServerError(500, context.getString(R.string.text_login_missing_error, login)));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -125,12 +139,17 @@ public class Server {
     // В случае успешного выполнения метода – вызывается отправляется СМС пользователю через POST sendSMS
     public void signUp(Context context, String phone, String email, String password) {
         ActiveLog.getInstance().log();
-        try {
+        if (userpass.containsKey(phone)) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_signup_phone_error, phone)));
+        } else if (userpass.containsKey(email)) {
+            this.setOk(false);
+            this.setError(new ServerError(500, context.getString(R.string.text_signup_email_error, email)));
+        } else {
+            userpass.put(phone, password);
+            userpass.put(email, password);
             this.setOk(true);
             this.setError(new ServerError(200, context.getString(R.string.text_signup_success)));
-        } catch (Exception e) {
-            this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_signup_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -156,18 +175,18 @@ public class Server {
     public void getUser(Context context) {
         ActiveLog.getInstance().log();
         try {
-            this.putArg("name", "ФИО");
-            this.putArg("inn", "");
-            this.putArg("oktmo", "");
-            this.putArg("date", new Date());
+            this.putArg("name", user.getFio());
+            this.putArg("inn", user.inn);
+            this.putArg("oktmo", user.oktmo);
+            this.putArg("date", user.dateFNS);
             this.putArg("businessType", null);
-            this.putArg("isTighten", true);
-            this.putArg("isInFns", false);
-            this.putArg("isForceAccepted", null);
-            this.putArg("isPinSet", false);
-            this.putArg("inFnsUrl", "http://locallhost");
-            this.putArg("forceAcceptUrl", "http://locallhost");
-            this.putArg("shareUrl", "http://locallhost");
+            this.putArg("isTighten", user.isTighten);
+            this.putArg("isInFns", user.isInFns);
+            this.putArg("isForceAccepted", user.isForceAccepted);
+            this.putArg("isPinSet", user.isPinSet);
+            this.putArg("inFnsUrl", URL_INFO);
+            this.putArg("forceAcceptUrl", URL_INSTRUCTIONS);
+            this.putArg("shareUrl", URL_APP);
             this.setOk(true);
             this.setError(new ServerError(200, context.getString(R.string.text_getuser_success)));
         } catch (Exception e) {
@@ -199,6 +218,7 @@ public class Server {
     // Далее результат привязки отображается на экране «17. Привязка ИНН. Результат»
     public void tightenIncome(Context context, String inn) {
         ActiveLog.getInstance().log();
+        user.isTighten = true;
         try {
             this.setOk(true);
             this.setError(new ServerError(200, context.getString(R.string.text_tightenincome_success, inn)));
@@ -247,8 +267,9 @@ public class Server {
     // Метод изменяет пароль на сервере
     // Метод называется в экране «9. Смена пароля» при нажатии на кнопку «Сменить пароль».
     // Результат метода показывается на экране «10. Смена пароля. Результат»
-    public void setPassword(Context context, String oldPassword, String newPassword) {
+    public void setPassword(Context context, String login, String newPassword) {
         ActiveLog.getInstance().log();
+        userpass.put(login, newPassword);
         try {
             this.setOk(true);
             this.setError(new ServerError(200, context.getString(R.string.text_setpassword_success)));
