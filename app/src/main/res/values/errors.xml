@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ошибки registration -->
+    <string name="empty_phonenumber">Пустой параметр phonenumber</string>
+    <string name="wrong_phonenumber">%1$s не является номером мобильного телефона</string>
+    <string name="phonenumber_already_exists">Пользователь с номером телефона %1$s уже зарегистрирован в системе</string>
+    <string name="phonenumber_is_not_registered">Номер телефона %1$s не зарегистрирован</string>
+
+    <!-- Ошибки apps -->
+    <string name="smscode_is_empty">Пинкод не был отправлен на номер %1$s</string>
+
+    <!-- Ошибки auth -->
+    <string name="smscode_is_outdated">Срок действия пинкода истек, необходимо отправить новый</string>
+    <string name="wrong_smscode">Неверный код из смс</string>
+    <string name="empty_password">Пустой параметр password</string>
+    <string name="phonenumber_is_not_validated">Номер телефона %1$s не был подтвержден</string>
+
+    <!-- Ошибки user -->
+    <string name="user_already_exist">Пользователь с номером телефона %1$s уже зарегистрирован в системе</string>
+    <string name="empty_app_id">Пустой параметр app_id</string>
+    <string name="wrong_app_id">Не найдено приложение id%1$s</string>
+    <string name="wrong_app_installation_token">Неверный токен установки приложения</string>
+    <string name="user_not_found">Ни один пользователь с номером телефона %1$s не найден</string>
+    <string name="wrong_password">Неверный пароль</string>
+    <string name="empty_tin">Не указан ИНН</string>
+    <string name="wrong_tin">ИНН %1$s не прошел валидацию. Проверьте правильность ввода</string>
+    <string name="unregistered_tin">ИНН %1$s не зарегистрирован как самозанятый</string>
+
+    <!-- Ошибки help -->
+    <string name="wrong_passport_series">Серия паспорта %1$s должна содержать 4 цифры</string>
+    <string name="wrong_passport_number">Номер паспорта %1$s должен содержать 6 цифр</string>
+
+    <!-- Тексты серверных ошибок -->
+    <string name="wrong_birthday">Дата рождения %1$s имеет неверный формат</string>
+    <string name="tin_already_connected">К пользователю уже привязан ИНН</string>
+    <string name="empty_client_phonenumber">Пустой параметр client_phonenumber</string>
+    <string name="wrong_amount">Сумма чека %1$s должна быть положительным числом больше 0</string>
+    <string name="tin_not_connected">К пользователю не привязан ИНН самозанятого</string>
+    <string name="wrong_receipt_id">Номер чека %1$s должен быть положительным числом больше 0</string>
+    <string name="receipt_not_found">Чек №%1$s не найден среди выбитых у самозанятого</string>
+    <string-array name="validate_phonenumber">
+        <item>@string/empty_phonenumber</item>
+        <item>@string/wrong_phonenumber</item>
+        <item>@string/phonenumber_already_exists</item>
+    </string-array>
+    <string-array name="request_smscode">
+        <item>@string/empty_phonenumber</item>
+        <item>@string/wrong_phonenumber</item>
+    </string-array>
+    <string-array name="validate_smscode">
+        <item>@string/empty_phonenumber</item>
+        <item>@string/wrong_phonenumber</item>
+        <item>@string/phonenumber_is_not_registered</item>
+        <item>@string/smscode_is_empty</item>
+        <item>@string/smscode_is_outdated</item>
+        <item>@string/wrong_smscode</item>
+    </string-array>
+
+    <string-array name="create_user">
+        <item>@string/empty_phonenumber</item>
+        <item>@string/empty_password</item>
+        <item>@string/wrong_phonenumber</item>
+        <item>@string/phonenumber_is_not_validated</item>
+        <item>@string/user_already_exist</item>
+    </string-array>
+    <string-array name="registration_installation">
+        <item>@string/empty_app_id</item>
+        <item>@string/wrong_app_id</item>
+        <item>@string/wrong_app_installation_token</item>
+    </string-array>
+    <string-array name="login">
+        <item>@string/empty_phonenumber</item>
+        <item>@string/wrong_phonenumber</item>
+        <item>@string/phonenumber_is_not_registered</item>
+        <item>@string/user_not_found</item>
+        <item>@string/wrong_password</item>
+    </string-array>
+
+    <string-array name="password_request_reset" />
+    <string-array name="password_reset" />
+
+    <string-array name="logout" />
+    <string-array name="get_user" />
+    <string-array name="check_connected_tin">
+        <item>@string/empty_tin</item>
+        <item>@string/wrong_tin</item>
+    </string-array>
+    <string-array name="validate_tin">
+        <item>@string/empty_tin</item>
+        <item>@string/wrong_tin</item>
+        <item>@string/unregistered_tin</item>
+    </string-array>
+    <string-array name="search_tin">
+        <item>@string/wrong_passport_series</item>
+        <item>@string/wrong_passport_number</item>
+        <item>@string/wrong_birthday</item>
+    </string-array>
+    <string-array name="connect_tin">
+        <item>@string/empty_tin</item>
+        <item>@string/wrong_tin</item>
+        <item>@string/unregistered_tin</item>
+        <item>@string/tin_already_connected</item>
+    </string-array>
+    <string-array name="receipts">
+        <item>@string/empty_client_phonenumber</item>
+        <item>@string/wrong_phonenumber</item>
+        <item>@string/wrong_amount</item>
+        <item>@string/tin_not_connected</item>
+    </string-array>
+    <string-array name="get_receipts">
+        <item>@string/tin_not_connected</item>
+    </string-array>
+    <string-array name="get_receipt_by_id">
+        <item>@string/wrong_receipt_id</item>
+        <item>@string/tin_not_connected</item>
+        <item>@string/receipt_not_found</item>
+    </string-array>
+    <string-array name="cancel_receipt">
+        <item>@string/wrong_receipt_id</item>
+        <item>@string/tin_not_connected</item>
+        <item>@string/receipt_not_found</item>
+    </string-array>
+    <string-array name="registration" />
+    <string-array name="permissions" />
+
+</resources>

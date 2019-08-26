@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.service.ActiveLog;
@@ -57,11 +58,11 @@ public class Server {
         user.isForceAccepted = false;
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_server_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_server_success)));
             this.args = new HashMap<>();
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_server_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_server_error, e.toString())));
             this.args = new HashMap<>();
         }
         String executor = user.getFio() + ", " + user.inn;
@@ -106,10 +107,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_email_success, email)));
+            this.setError(new ServerError("200", context.getString(R.string.text_email_success, email)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_email_error, email, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_email_error, email, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -120,16 +121,16 @@ public class Server {
     public void login(Context context, String login, String password) {
         ActiveLog.getInstance().log();
         if (userpass.containsKey(login)) {
-            if (userpass.get(login).equals(password)) {
+            if (Objects.requireNonNull(userpass.get(login)).equals(password)) {
                 this.setOk(true);
-                this.setError(new ServerError(200, context.getString(R.string.text_login_success, login)));
+                this.setError(new ServerError("200", context.getString(R.string.text_login_success, login)));
             } else {
                 this.setOk(false);
-                this.setError(new ServerError(500, context.getString(R.string.text_login_password_error, login)));
+                this.setError(new ServerError("500", context.getString(R.string.text_login_password_error, login)));
             }
         } else {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_login_missing_error, login)));
+            this.setError(new ServerError("500", context.getString(R.string.text_login_missing_error, login)));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -141,15 +142,15 @@ public class Server {
         ActiveLog.getInstance().log();
         if (userpass.containsKey(phone)) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_signup_phone_error, phone)));
+            this.setError(new ServerError("500", context.getString(R.string.text_signup_phone_error, phone)));
         } else if (userpass.containsKey(email)) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_signup_email_error, email)));
+            this.setError(new ServerError("500", context.getString(R.string.text_signup_email_error, email)));
         } else {
             userpass.put(phone, password);
             userpass.put(email, password);
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_signup_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_signup_success)));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -162,10 +163,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_sendsms_success, phone)));
+            this.setError(new ServerError("200", context.getString(R.string.text_sendsms_success, phone)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_sendsms_error, phone, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_sendsms_error, phone, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -188,10 +189,10 @@ public class Server {
             this.putArg("forceAcceptUrl", URL_INSTRUCTIONS);
             this.putArg("shareUrl", URL_APP);
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_getuser_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_getuser_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_getuser_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_getuser_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -205,10 +206,10 @@ public class Server {
         try {
             this.putArg("inn", "1234567890");
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_setinn_success, inn)));
+            this.setError(new ServerError("200", context.getString(R.string.text_setinn_success, inn)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_setinn_error, inn, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_setinn_error, inn, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -221,10 +222,10 @@ public class Server {
         user.isTighten = true;
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_tightenincome_success, inn)));
+            this.setError(new ServerError("200", context.getString(R.string.text_tightenincome_success, inn)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_tightenincome_error, inn, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_tightenincome_error, inn, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -238,10 +239,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_searchinn_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_searchinn_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_searchinn_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_searchinn_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -256,10 +257,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_resetpassword_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_resetpassword_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_resetpassword_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_resetpassword_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -272,10 +273,10 @@ public class Server {
         userpass.put(login, newPassword);
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_setpassword_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_setpassword_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_setpassword_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_setpassword_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -287,10 +288,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_acceptresetpass_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_acceptresetpass_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_acceptresetpass_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_acceptresetpass_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -308,10 +309,10 @@ public class Server {
             this.putArg("date", new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT).format(Calendar.getInstance().getTime()));
             this.putArg("url", urlCheck);
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_check_success, amount)));
+            this.setError(new ServerError("200", context.getString(R.string.text_check_success, amount)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_check_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_check_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -322,10 +323,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_check_history_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_check_history_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_check_history_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_check_history_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -337,10 +338,10 @@ public class Server {
         ActiveLog.getInstance().log();
         try {
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_storno_success, checkNumber)));
+            this.setError(new ServerError("200", context.getString(R.string.text_storno_success, checkNumber)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_storno_error, checkNumber, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_storno_error, checkNumber, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -351,10 +352,10 @@ public class Server {
         try {
             this.putArg("balance", "1000");
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_balance_success)));
+            this.setError(new ServerError("200", context.getString(R.string.text_balance_success)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_balance_error, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_balance_error, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }
@@ -366,10 +367,10 @@ public class Server {
         try {
             this.putArg("status", "В обработке");
             this.setOk(true);
-            this.setError(new ServerError(200, context.getString(R.string.text_refill_balance_success, amount)));
+            this.setError(new ServerError("200", context.getString(R.string.text_refill_balance_success, amount)));
         } catch (Exception e) {
             this.setOk(false);
-            this.setError(new ServerError(500, context.getString(R.string.text_refill_balance_error, from, e.toString())));
+            this.setError(new ServerError("500", context.getString(R.string.text_refill_balance_error, from, e.toString())));
         }
         ActiveLog.getInstance().logError(ok, error);
     }

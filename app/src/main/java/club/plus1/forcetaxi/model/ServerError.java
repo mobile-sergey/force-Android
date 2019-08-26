@@ -1,19 +1,19 @@
 package club.plus1.forcetaxi.model;
 
 public class ServerError {
-    private int id;
+    private String id;
     private String text;
 
-    ServerError(int id, String text) {
+    ServerError(String id, String text) {
         this.setId(id);
         this.setText(text);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

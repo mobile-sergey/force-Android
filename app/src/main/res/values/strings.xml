@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Force Taxi</string>
 
@@ -189,7 +190,6 @@
     <string name="text_email_success">Письмо на адрес %1$s отправлено успешно</string>
     <string name="text_email_error">При отправке письма на адрес %1$s возникла ошибка:\n%2$s</string>
 
-
     <string name="text_login_success">Вход под логином %1$s прошёл успешно</string>
     <string name="text_login_password_error">При попытке войти под логином %1$s введен не верный пароль.
         Нажмите "Забыл пароль" для восстановления пароля.</string>
@@ -244,7 +244,6 @@
 
     <string name="text_storno_success">Чек №%1$s успешно сторнирован (уничтожен)</string>
     <string name="text_storno_error">При сторнировании(уничтожении) чека №%1$s возникла ошибка:n/%2$s</string>
-
 
     <string name="text_pin_confirm_error">Введенные пинкод и подтверждение пинкода не совпадают.
     Введите повторно пинкод и подтверждение пинкода - они должны быть одинаковы.</string>
