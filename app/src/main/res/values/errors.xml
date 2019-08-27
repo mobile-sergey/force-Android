@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="unknown_error">Неизвестная ошибка сервере</string>
+
     <!-- Ошибки registration -->
     <string name="empty_phonenumber">Пустой параметр phonenumber</string>
     <string name="wrong_phonenumber">%1$s не является номером мобильного телефона</string>
     <string name="phonenumber_already_exists">Пользователь с номером телефона %1$s уже зарегистрирован в системе</string>
     <string name="phonenumber_is_not_registered">Номер телефона %1$s не зарегистрирован</string>
-
-    <!-- Ошибки apps -->
     <string name="smscode_is_empty">Пинкод не был отправлен на номер %1$s</string>
 
     <!-- Ошибки auth -->
@@ -38,6 +38,8 @@
     <string name="tin_not_connected">К пользователю не привязан ИНН самозанятого</string>
     <string name="wrong_receipt_id">Номер чека %1$s должен быть положительным числом больше 0</string>
     <string name="receipt_not_found">Чек №%1$s не найден среди выбитых у самозанятого</string>
+
+    <!-- Ошибки методов -->
     <string-array name="validate_phonenumber">
         <item>@string/empty_phonenumber</item>
         <item>@string/wrong_phonenumber</item>
@@ -55,7 +57,6 @@
         <item>@string/smscode_is_outdated</item>
         <item>@string/wrong_smscode</item>
     </string-array>
-
     <string-array name="create_user">
         <item>@string/empty_phonenumber</item>
         <item>@string/empty_password</item>
@@ -63,11 +64,15 @@
         <item>@string/phonenumber_is_not_validated</item>
         <item>@string/user_already_exist</item>
     </string-array>
+
+
     <string-array name="registration_installation">
         <item>@string/empty_app_id</item>
         <item>@string/wrong_app_id</item>
         <item>@string/wrong_app_installation_token</item>
     </string-array>
+
+
     <string-array name="login">
         <item>@string/empty_phonenumber</item>
         <item>@string/wrong_phonenumber</item>
@@ -75,11 +80,11 @@
         <item>@string/user_not_found</item>
         <item>@string/wrong_password</item>
     </string-array>
-
     <string-array name="password_request_reset" />
     <string-array name="password_reset" />
-
     <string-array name="logout" />
+
+
     <string-array name="get_user" />
     <string-array name="check_connected_tin">
         <item>@string/empty_tin</item>
@@ -120,6 +125,8 @@
         <item>@string/tin_not_connected</item>
         <item>@string/receipt_not_found</item>
     </string-array>
+
+
     <string-array name="registration" />
     <string-array name="permissions" />
 
