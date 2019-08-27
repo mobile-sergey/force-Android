@@ -12,8 +12,8 @@ import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.LoginType;
-import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.EnterPinSetActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
@@ -59,16 +59,16 @@ public class RegistrationViewModel extends BaseObservable {
 
     // Ссылки MVVM
     private static RegistrationViewModel mInstance; // Ссылка для биндинга с View
-    private Server server;                          // Ссылка на Model
+    private OldServer oldServer;                          // Ссылка на Model
 
     // Конструктор класса
     private RegistrationViewModel(Context context) {
         ActiveLog.getInstance().log();
-        server = Server.getInstance(context);
-        fio.set(server.user.getFio());
-        inn.set(server.user.inn);
-        oktmo.set(server.user.oktmo);
-        dateFNS.set(server.user.dateFNS);
+        oldServer = OldServer.getInstance(context);
+        fio.set(oldServer.oldUser.getFio());
+        inn.set(oldServer.oldUser.inn);
+        oktmo.set(oldServer.oldUser.oktmo);
+        dateFNS.set(oldServer.oldUser.dateFNS);
     }
 
     // Получение единственного экземпляра класса
@@ -86,11 +86,11 @@ public class RegistrationViewModel extends BaseObservable {
     public void onRegistration(Context context) {
         ActiveLog.getInstance().log();
         if (Objects.requireNonNull(password.get()).equals(confirm.get())) {
-            server.signUp(context, phone.get(), email.get(), password.get());
-            result.set(server.getError().getText());
-            if (server.isOk()) {
-                server.sendSMS(context, phone.get());
-                result.set(server.getError().getText());
+            oldServer.signUp(context, phone.get(), email.get(), password.get());
+            result.set(oldServer.getError().getText());
+            if (oldServer.isOk()) {
+                oldServer.sendSMS(context, phone.get());
+                result.set(oldServer.getError().getText());
                 Intent intent = new Intent(context, RegistrationVerificationActivity.class);
                 context.startActivity(intent);
             } else {
@@ -106,8 +106,8 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверный метод sendSMS
     public void onSendSMS(Context context) {
         ActiveLog.getInstance().log();
-        server.sendSMS(context, phone.get());
-        result.set(server.getError().getText());
+        oldServer.sendSMS(context, phone.get());
+        result.set(oldServer.getError().getText());
         Toast.makeText(context, result.get(), Toast.LENGTH_LONG).show();
     }
 
@@ -116,9 +116,9 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверные методы acceptResetPass и getUser
     public void onVerification(Context context) {
         ActiveLog.getInstance().log();
-        server.acceptResetPass(context, code.get(), password.get());
-        server.getUser(context);
-        result.set(server.getError().getText());
+        oldServer.acceptResetPass(context, code.get(), password.get());
+        oldServer.getUser(context);
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, RegistrationFinishedActivity.class);
         context.startActivity(intent);
     }
@@ -137,7 +137,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Выполняется при нажатии ссылки "Зарегистрироваться в ФНС"
     public void onInFns(Context context) {
         ActiveLog.getInstance().log();
-        server.user.isInFns = true;
+        oldServer.oldUser.isInFns = true;
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
@@ -147,7 +147,7 @@ public class RegistrationViewModel extends BaseObservable {
     // Выполняется при нажатии ссылки "Предоставить права площадке ..."
     public void onForceAccepted(Context context) {
         ActiveLog.getInstance().log();
-        server.user.isForceAccepted = true;
+        oldServer.oldUser.isForceAccepted = true;
         Intent intent = new Intent(context, MenuInstructionActivity.class);
         context.startActivity(intent);
     }
@@ -180,16 +180,16 @@ public class RegistrationViewModel extends BaseObservable {
             Toast.makeText(context, context.getString(R.string.text_need_login), Toast.LENGTH_LONG).show();
         } else if (Objects.requireNonNull(login.get()).contains("@")) {  // Найдена @ - значит введен email
             email.set(login.get());
-            server.reserPassword(context, email.get(), LoginType.email);
-            server.sendMail(context, email.get());
-            result.set(server.getError().getText());
+            oldServer.reserPassword(context, email.get(), LoginType.email);
+            oldServer.sendMail(context, email.get());
+            result.set(oldServer.getError().getText());
             Intent intent = new Intent(context, RegistrationRecoveryEmailActivity.class);
             context.startActivity(intent);
         } else {                        // Не найдена @ - значит введен телефон
             phone.set(login.get());
-            server.reserPassword(context, phone.get(), LoginType.phone);
-            server.sendSMS(context, phone.get());
-            result.set(server.getError().getText());
+            oldServer.reserPassword(context, phone.get(), LoginType.phone);
+            oldServer.sendSMS(context, phone.get());
+            result.set(oldServer.getError().getText());
             Intent intent = new Intent(context, RegistrationRecoveryPhoneActivity.class);
             context.startActivity(intent);
         }
@@ -208,8 +208,8 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверный метод acceptResetPass
     public void onPhoneRecovery(Context context) {
         ActiveLog.getInstance().log();
-        server.acceptResetPass(context, code.get(), password.get());
-        result.set(server.getError().getText());
+        oldServer.acceptResetPass(context, code.get(), password.get());
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, RegistrationPasswordActivity.class);
         context.startActivity(intent);
     }
@@ -220,8 +220,8 @@ public class RegistrationViewModel extends BaseObservable {
     public void onPasswordChange(Context context) {
         ActiveLog.getInstance().log();
         if (Objects.requireNonNull(password.get()).equals(confirm.get())) {
-            server.setPassword(context, login.get(), password.get());
-            result.set(server.getError().getText());
+            oldServer.setPassword(context, login.get(), password.get());
+            result.set(oldServer.getError().getText());
             Intent intent = new Intent(context, RegistrationPasswordResultActivity.class);
             context.startActivity(intent);
         } else {
@@ -255,18 +255,18 @@ public class RegistrationViewModel extends BaseObservable {
 
     public void onRegistrationFinished(Context context) {
         ActiveLog.getInstance().log();
-        srcTighten.set(getDrawable(context, server.user.isTighten));
-        srcInFns.set(getDrawable(context, server.user.isInFns));
-        srcForceAccepted.set(getDrawable(context, server.user.isForceAccepted));
-        srcPinSet.set(getDrawable(context, server.user.isPinSet));
+        srcTighten.set(getDrawable(context, oldServer.oldUser.isTighten));
+        srcInFns.set(getDrawable(context, oldServer.oldUser.isInFns));
+        srcForceAccepted.set(getDrawable(context, oldServer.oldUser.isForceAccepted));
+        srcPinSet.set(getDrawable(context, oldServer.oldUser.isPinSet));
     }
 
     public void onRegistrationProfile(Context context) {
         ActiveLog.getInstance().log();
-        srcTighten.set(getDrawable(context, server.user.isTighten));
-        srcInFns.set(getDrawable(context, server.user.isInFns));
-        srcForceAccepted.set(getDrawable(context, server.user.isForceAccepted));
-        srcPinSet.set(getDrawable(context, server.user.isPinSet));
+        srcTighten.set(getDrawable(context, oldServer.oldUser.isTighten));
+        srcInFns.set(getDrawable(context, oldServer.oldUser.isInFns));
+        srcForceAccepted.set(getDrawable(context, oldServer.oldUser.isForceAccepted));
+        srcPinSet.set(getDrawable(context, oldServer.oldUser.isPinSet));
     }
 
     // Получение картинки в зависимости от булевого значения

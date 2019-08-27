@@ -12,8 +12,8 @@ import androidx.databinding.ObservableField;
 import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.CheckStornoActivity;
 import club.plus1.forcetaxi.view.CheckStornoResultActivity;
@@ -41,21 +41,21 @@ public class CheckViewModel extends BaseObservable {
     // Ссылки MVVM
     private static CheckViewModel mInstance;    // Ссылка для биндинга с View
     public ArrayAdapter<String> adapter;        // Ссылка на адаптер во View
-    private Server server;                      // Ссылка на Model
+    private OldServer oldServer;                      // Ссылка на Model
 
     // Конструктор класса
     private CheckViewModel(Context context) {
         ActiveLog.getInstance().log();
-        server = Server.getInstance(context);
+        oldServer = OldServer.getInstance(context);
         showCheck.set(false);
         amount.set("");
-        qr.set(server.imgQR);
-        fio.set(server.user.getFio());
-        inn.set(server.user.inn);
-        client.set(server.client);
-        number.set(server.checkNumber);
-        url.set(server.urlCheck);
-        adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, server.history);
+        qr.set(oldServer.imgQR);
+        fio.set(oldServer.oldUser.getFio());
+        inn.set(oldServer.oldUser.inn);
+        client.set(oldServer.client);
+        number.set(oldServer.checkNumber);
+        url.set(oldServer.urlCheck);
+        adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, oldServer.history);
     }
 
     // Получение единственного экземпляра класса
@@ -72,14 +72,14 @@ public class CheckViewModel extends BaseObservable {
     // Вызывает серверный метод generateCheck
     public void Print(Context context) {
         ActiveLog.getInstance().log();
-        server.generateCheck(context, amount.get(), client.get());
-        number.set(server.getArg("checkNumber").toString());
-        serviceType.set(server.getArg("serviceType").toString());
-        amount.set(server.getArg("amount").toString());
-        executor.set(server.getArg("executor").toString());
-        date.set(server.getArg("date").toString());
-        url.set(server.getArg("url").toString());
-        result.set(server.getError().getText());
+        oldServer.generateCheck(context, amount.get(), client.get());
+        number.set(oldServer.getArg("checkNumber").toString());
+        serviceType.set(oldServer.getArg("serviceType").toString());
+        amount.set(oldServer.getArg("amount").toString());
+        executor.set(oldServer.getArg("executor").toString());
+        date.set(oldServer.getArg("date").toString());
+        url.set(oldServer.getArg("url").toString());
+        result.set(oldServer.getError().getText());
         showCheck.set(!showCheck.get());
     }
 
@@ -88,8 +88,8 @@ public class CheckViewModel extends BaseObservable {
     // Вызывает серверный метод getCheckHistory
     public void onHistory(Context context) {
         ActiveLog.getInstance().log();
-        server.getCheckHistory(context, 0, 0);
-        result.set(server.getError().getText());
+        oldServer.getCheckHistory(context, 0, 0);
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, CheckHistoryActivity.class);
         context.startActivity(intent);
     }
@@ -107,8 +107,8 @@ public class CheckViewModel extends BaseObservable {
     // Вызывает серверный метод deleteCheck
     public void onStorno(Context context) {
         ActiveLog.getInstance().log();
-        server.deleteCheck(context, number.get(), reason.get());
-        result.set(server.getError().getText());
+        oldServer.deleteCheck(context, number.get(), reason.get());
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, CheckStornoResultActivity.class);
         context.startActivity(intent);
     }

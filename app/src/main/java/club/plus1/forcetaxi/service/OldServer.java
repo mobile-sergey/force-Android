@@ -1,4 +1,4 @@
-package club.plus1.forcetaxi.model;
+package club.plus1.forcetaxi.service;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,13 +13,14 @@ import java.util.Map;
 import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.model.LoginType;
+import club.plus1.forcetaxi.model.ServerError;
 
-public class Server {
+public class OldServer {
 
     // Основные поля класса
-    private static Server mInstance;    // Единственный объект этого класса
-    public User user;                   // Связанный с сервером пользователь
+    private static OldServer mInstance;    // Единственный объект этого класса
+    public OldUser oldUser;                   // Связанный с сервером пользователь
 
     // Различные параметры, которые должны храниться на сервере
     public String serviceType;
@@ -47,15 +48,15 @@ public class Server {
 
     // Конструктор класса с заполнением заглушечных данных
     @SuppressLint("HardwareIds")
-    private Server(Context context) {
+    private OldServer(Context context) {
         ActiveLog.getInstance().log();
-        user = new User(context);
-        user.setAppToken(APP_TOKEN);
-        user.setUserToken(USER_TOKEN);
-        user.setDeviceToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
-        user.isTighten = false;
-        user.isInFns = false;
-        user.isForceAccepted = false;
+        oldUser = new OldUser(context);
+        oldUser.setAppToken(APP_TOKEN);
+        oldUser.setUserToken(USER_TOKEN);
+        oldUser.setDeviceToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
+        oldUser.isTighten = false;
+        oldUser.isInFns = false;
+        oldUser.isForceAccepted = false;
         try {
             this.setOk(true);
             this.setError(new ServerError("200", context.getString(R.string.text_server_success)));
@@ -65,7 +66,7 @@ public class Server {
             this.setError(new ServerError("500", context.getString(R.string.text_server_error, e.toString())));
             this.args = new HashMap<>();
         }
-        String executor = user.getFio() + ", " + user.inn;
+        String executor = oldUser.getFio() + ", " + oldUser.inn;
         urlCheck = "https://link.to/order/1234567";
         checkNumber = "1234567";
         client = "89212345678";
@@ -93,10 +94,10 @@ public class Server {
     }
 
     // Получение единственного экземпляра класса
-    public static Server getInstance(Context context) {
+    public static OldServer getInstance(Context context) {
         ActiveLog.getInstance().log();
         if (mInstance == null) {
-            mInstance = new Server(context);
+            mInstance = new OldServer(context);
         }
         return mInstance;
     }
@@ -176,15 +177,15 @@ public class Server {
     public void getUser(Context context) {
         ActiveLog.getInstance().log();
         try {
-            this.putArg("name", user.getFio());
-            this.putArg("inn", user.inn);
-            this.putArg("oktmo", user.oktmo);
-            this.putArg("date", user.dateFNS);
+            this.putArg("name", oldUser.getFio());
+            this.putArg("inn", oldUser.inn);
+            this.putArg("oktmo", oldUser.oktmo);
+            this.putArg("date", oldUser.dateFNS);
             this.putArg("businessType", null);
-            this.putArg("isTighten", user.isTighten);
-            this.putArg("isInFns", user.isInFns);
-            this.putArg("isForceAccepted", user.isForceAccepted);
-            this.putArg("isPinSet", user.isPinSet);
+            this.putArg("isTighten", oldUser.isTighten);
+            this.putArg("isInFns", oldUser.isInFns);
+            this.putArg("isForceAccepted", oldUser.isForceAccepted);
+            this.putArg("isPinSet", oldUser.isPinSet);
             this.putArg("inFnsUrl", URL_INFO);
             this.putArg("forceAcceptUrl", URL_INSTRUCTIONS);
             this.putArg("shareUrl", URL_APP);
@@ -219,7 +220,7 @@ public class Server {
     // Далее результат привязки отображается на экране «17. Привязка ИНН. Результат»
     public void tightenIncome(Context context, String inn) {
         ActiveLog.getInstance().log();
-        user.isTighten = true;
+        oldUser.isTighten = true;
         try {
             this.setOk(true);
             this.setError(new ServerError("200", context.getString(R.string.text_tightenincome_success, inn)));
@@ -305,7 +306,7 @@ public class Server {
             this.putArg("checkNumber", checkNumber);
             this.putArg("serviceType", serviceType);
             this.putArg("amount", amount);
-            this.putArg("executor", user.getFio() + ", " + user.inn);
+            this.putArg("executor", oldUser.getFio() + ", " + oldUser.inn);
             this.putArg("date", new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT).format(Calendar.getInstance().getTime()));
             this.putArg("url", urlCheck);
             this.setOk(true);

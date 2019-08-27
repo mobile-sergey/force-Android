@@ -1,9 +1,9 @@
-package club.plus1.forcetaxi.model;
+package club.plus1.forcetaxi.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class User {
+public class OldUser {
 
     // Названия хранимых настроек
     private static final String PREF = "settings";
@@ -33,7 +33,7 @@ public class User {
     private String patronymic = "Куйран Оглы";
 
     // Конструктор класса
-    User(Context context) {
+    OldUser(Context context) {
         mSettings = context.getSharedPreferences(PREF, Context.MODE_PRIVATE);
         appToken = getStringPref(PREF_APP_TOKEN);
         userToken = getStringPref(PREF_USER_TOKEN);

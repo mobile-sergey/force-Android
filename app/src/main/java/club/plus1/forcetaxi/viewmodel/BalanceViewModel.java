@@ -7,9 +7,11 @@ import android.widget.ArrayAdapter;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
+import java.util.Objects;
+
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.BalanceRechargeActivity;
 import club.plus1.forcetaxi.view.BalanceRechargeResultActivity;
 import club.plus1.forcetaxi.view.BalanceSberbankActivity;
@@ -42,16 +44,16 @@ public class BalanceViewModel {
     private static BalanceViewModel mInstance;  // Ссылка для биндинга с View
     // Ссылки MVVM
     public ArrayAdapter<String> adapter;        // Ссылка на адаптер во View
-    private Server server;                      // Ссылка на Model
+    private OldServer oldServer;                      // Ссылка на Model
 
     // Конструктор класса
     private BalanceViewModel(Context context) {
         ActiveLog.getInstance().log();
-        server = Server.getInstance(context);
+        oldServer = OldServer.getInstance(context);
         balance.set(0);
-        adapter = new ArrayAdapter<>(context, R.layout.balance_item, R.id.textStatus, server.transactions);
-        fio.set(server.user.getFio());
-        inn.set(server.user.inn);
+        adapter = new ArrayAdapter<>(context, R.layout.balance_item, R.id.textStatus, oldServer.transactions);
+        fio.set(oldServer.oldUser.getFio());
+        inn.set(oldServer.oldUser.inn);
     }
 
     // Получение единственного экземпляра класса
@@ -76,8 +78,8 @@ public class BalanceViewModel {
     // Вызывает серверный метод sendSMS
     public void onSendSberbank(Context context) {
         ActiveLog.getInstance().log();
-        server.sendSMS(context, phone.get());
-        result.set(server.getError().getText());
+        oldServer.sendSMS(context, phone.get());
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, BalanceSberbankActivity.class);
         context.startActivity(intent);
     }
@@ -87,12 +89,12 @@ public class BalanceViewModel {
     // Вызывает серверный метод refillBalance
     public void onRechargeSberbank(Context context) {
         ActiveLog.getInstance().log();
-        server.refillBalance(context, amount.get(), gett.get());
-        server.refillBalance(context, amount.get(), ytaxi.get());
-        server.refillBalance(context, amount.get(), city.get());
-        server.refillBalance(context, amount.get(), bolt.get());
-        status.set(server.getArgs().get("status").toString());
-        result.set(server.getError().getText());
+        oldServer.refillBalance(context, amount.get(), gett.get());
+        oldServer.refillBalance(context, amount.get(), ytaxi.get());
+        oldServer.refillBalance(context, amount.get(), city.get());
+        oldServer.refillBalance(context, amount.get(), bolt.get());
+        status.set(Objects.requireNonNull(oldServer.getArgs().get("status")).toString());
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, BalanceRechargeResultActivity.class);
         context.startActivity(intent);
     }
@@ -110,8 +112,8 @@ public class BalanceViewModel {
     // Вызывает серверный метод sendSMS
     public void onSendLink(Context context) {
         ActiveLog.getInstance().log();
-        server.sendSMS(context, phone.get());
-        result.set(server.getError().getText());
+        oldServer.sendSMS(context, phone.get());
+        result.set(oldServer.getError().getText());
         Intent intent = new Intent(context, BalanceSberbankResultActivity.class);
         context.startActivity(intent);
     }

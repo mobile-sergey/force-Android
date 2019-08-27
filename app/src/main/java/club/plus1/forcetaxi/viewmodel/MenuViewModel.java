@@ -11,8 +11,8 @@ import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.Server;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
@@ -37,14 +37,14 @@ public class MenuViewModel extends BaseObservable {
     // Поля экрана "5.Регистрация завершена"
     public ObservableBoolean isInFns = new ObservableBoolean();
     public ObservableBoolean isForceAccepted = new ObservableBoolean();
-    private Server server;                      // Ссылка на Model
+    private OldServer oldServer;                      // Ссылка на Model
 
     // Конструктор класса
     private MenuViewModel(Context context) {
         ActiveLog.getInstance().log();
-        server = Server.getInstance(context);
-        url.set(server.URL_INSTRUCTIONS);
-        urlApp.set(server.URL_APP);
+        oldServer = OldServer.getInstance(context);
+        url.set(oldServer.URL_INSTRUCTIONS);
+        urlApp.set(oldServer.URL_APP);
     }
 
     // Получение единственного экземпляра класса
@@ -104,7 +104,7 @@ public class MenuViewModel extends BaseObservable {
     // Выполняется при при загрузке экрана
     public void onMenuCheck(Context context) {
         ActiveLog.getInstance().log();
-        if (server.user.isTighten) {
+        if (oldServer.oldUser.isTighten) {
             Intent intent = new Intent(context, CheckActivity.class);
             context.startActivity(intent);
         }
@@ -122,11 +122,11 @@ public class MenuViewModel extends BaseObservable {
     // Выполняется при при загрузке экрана
     public void onMenuBalance(Context context) {
         ActiveLog.getInstance().log();
-        isInFns.set(server.user.isInFns == null ? false : server.user.isInFns);
-        isForceAccepted.set(server.user.isForceAccepted == null ? false : server.user.isForceAccepted);
+        isInFns.set(oldServer.oldUser.isInFns == null ? false : oldServer.oldUser.isInFns);
+        isForceAccepted.set(oldServer.oldUser.isForceAccepted == null ? false : oldServer.oldUser.isForceAccepted);
         if (isInFns.get() && isForceAccepted.get()) {
-            server.balance(context);
-            result.set(server.getError().getText());
+            oldServer.balance(context);
+            result.set(oldServer.getError().getText());
             Intent intent = new Intent(context, BalanceActivity.class);
             context.startActivity(intent);
         }
