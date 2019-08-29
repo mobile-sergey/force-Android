@@ -20,7 +20,7 @@ public class OldServer {
 
     // Основные поля класса
     private static OldServer mInstance;    // Единственный объект этого класса
-    public OldUser oldUser;                   // Связанный с сервером пользователь
+    public OldUser oldUser;                // Связанный с сервером пользователь
 
     // Различные параметры, которые должны храниться на сервере
     public String serviceType;

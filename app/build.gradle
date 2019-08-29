@@ -7,7 +7,7 @@ android {
         applicationId "club.plus1.forcetaxi"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 60
+        versionCode 61
         versionName '0.4'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -19,6 +19,9 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 }
 

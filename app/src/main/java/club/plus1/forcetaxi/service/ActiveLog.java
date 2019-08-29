@@ -11,8 +11,13 @@ public class ActiveLog {
     private static ActiveLog mInstance;
     private static boolean active;
 
+    String message;
+    boolean isError;
+
     private ActiveLog() {
         ActiveLog.setActive(true);
+        isError = false;
+        message = "";
     }
 
     public static ActiveLog getInstance() {
@@ -21,7 +26,7 @@ public class ActiveLog {
         return mInstance;
     }
 
-    private static boolean isActive() {
+    static boolean isActive() {
         return active;
     }
 
@@ -34,18 +39,21 @@ public class ActiveLog {
             StackTraceElement element = Thread.currentThread().getStackTrace()[STACK_TRACE_NUMBER];
             String className = (element.getFileName().replaceAll(".java\\s*$", ""));
             String methodName = element.getMethodName();
-            Log.d(TAG, "" + className + "." + methodName + "()");
+            isError = false;
+            message = "" + className + "." + methodName + "()";
+            Log.d(TAG, message);
         }
     }
 
-    public void logError(boolean ok, ServerError error) {
+    void logError(boolean ok, ServerError error) {
         if (isActive()) {
-            if (ok) {
-                Log.d(TAG, error.getText());
+            message = error.getText();
+            isError = ok;
+            if (isError) {
+                Log.d(TAG, message);
             } else {
-                Log.e(TAG, error.getText());
+                Log.e(TAG, message);
             }
         }
     }
-
 }
