@@ -7,8 +7,8 @@ import androidx.databinding.ObservableField;
 
 import java.util.Objects;
 
+import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
-import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.InnBindActivity;
 import club.plus1.forcetaxi.view.InnBindResultActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;

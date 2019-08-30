@@ -3,7 +3,7 @@ package club.plus1.forcetaxi.stub;
 import club.plus1.forcetaxi.model.ResponseApps;
 import club.plus1.forcetaxi.model.ServerError;
 
-class ResponseAppsStub implements ResponseApps {
+public class ResponseAppsStub implements ResponseApps {
 
     // Константы для заглушки
     private static final String APP_ID = "4";
@@ -16,7 +16,7 @@ class ResponseAppsStub implements ResponseApps {
     /**
      * Конструктор класса с заполнением начальными данными
      */
-    ResponseAppsStub() {
+    public ResponseAppsStub() {
         this.ok = false;
         this.error = new ServerError("unknown_error", "");
     }

@@ -5,10 +5,10 @@ import java.util.Map;
 public interface ResponseReceipt {
 
     // Параметры, возращаемые методами сервера
-    boolean ok = false;                                                 // Результат работы метода
-    ServerError error = new ServerError("unknown_error", "");   // Описание результата работы с кодом и текстом
-    String appToken = "";                                               // Все функции требуют установленный appToken
-    String userToken = "";                                              // Токен авторизации пользователя
+    boolean ok = false;         // Результат работы метода
+    ServerError error = null;   // Описание результата работы с кодом и текстом
+    String appToken = "";       // Все функции требуют установленный appToken
+    String userToken = "";      // Токен авторизации пользователя
 
     /**
      * Метод выбивания чека

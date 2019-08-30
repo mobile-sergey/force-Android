@@ -12,8 +12,8 @@ import androidx.databinding.ObservableField;
 import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
-import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.CheckStornoActivity;
 import club.plus1.forcetaxi.view.CheckStornoResultActivity;

@@ -45,7 +45,7 @@ public class ActiveLog {
         }
     }
 
-    void logError(boolean ok, ServerError error) {
+    public void logError(boolean ok, ServerError error) {
         if (isActive()) {
             message = error.getText();
             isError = ok;

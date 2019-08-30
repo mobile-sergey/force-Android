@@ -3,8 +3,8 @@ package club.plus1.forcetaxi.model;
 public interface ResponseApps {
 
     // Параметры, возращаемые методами сервера
-    boolean ok = false;                                                 // Результат работы метода
-    ServerError error = new ServerError("unknown_error", "");   // Описание результата работы с кодом и текстом
+    boolean ok = false;         // Результат работы метода
+    ServerError error = null;   // Описание результата работы с кодом и текстом
 
     /**
      * Метод регистрации установки приложения

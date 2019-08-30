@@ -11,7 +11,7 @@ import club.plus1.forcetaxi.model.ServerUser;
 import club.plus1.forcetaxi.service.Generator;
 import club.plus1.forcetaxi.service.Regex;
 
-class ResponseRegistrationStub implements ResponseRegistration {
+public class ResponseRegistrationStub implements ResponseRegistration {
 
     // Основные переменные класса
     boolean ok;         // Результат работы метода
@@ -29,7 +29,7 @@ class ResponseRegistrationStub implements ResponseRegistration {
      *
      * @param appToken - токен приложения
      */
-    ResponseRegistrationStub(String appToken) {
+    public ResponseRegistrationStub(String appToken) {
         this.ok = false;
         this.error = new ServerError("unknown_error", "");
         this.appToken = appToken;

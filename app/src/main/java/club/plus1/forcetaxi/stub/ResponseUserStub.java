@@ -11,7 +11,7 @@ import club.plus1.forcetaxi.model.ServerFts;
 import club.plus1.forcetaxi.model.ServerUser;
 import club.plus1.forcetaxi.service.Regex;
 
-class ResponseUserStub implements ResponseUser {
+public class ResponseUserStub implements ResponseUser {
 
     // Константы для заглушки
     private static final String USER_TOKEN = "047069db-df4b-48ce-ba48-50641d9cc490";
@@ -29,7 +29,7 @@ class ResponseUserStub implements ResponseUser {
      *
      * @param appToken - токен приложения
      */
-    ResponseUserStub(String appToken) {
+    public ResponseUserStub(String appToken) {
         ok = false;
         error = new ServerError("unknown_error", "");
         this.appToken = appToken;

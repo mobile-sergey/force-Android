@@ -10,8 +10,8 @@ import androidx.databinding.ObservableInt;
 import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
-import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.BalanceRechargeActivity;
 import club.plus1.forcetaxi.view.BalanceRechargeResultActivity;
 import club.plus1.forcetaxi.view.BalanceSberbankActivity;

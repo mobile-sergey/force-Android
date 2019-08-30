@@ -10,7 +10,7 @@ import club.plus1.forcetaxi.model.ServerError;
 import club.plus1.forcetaxi.model.ServerReceipt;
 import club.plus1.forcetaxi.service.Regex;
 
-class ResponseReceiptStub implements ResponseReceipt {
+public class ResponseReceiptStub implements ResponseReceipt {
 
     boolean tinConnected;
     // Основные переменные класса
@@ -27,7 +27,7 @@ class ResponseReceiptStub implements ResponseReceipt {
      *
      * @param appToken - токен приложения
      */
-    ResponseReceiptStub(String appToken) {
+    public ResponseReceiptStub(String appToken) {
         this.ok = false;
         this.error = new ServerError("unknown_error", "");
         this.appToken = appToken;

@@ -11,8 +11,8 @@ import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 
 import club.plus1.forcetaxi.R;
+import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
-import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;

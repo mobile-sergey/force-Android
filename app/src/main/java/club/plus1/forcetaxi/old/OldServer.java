@@ -1,4 +1,4 @@
-package club.plus1.forcetaxi.service;
+package club.plus1.forcetaxi.old;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,6 +15,7 @@ import java.util.Objects;
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.LoginType;
 import club.plus1.forcetaxi.model.ServerError;
+import club.plus1.forcetaxi.service.ActiveLog;
 
 public class OldServer {
 

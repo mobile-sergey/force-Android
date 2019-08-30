@@ -12,8 +12,8 @@ import java.util.Objects;
 
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.LoginType;
+import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
-import club.plus1.forcetaxi.service.OldServer;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.EnterPinSetActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;

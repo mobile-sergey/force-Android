@@ -10,7 +10,7 @@ import club.plus1.forcetaxi.model.ServerError;
 import club.plus1.forcetaxi.model.ServerUser;
 import club.plus1.forcetaxi.service.Regex;
 
-class ResponseAuthStub implements ResponseAuth {
+public class ResponseAuthStub implements ResponseAuth {
 
     // Константы для заглушки
     private static final String USER_TOKEN = "047069db-df4b-48ce-ba48-50641d9cc490";
@@ -30,7 +30,7 @@ class ResponseAuthStub implements ResponseAuth {
      *
      * @param appToken - токен приложения
      */
-    ResponseAuthStub(String appToken) {
+    public ResponseAuthStub(String appToken) {
         ok = false;
         error = new ServerError("unknown_error", "");
         this.appToken = appToken;

@@ -3,9 +3,9 @@ package club.plus1.forcetaxi.model;
 public interface ResponseRegistration {
 
     // Параметры, возращаемые методами сервера
-    boolean ok = false;                                                 // Результат работы метода
-    ServerError error = new ServerError("unknown_error", "");   // Описание результата работы с кодом и текстом
-    String appToken = "";                                               // Все функции требуют установленный appToken
+    boolean ok = false;         // Результат работы метода
+    ServerError error = null;   // Описание результата работы с кодом и текстом
+    String appToken = "";       // Все функции требуют установленный appToken
 
     /**
      * Метод проверки регистрации номера телефона
