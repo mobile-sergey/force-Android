@@ -84,7 +84,7 @@ public class ResponseAuthStubTest {
 
     @Test
     public void logout_ok() {
-        auth.userToken = USER_TOKEN;
+        auth.server.user.userToken = USER_TOKEN;
         auth.logout();
         assertEquals("", auth.userToken);
         assertTrue(auth.ok);

@@ -1,8 +1,6 @@
 package club.plus1.forcetaxi.stub;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import club.plus1.forcetaxi.model.ResponseRegistration;
 import club.plus1.forcetaxi.model.ServerError;
@@ -14,15 +12,9 @@ import club.plus1.forcetaxi.service.Regex;
 public class ResponseRegistrationStub implements ResponseRegistration {
 
     // Основные переменные класса
-    boolean ok;         // Результат работы метода
-    ServerError error;  // Описание результата работы с кодом и текстом
-    private String appToken;    // Все функции требуют установленный appToken
-
-    // Переменные для заглушки
-    private String smsCode;
-    private Date smsCodeDate;
-    private List<String> phones = new ArrayList<>();
-    private List<String> users = new ArrayList<>();
+    boolean ok;                 // Результат работы метода
+    ServerError error;          // Описание результата работы с кодом и текстом
+    ServerStub server;          // Заглушка для сервера и всех переменных
 
     /**
      * Конструктор класса с заполнением начальными данными
@@ -30,15 +22,9 @@ public class ResponseRegistrationStub implements ResponseRegistration {
      * @param appToken - токен приложения
      */
     public ResponseRegistrationStub(String appToken) {
-        this.ok = false;
-        this.error = new ServerError("unknown_error", "");
-        this.appToken = appToken;
-        this.phones.add("1234567890");
-        this.phones.add("0987654321");
-        this.users.add("Иванов Иван Иванович");
-        this.users.add("Петров Петр Петрович");
-        this.smsCode = "";
-        this.smsCodeDate = new Date();
+        ok = false;
+        error = new ServerError("unknown_error", "");
+        server = ServerStub.getInstance(appToken);
     }
 
     /**
@@ -50,21 +36,21 @@ public class ResponseRegistrationStub implements ResponseRegistration {
     @Override
     public ServerPhone validatePhoneNumber(String phoneNumber) {
         if (phoneNumber.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_phonenumber");
+            ok = false;
+            error = new ServerError("empty_phonenumber");
             return null;
         } else if (!phoneNumber.matches(Regex.phone())) {
-            this.ok = false;
-            this.error = new ServerError("wrong_phonenumber");
+            ok = false;
+            error = new ServerError("wrong_phonenumber");
             return null;
-        } else if (phones.contains(phoneNumber)) {
-            this.ok = false;
-            this.error = new ServerError("phonenumber_already_exists");
+        } else if (server.phones.contains(phoneNumber)) {
+            ok = false;
+            error = new ServerError("phonenumber_already_exists");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            this.phones.add(phoneNumber);
+            ok = true;
+            error = new ServerError("");
+            server.phones.add(phoneNumber);
             return new ServerPhone(phoneNumber);
         }
     }
@@ -79,19 +65,19 @@ public class ResponseRegistrationStub implements ResponseRegistration {
     @Override
     public String requestSmsCode(String phoneNumber) {
         if (phoneNumber.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_phonenumber");
+            ok = false;
+            error = new ServerError("empty_phonenumber");
             return "";
         } else if (!phoneNumber.matches(Regex.phone())) {
-            this.ok = false;
-            this.error = new ServerError("wrong_phonenumber");
+            ok = false;
+            error = new ServerError("wrong_phonenumber");
             return "";
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            this.smsCode = Generator.smsCode();
-            this.smsCodeDate = new Date();
-            return this.smsCode;
+            ok = true;
+            error = new ServerError("");
+            server.smsCode = Generator.smsCode();
+            server.smsCodeDate = new Date();
+            return server.smsCode;
         }
     }
 
@@ -105,32 +91,32 @@ public class ResponseRegistrationStub implements ResponseRegistration {
     @Override
     public ServerPhone validateSmsCode(String phoneNumber, String smsCode) {
         if (phoneNumber.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_phonenumber");
+            ok = false;
+            error = new ServerError("empty_phonenumber");
             return null;
         } else if (!phoneNumber.matches(Regex.phone())) {
-            this.ok = false;
-            this.error = new ServerError("wrong_phonenumber");
+            ok = false;
+            error = new ServerError("wrong_phonenumber");
             return null;
-        } else if (!phones.contains(phoneNumber)) {
-            this.ok = false;
-            this.error = new ServerError("phonenumber_is_not_registered");
+        } else if (!server.phones.contains(phoneNumber)) {
+            ok = false;
+            error = new ServerError("phonenumber_is_not_registered");
             return null;
         } else if (smsCode.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("smscode_is_empty");
+            ok = false;
+            error = new ServerError("smscode_is_empty");
             return null;
-        } else if (((new Date()).getTime() - smsCodeDate.getTime()) > 24 * 60 * 60) {
-            this.ok = false;
-            this.error = new ServerError("smscode_is_outdated");
+        } else if (((new Date()).getTime() - server.smsCodeDate.getTime()) > 24 * 60 * 60) {
+            ok = false;
+            error = new ServerError("smscode_is_outdated");
             return null;
-        } else if (!smsCode.equals(this.smsCode)) {
-            this.ok = false;
-            this.error = new ServerError("wrong_smscode");
+        } else if (!smsCode.equals(server.smsCode)) {
+            ok = false;
+            error = new ServerError("wrong_smscode");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
+            ok = true;
+            error = new ServerError("");
             return new ServerPhone(phoneNumber);
         }
     }
@@ -150,46 +136,47 @@ public class ResponseRegistrationStub implements ResponseRegistration {
     public ServerUser createUser(String phoneNumber, String email,
                                  String firstName, String secondName, String patronymic, String password) {
         if (phoneNumber.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_phonenumber");
+            ok = false;
+            error = new ServerError("empty_phonenumber");
             return null;
         } else if (password.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_password");
+            ok = false;
+            error = new ServerError("empty_password");
             return null;
         } else if (!phoneNumber.matches(Regex.phone())) {
-            this.ok = false;
-            this.error = new ServerError("wrong_phonenumber");
+            ok = false;
+            error = new ServerError("wrong_phonenumber");
             return null;
-        } else if (!phones.contains(phoneNumber)) {
-            this.ok = false;
-            this.error = new ServerError("phonenumber_is_not_validated");
+        } else if (!server.phones.contains(phoneNumber)) {
+            ok = false;
+            error = new ServerError("phonenumber_is_not_validated");
             return null;
-        } else if (!users.contains(firstName + " " + secondName + " " + patronymic)) {
-            this.ok = false;
-            this.error = new ServerError("user_already_exist");
+        } else if (!server.users.keySet().contains(firstName + " " + secondName + " " + patronymic)) {
+            ok = false;
+            error = new ServerError("user_already_exist");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            this.users.add(firstName + " " + secondName + " " + patronymic);
-            return new ServerUser();
+            ok = true;
+            error = new ServerError("");
+            ServerUser user = new ServerUser(firstName, secondName, patronymic);
+            server.users.put(user.toString(), user);
+            return user;
         }
     }
 
     String getSmsCode() {
-        return this.smsCode;
+        return server.smsCode;
     }
 
     void setSmsCode() {
-        this.smsCode = Generator.smsCode();
+        server.smsCode = Generator.smsCode();
     }
 
     Date getSmsCodeDate() {
-        return this.smsCodeDate;
+        return server.smsCodeDate;
     }
 
     void setSmsCodeDate(Date newDate) {
-        this.smsCodeDate = newDate;
+        server.smsCodeDate = newDate;
     }
 }

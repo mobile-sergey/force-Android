@@ -1,10 +1,5 @@
 package club.plus1.forcetaxi.stub;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import club.plus1.forcetaxi.model.ResponseUser;
 import club.plus1.forcetaxi.model.ServerError;
 import club.plus1.forcetaxi.model.ServerFts;
@@ -13,16 +8,10 @@ import club.plus1.forcetaxi.service.Regex;
 
 public class ResponseUserStub implements ResponseUser {
 
-    // Константы для заглушки
-    private static final String USER_TOKEN = "047069db-df4b-48ce-ba48-50641d9cc490";
     // Параметры, возращаемые методами сервера
-    boolean ok;         // Результат работы метода
-    ServerError error;  // Описание результата работы с кодом и текстом
-    private String appToken;    // Все функции требуют установленный appToken
-    private String userToken;   // Токен авторизации пользователя
-    // Переменные для заглушки
-    private List<String> tins = new ArrayList<>();
-    private Map<String, String> connected = new HashMap<>();
+    boolean ok;                 // Результат работы метода
+    ServerError error;          // Описание результата работы с кодом и текстом
+    ServerStub server;          // Заглушка для сервера и всех переменных
 
     /**
      * Конструктор класса с заполнением начальными данными
@@ -32,11 +21,7 @@ public class ResponseUserStub implements ResponseUser {
     public ResponseUserStub(String appToken) {
         ok = false;
         error = new ServerError("unknown_error", "");
-        this.appToken = appToken;
-        userToken = "";
-        tins.add("0123456789");
-        tins.add("012345678912");
-        connected.put("012345678912", "Иванов Иван Иванович");
+        server = ServerStub.getInstance(appToken);
     }
 
     /**
@@ -47,10 +32,7 @@ public class ResponseUserStub implements ResponseUser {
      */
     @Override
     public ServerUser getUser() {
-        ServerUser user = new ServerUser();
-        user.fts = new ServerFts();
-        user.userToken = USER_TOKEN;
-        return user;
+        return server.user;
     }
 
     /**
@@ -92,16 +74,14 @@ public class ResponseUserStub implements ResponseUser {
             this.ok = false;
             this.error = new ServerError("wrong_tin");
             return null;
-        } else if (!tins.contains(tin)) {
+        } else if (!server.tins.contains(tin)) {
             this.ok = false;
             this.error = new ServerError("unregistered_tin");
             return null;
         } else {
             this.ok = true;
             this.error = new ServerError("");
-            ServerFts fts = new ServerFts();
-            fts.tin = tin;
-            return fts;
+            return new ServerFts(tin);
         }
     }
 
@@ -134,7 +114,7 @@ public class ResponseUserStub implements ResponseUser {
         } else {
             this.ok = true;
             this.error = new ServerError("");
-            return tins.get(0);
+            return server.tins.get(0);
         }
     }
 
@@ -154,22 +134,24 @@ public class ResponseUserStub implements ResponseUser {
             this.ok = false;
             this.error = new ServerError("wrong_tin");
             return null;
-        } else if (!tins.contains(tin)) {
+        } else if (!server.tins.contains(tin)) {
             this.ok = false;
             this.error = new ServerError("unregistered_tin");
             return null;
-        } else if (connected.keySet().contains(tin)) {
+        } else if (server.connected.keySet().contains(tin)) {
             this.ok = false;
             this.error = new ServerError("tin_already_connected");
             return null;
         } else {
             this.ok = true;
             this.error = new ServerError("");
-            ServerUser user = new ServerUser();
-            ServerFts fts = new ServerFts();
-            fts.tin = tin;
-            user.fts = fts;
-            user.userToken = USER_TOKEN;
+            String fio = server.connected.get(tin);
+            ServerUser user = server.users.get(fio);
+            if (user == null) {
+                user = new ServerUser("", "", "");
+            }
+            user.fts = new ServerFts(tin);
+            server.user = user;
             return user;
         }
     }

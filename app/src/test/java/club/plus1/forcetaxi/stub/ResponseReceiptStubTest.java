@@ -50,7 +50,7 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void receipts_tin_not_connected() {
-        receipt.tinConnected = false;
+        receipt.server.tinConnected = false;
         assertNull(receipt.receipts("8321654987", 500));
         assertFalse(receipt.ok);
         assertEquals("tin_not_connected", receipt.error.getId());
@@ -58,7 +58,7 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void receipts_ok() {
-        receipt.tinConnected = true;
+        receipt.server.tinConnected = true;
         assertEquals("8321654987", receipt.receipts("8321654987", 500).clientPhoneNumber);
         assertTrue(receipt.ok);
         assertEquals("", receipt.error.getId());
@@ -66,7 +66,7 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void getReceipts_tin_not_connected() {
-        receipt.tinConnected = false;
+        receipt.server.tinConnected = false;
         assertNull(receipt.getReceipts(50, 0));
         assertFalse(receipt.ok);
         assertEquals("tin_not_connected", receipt.error.getId());
@@ -74,7 +74,7 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void getReceipts_ok() {
-        receipt.tinConnected = true;
+        receipt.server.tinConnected = true;
         assertNotNull(receipt.getReceipts(50, 0));
         assertTrue(receipt.ok);
         assertEquals("", receipt.error.getId());
@@ -89,8 +89,8 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void getReceiptById_tin_not_connected() {
-        receipt.tinConnected = false;
-        assertNull(receipt.getReceiptById(12345));
+        receipt.server.tinConnected = false;
+        assertNull(receipt.getReceiptById(1));
         assertFalse(receipt.ok);
         assertEquals("tin_not_connected", receipt.error.getId());
     }
@@ -104,8 +104,8 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void getReceiptById_ok() {
-        receipt.tinConnected = true;
-        assertNotNull(receipt.getReceiptById(12345));
+        receipt.server.tinConnected = true;
+        assertNotNull(receipt.getReceiptById(1));
         assertTrue(receipt.ok);
         assertEquals("", receipt.error.getId());
     }
@@ -119,8 +119,8 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void cancelReceipt_tin_not_connected() {
-        receipt.tinConnected = false;
-        assertNull(receipt.cancelReceipt(12345, ""));
+        receipt.server.tinConnected = false;
+        assertNull(receipt.cancelReceipt(1, ""));
         assertFalse(receipt.ok);
         assertEquals("tin_not_connected", receipt.error.getId());
     }
@@ -134,8 +134,8 @@ public class ResponseReceiptStubTest {
 
     @Test
     public void cancelReceipt_ok() {
-        receipt.tinConnected = true;
-        assertNotNull(receipt.cancelReceipt(12345, ""));
+        receipt.server.tinConnected = true;
+        assertNotNull(receipt.cancelReceipt(1, ""));
         assertTrue(receipt.ok);
         assertEquals("", receipt.error.getId());
     }

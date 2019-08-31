@@ -16,6 +16,7 @@ import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.model.LoginType;
 import club.plus1.forcetaxi.model.ServerError;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
 
 public class OldServer {
 
@@ -37,13 +38,6 @@ public class OldServer {
     private ServerError error;          // Описание результата работы с кодом и текстом
     private Map<String, Object> args;   // Набор дополнительных параметров
 
-    // Заглушка с данными сервера
-    private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
-    private static final String USER_TOKEN = "aec27f0f-b8a3-43cb-b076-e075a095abfe";
-    public final String URL_APP = "link.to/app/";
-    public final String URL_INFO = "https://npd.nalog.ru/";
-    public final String URL_INSTRUCTIONS = "https://www.nalog.ru/rn77/fl/interest/inn/calculation/";
-
     // Заглушки для хранения локальных данных
     private Map<String, String> userpass = new HashMap<>();
 
@@ -52,8 +46,8 @@ public class OldServer {
     private OldServer(Context context) {
         ActiveLog.getInstance().log();
         oldUser = new OldUser(context);
-        oldUser.setAppToken(APP_TOKEN);
-        oldUser.setUserToken(USER_TOKEN);
+        oldUser.setAppToken(ConstantStub.APP_TOKEN);
+        oldUser.setUserToken(ConstantStub.USER_TOKEN);
         oldUser.setDeviceToken(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
         oldUser.isTighten = false;
         oldUser.isInFns = false;
@@ -187,9 +181,9 @@ public class OldServer {
             this.putArg("isInFns", oldUser.isInFns);
             this.putArg("isForceAccepted", oldUser.isForceAccepted);
             this.putArg("isPinSet", oldUser.isPinSet);
-            this.putArg("inFnsUrl", URL_INFO);
-            this.putArg("forceAcceptUrl", URL_INSTRUCTIONS);
-            this.putArg("shareUrl", URL_APP);
+            this.putArg("inFnsUrl", ConstantStub.URL_INFO);
+            this.putArg("forceAcceptUrl", ConstantStub.URL_INSTRUCTIONS);
+            this.putArg("shareUrl", ConstantStub.URL_APP);
             this.setOk(true);
             this.setError(new ServerError("200", context.getString(R.string.text_getuser_success)));
         } catch (Exception e) {

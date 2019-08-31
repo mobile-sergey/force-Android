@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
 import club.plus1.forcetaxi.view.InnBindActivity;
 import club.plus1.forcetaxi.view.InnBindResultActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
@@ -49,7 +50,7 @@ public class InnViewModel {
     private InnViewModel(Context context) {
         ActiveLog.getInstance().log();
         oldServer = OldServer.getInstance(context);
-        url.set(oldServer.URL_INFO);
+        url.set(ConstantStub.URL_INFO);
         inn.set("");
         fio.set(oldServer.oldUser.getFio());
         oktmo.set(oldServer.oldUser.oktmo);

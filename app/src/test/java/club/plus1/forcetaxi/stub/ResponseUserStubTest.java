@@ -30,6 +30,7 @@ public class ResponseUserStubTest {
 
     @Test
     public void getUser_ok() {
+        user.server.user = new ServerUser("Иванов", "Иван", "Иванович");
         ServerUser serverUser = user.getUser();
         assertEquals(USER_TOKEN, serverUser.userToken);
         assertFalse(user.ok);

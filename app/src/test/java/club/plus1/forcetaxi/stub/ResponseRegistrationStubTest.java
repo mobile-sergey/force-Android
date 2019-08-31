@@ -124,8 +124,10 @@ public class ResponseRegistrationStubTest {
 
     @Test
     public void validateSmsCode_ok() {
+        Date date = new Date();
+        reg.setSmsCodeDate(date);
         reg.setSmsCode();
-        assertEquals("0987654321", reg.validateSmsCode("0987654321", reg.getSmsCode()).phoneNumber);
+        assertEquals("0987654321", reg.validateSmsCode("0987654321", reg.server.smsCode).phoneNumber);
         assertTrue(reg.ok);
         assertEquals("", reg.error.getId());
     }

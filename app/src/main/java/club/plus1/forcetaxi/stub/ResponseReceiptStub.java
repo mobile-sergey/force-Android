@@ -1,8 +1,5 @@
 package club.plus1.forcetaxi.stub;
 
-import android.annotation.SuppressLint;
-
-import java.util.HashMap;
 import java.util.Map;
 
 import club.plus1.forcetaxi.model.ResponseReceipt;
@@ -12,15 +9,10 @@ import club.plus1.forcetaxi.service.Regex;
 
 public class ResponseReceiptStub implements ResponseReceipt {
 
-    boolean tinConnected;
     // Основные переменные класса
     boolean ok;                 // Результат работы метода
     ServerError error;          // Описание результата работы с кодом и текстом
-    private String appToken;    // Все функции требуют установленный appToken
-
-    // Переменные для заглушки
-    @SuppressLint("UseSparseArrays")
-    private Map<Integer, ServerReceipt> receipts = new HashMap<>();
+    ServerStub server;          // Заглушка для сервера и всех переменных
 
     /**
      * Конструктор класса с заполнением начальными данными
@@ -28,20 +20,9 @@ public class ResponseReceiptStub implements ResponseReceipt {
      * @param appToken - токен приложения
      */
     public ResponseReceiptStub(String appToken) {
-        this.ok = false;
-        this.error = new ServerError("unknown_error", "");
-        this.appToken = appToken;
-        ServerReceipt receipt1 = new ServerReceipt();
-        receipt1.id = "12345";
-        receipt1.amount = 500;
-        receipt1.clientPhoneNumber = "1234567890";
-        this.receipts.put(12345, receipt1);
-        ServerReceipt receipt2 = new ServerReceipt();
-        receipt2.id = "12346";
-        receipt2.amount = 100;
-        receipt2.clientPhoneNumber = "9876543210";
-        this.receipts.put(12346, receipt2);
-        tinConnected = true;
+        ok = false;
+        error = new ServerError("unknown_error", "");
+        server = ServerStub.getInstance(appToken);
     }
 
     /**
@@ -54,28 +35,26 @@ public class ResponseReceiptStub implements ResponseReceipt {
     @Override
     public ServerReceipt receipts(String clientPhoneNumber, double amount) {
         if (clientPhoneNumber.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_client_phonenumber");
+            ok = false;
+            error = new ServerError("empty_client_phonenumber");
             return null;
         } else if (!clientPhoneNumber.matches(Regex.phone())) {
-            this.ok = false;
-            this.error = new ServerError("wrong_phonenumber");
+            ok = false;
+            error = new ServerError("wrong_phonenumber");
             return null;
         } else if (amount <= 0) {
-            this.ok = false;
-            this.error = new ServerError("wrong_amount");
+            ok = false;
+            error = new ServerError("wrong_amount");
             return null;
-        } else if (!tinConnected) {
-            this.ok = false;
-            this.error = new ServerError("tin_not_connected");
+        } else if (!server.tinConnected) {
+            ok = false;
+            error = new ServerError("tin_not_connected");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            ServerReceipt receipt = new ServerReceipt();
-            receipt.id = "11111";
-            receipt.amount = amount;
-            receipt.clientPhoneNumber = clientPhoneNumber;
+            ok = true;
+            error = new ServerError("");
+            ServerReceipt receipt = new ServerReceipt(server.receipts.size(), clientPhoneNumber, amount);
+            server.receipts.put(receipt.id, receipt);
             return receipt;
         }
     }
@@ -89,14 +68,14 @@ public class ResponseReceiptStub implements ResponseReceipt {
      */
     @Override
     public Map<Integer, ServerReceipt> getReceipts(int limit, int offset) {
-        if (!tinConnected) {
-            this.ok = false;
-            this.error = new ServerError("tin_not_connected");
+        if (!server.tinConnected) {
+            ok = false;
+            error = new ServerError("tin_not_connected");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            return receipts;
+            ok = true;
+            error = new ServerError("");
+            return server.receipts;
         }
     }
 
@@ -109,21 +88,21 @@ public class ResponseReceiptStub implements ResponseReceipt {
     @Override
     public ServerReceipt getReceiptById(int receiptId) {
         if (receiptId <= 0) {
-            this.ok = false;
-            this.error = new ServerError("wrong_receipt_id");
+            ok = false;
+            error = new ServerError("wrong_receipt_id");
             return null;
-        } else if (!tinConnected) {
-            this.ok = false;
-            this.error = new ServerError("tin_not_connected");
+        } else if (!server.receipts.keySet().contains(receiptId)) {
+            ok = false;
+            error = new ServerError("receipt_not_found");
             return null;
-        } else if (!receipts.keySet().contains(receiptId)) {
-            this.ok = false;
-            this.error = new ServerError("receipt_not_found");
+        } else if (!server.tinConnected) {
+            ok = false;
+            error = new ServerError("tin_not_connected");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            return receipts.get(receiptId);
+            ok = true;
+            error = new ServerError("");
+            return server.receipts.get(receiptId);
         }
     }
 
@@ -136,21 +115,21 @@ public class ResponseReceiptStub implements ResponseReceipt {
     @Override
     public ServerReceipt cancelReceipt(int receiptId, String reason) {
         if (receiptId <= 0) {
-            this.ok = false;
-            this.error = new ServerError("wrong_receipt_id");
+            ok = false;
+            error = new ServerError("wrong_receipt_id");
             return null;
-        } else if (!tinConnected) {
-            this.ok = false;
-            this.error = new ServerError("tin_not_connected");
+        } else if (!server.receipts.keySet().contains(receiptId)) {
+            ok = false;
+            error = new ServerError("receipt_not_found");
             return null;
-        } else if (!receipts.keySet().contains(receiptId)) {
-            this.ok = false;
-            this.error = new ServerError("receipt_not_found");
+        } else if (!server.tinConnected) {
+            ok = false;
+            error = new ServerError("tin_not_connected");
             return null;
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            return receipts.get(receiptId);
+            ok = true;
+            error = new ServerError("");
+            return server.receipts.get(receiptId);
         }
     }
 }

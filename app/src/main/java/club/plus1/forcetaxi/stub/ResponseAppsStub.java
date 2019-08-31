@@ -5,10 +5,6 @@ import club.plus1.forcetaxi.model.ServerError;
 
 public class ResponseAppsStub implements ResponseApps {
 
-    // Константы для заглушки
-    private static final String APP_ID = "4";
-    private static final String INSTALL_TOKEN = "7180d024-260e-4d33-bc30-574c0680caf2";
-    private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     // Основные переменные класса
     boolean ok;         // Результат работы метода
     ServerError error;  // Описание результата работы с кодом и текстом
@@ -17,8 +13,8 @@ public class ResponseAppsStub implements ResponseApps {
      * Конструктор класса с заполнением начальными данными
      */
     public ResponseAppsStub() {
-        this.ok = false;
-        this.error = new ServerError("unknown_error", "");
+        ok = false;
+        error = new ServerError("unknown_error", "");
     }
 
     /**
@@ -31,22 +27,22 @@ public class ResponseAppsStub implements ResponseApps {
      */
     @Override
     public String registrationInstallation(String appId, String installationToken, String description) {
-        if (!installationToken.equals(INSTALL_TOKEN)) {
-            this.ok = false;
-            this.error = new ServerError("wrong_app_installation_token");
+        if (!installationToken.equals(ConstantStub.INSTALL_TOKEN)) {
+            ok = false;
+            error = new ServerError("wrong_app_installation_token");
             return "";
         } else if (appId.isEmpty()) {
-            this.ok = false;
-            this.error = new ServerError("empty_app_id");
+            ok = false;
+            error = new ServerError("empty_app_id");
             return "";
-        } else if (!appId.equals(APP_ID)) {
-            this.ok = false;
-            this.error = new ServerError("wrong_app_id");
+        } else if (!appId.equals(ConstantStub.APP_ID)) {
+            ok = false;
+            error = new ServerError("wrong_app_id");
             return "";
         } else {
-            this.ok = true;
-            this.error = new ServerError("");
-            return APP_TOKEN;
+            ok = true;
+            error = new ServerError("");
+            return ConstantStub.APP_TOKEN;
         }
     }
 }

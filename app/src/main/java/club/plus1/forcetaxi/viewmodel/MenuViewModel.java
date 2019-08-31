@@ -13,6 +13,7 @@ import androidx.databinding.ObservableField;
 import club.plus1.forcetaxi.R;
 import club.plus1.forcetaxi.old.OldServer;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
 import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
@@ -43,8 +44,8 @@ public class MenuViewModel extends BaseObservable {
     private MenuViewModel(Context context) {
         ActiveLog.getInstance().log();
         oldServer = OldServer.getInstance(context);
-        url.set(oldServer.URL_INSTRUCTIONS);
-        urlApp.set(oldServer.URL_APP);
+        url.set(ConstantStub.URL_INSTRUCTIONS);
+        urlApp.set(ConstantStub.URL_APP);
     }
 
     // Получение единственного экземпляра класса
