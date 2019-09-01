@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import club.plus1.forcetaxi.model.ServerError;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -18,9 +20,15 @@ public class ResponseAppsStubTest {
     }
 
     @Test
-    public void createResponseAppsStub() {
+    public void ResponseAppsStub() {
         assertFalse(app.ok);
         assertEquals("unknown_error", app.error.getId());
+    }
+
+    @Test
+    public void getErrorText() {
+        app.error = new ServerError("unknown_error", "test");
+        assertEquals("test", app.getErrorText());
     }
 
     @Test

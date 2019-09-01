@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import club.plus1.forcetaxi.model.ServerError;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -22,9 +24,15 @@ public class ResponseReceiptStubTest {
     }
 
     @Test
-    public void getResponseReceiptStub() {
+    public void ResponseReceiptStub() {
         assertFalse(receipt.ok);
         assertEquals("unknown_error", receipt.error.getId());
+    }
+
+    @Test
+    public void getErrorText() {
+        receipt.error = new ServerError("unknown_error", "test");
+        assertEquals("test", receipt.getErrorText());
     }
 
     @Test

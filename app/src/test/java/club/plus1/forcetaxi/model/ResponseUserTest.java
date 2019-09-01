@@ -9,10 +9,8 @@ import static org.junit.Assert.assertNull;
 public class ResponseUserTest {
 
     @Test
-    public void name() {
+    public void ResponseUser() {
         ResponseUser user = new ResponseUserStub("");
         assertNull(user.error);
     }
-
-
 }

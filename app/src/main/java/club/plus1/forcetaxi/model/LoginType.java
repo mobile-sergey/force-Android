@@ -7,10 +7,8 @@ public enum LoginType {
     public String toString() {
         if (this == LoginType.email) {
             return "Электронная почта";
-        } else if (this == LoginType.phone) {
-            return "Мобильный телефон";
         } else {
-            return "Не известно";
+            return "Мобильный телефон";
         }
     }
 }

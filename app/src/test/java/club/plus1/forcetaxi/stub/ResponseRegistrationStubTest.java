@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.Date;
 
+import club.plus1.forcetaxi.model.ServerError;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -14,17 +16,24 @@ import static org.junit.Assert.assertTrue;
 
 public class ResponseRegistrationStubTest {
 
+    private static final String APP_TOKEN = "5aa27b1100fa7d9e369f5bc726b05b69";
     private ResponseRegistrationStub reg;
 
     @Before
     public void createObject() {
-        reg = new ResponseRegistrationStub("5aa27b1100fa7d9e369f5bc726b05b69");
+        reg = new ResponseRegistrationStub(APP_TOKEN);
     }
 
     @Test
-    public void createResponseRegistrationStub() {
+    public void ResponseRegistrationStub() {
         assertFalse(reg.ok);
         assertEquals("unknown_error", reg.error.getId());
+    }
+
+    @Test
+    public void getErrorText() {
+        reg.error = new ServerError("unknown_error", "test");
+        assertEquals("test", reg.getErrorText());
     }
 
     @Test

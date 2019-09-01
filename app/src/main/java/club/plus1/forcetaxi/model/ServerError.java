@@ -8,6 +8,7 @@ public class ServerError {
         this.setId(id);
         this.setText(id);
 
+        // TODO: закомментировано для успешного тестирования. Надо найти обход.
         // Закомментировано для тестирования
         /*
         if(id.isEmpty()){

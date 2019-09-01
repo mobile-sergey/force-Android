@@ -9,7 +9,7 @@ import androidx.databinding.ObservableInt;
 
 import club.plus1.forcetaxi.model.ResponseBalance;
 import club.plus1.forcetaxi.model.ResponseRegistration;
-import club.plus1.forcetaxi.model.TransactionStatus;
+import club.plus1.forcetaxi.model.TransactionStatusType;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.stub.ConstantStub;
 import club.plus1.forcetaxi.stub.ResponseBalanceStub;
@@ -101,7 +101,7 @@ public class BalanceViewModel {
         oldServer.refillBalance(context, amount.get(), city.get());
         oldServer.refillBalance(context, amount.get(), bolt.get());
          */
-        status.set(TransactionStatus.processing.toString());
+        status.set(TransactionStatusType.processing.toString());
         result.set(responseBalance.getErrorText());
         Intent intent = new Intent(context, BalanceRechargeResultActivity.class);
         context.startActivity(intent);

@@ -48,7 +48,7 @@ public interface ResponseAuth {
      */
     void logout();
 
-    // TODO: Метод ниже нужно добавить в API
+    // TODO: Метод нужно добавить в API
 
     /**
      * Метод отправки письма с инструкциями

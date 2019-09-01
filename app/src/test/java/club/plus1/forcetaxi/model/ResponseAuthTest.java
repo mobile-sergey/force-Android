@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNull;
 public class ResponseAuthTest {
 
     @Test
-    public void name() {
+    public void ResponseAuth() {
         ResponseAuth auth = new ResponseAuthStub("");
         assertNull(auth.error);
     }

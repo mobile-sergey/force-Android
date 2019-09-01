@@ -18,7 +18,7 @@ public interface ResponseBalance {
     @NotNull
     String getErrorText();
 
-    // TODO: Метод ниже нужно добавить в API
+    // TODO: Метод нужно добавить в API
 
     /**
      * Метод для получения баланса юзера

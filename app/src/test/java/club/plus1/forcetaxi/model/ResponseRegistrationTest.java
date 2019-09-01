@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNull;
 public class ResponseRegistrationTest {
 
     @Test
-    public void name() {
+    public void ResponseRegistration() {
         ResponseRegistration registration = new ResponseRegistrationStub("");
         assertNull(registration.error);
     }

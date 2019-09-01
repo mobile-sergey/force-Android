@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNull;
 public class ResponseAppsTest {
 
     @Test
-    public void name() {
+    public void ResponseApps() {
         ResponseApps app = new ResponseAppsStub();
         assertNull(app.error);
     }

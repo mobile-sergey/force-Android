@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import club.plus1.forcetaxi.model.ServerError;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -21,9 +23,15 @@ public class ResponseAuthStubTest {
     }
 
     @Test
-    public void createResponseAuthStub() {
+    public void ResponseAuthStub() {
         assertFalse(auth.ok);
         assertEquals("unknown_error", auth.error.getId());
+    }
+
+    @Test
+    public void getErrorText() {
+        auth.error = new ServerError("unknown_error", "test");
+        assertEquals("test", auth.getErrorText());
     }
 
     @Test
@@ -87,6 +95,13 @@ public class ResponseAuthStubTest {
         auth.server.user.userToken = USER_TOKEN;
         auth.logout();
         assertEquals("", auth.userToken);
+        assertTrue(auth.ok);
+        assertEquals("", auth.error.getId());
+    }
+
+    @Test
+    public void sendMail_ok() {
+        auth.sendMail("test@test.com");
         assertTrue(auth.ok);
         assertEquals("", auth.error.getId());
     }

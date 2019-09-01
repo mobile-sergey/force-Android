@@ -40,6 +40,8 @@ public class ResponseBalanceStub implements ResponseBalance {
      */
     @Override
     public int balance() {
+        ok = true;
+        error = new ServerError("");
         return 1000;
     }
 }
