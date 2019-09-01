@@ -1,5 +1,7 @@
 package club.plus1.forcetaxi.stub;
 
+import org.jetbrains.annotations.NotNull;
+
 import club.plus1.forcetaxi.model.ResponseAuth;
 import club.plus1.forcetaxi.model.ServerError;
 import club.plus1.forcetaxi.model.ServerUser;
@@ -8,8 +10,8 @@ import club.plus1.forcetaxi.service.Regex;
 public class ResponseAuthStub implements ResponseAuth {
 
     // Параметры, возращаемые методами сервера
-    boolean ok;                 // Результат работы метода
-    ServerError error;          // Описание результата работы с кодом и текстом
+    public boolean ok;          // Результат работы метода
+    public ServerError error;   // Описание результата работы с кодом и текстом
     ServerStub server;          // Заглушка для сервера и всех переменных
 
     /**
@@ -21,6 +23,16 @@ public class ResponseAuthStub implements ResponseAuth {
         ok = false;
         error = new ServerError("unknown_error", "");
         server = ServerStub.getInstance(appToken);
+    }
+
+    /**
+     * Возвращает текст ошибки, если она есть
+     *
+     * @return String - текст ошибки, если она есть
+     */
+    @NotNull
+    public String getErrorText() {
+        return error.getText();
     }
 
     /**
@@ -95,4 +107,15 @@ public class ResponseAuthStub implements ResponseAuth {
         error = new ServerError("");
         server.user = new ServerUser("", "", "");
     }
+
+    /**
+     * Метод отправки письма с инструкциями
+     *
+     * @param email - электронная почта юзера
+     */
+    public void sendMail(String email) {
+        ok = true;
+        error = new ServerError("");
+    }
+
 }

@@ -14,13 +14,12 @@ import club.plus1.forcetaxi.service.ActiveLog;
 
 public class ServerStub {
 
-    private static ServerStub mInstance;   // Единственный объект этого класса
-    public String appToken;                // Все функции требуют установленный appToken
+    private static ServerStub mInstance;    // Единственный объект этого класса
+    public String appToken;                 // Все функции требуют установленный appToken
     public ServerUser user;                 // Информация о текущем пользователе
 
     // Переменные для заглушки
-    boolean tinConnected;       // Заглушка, показывающая, что ИНН привязан
-    String smsCode;
+    public String smsCode;
     Date smsCodeDate;
     List<String> tins = new ArrayList<>();
     Map<String, String> connected = new HashMap<>();
@@ -55,11 +54,11 @@ public class ServerStub {
             userPasswords.put(element.getKey(), "123");
             i++;
         }
-        ServerReceipt receipt1 = new ServerReceipt(1, "1234567890", 500);
+        ServerReceipt receipt1 = new ServerReceipt(1, "1234567890", 500, user);
         receipts.put(receipt1.id, receipt1);
-        ServerReceipt receipt2 = new ServerReceipt(2, "9876543210", 100);
+        ServerReceipt receipt2 = new ServerReceipt(2, "9876543210", 100, user);
         receipts.put(receipt2.id, receipt2);
-        tinConnected = true;
+        user.tinConnected = true;
         this.smsCode = "";
         this.smsCodeDate = new Date();
     }

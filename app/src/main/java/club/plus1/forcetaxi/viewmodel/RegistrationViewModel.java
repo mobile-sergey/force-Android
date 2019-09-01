@@ -8,12 +8,17 @@ import android.widget.Toast;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
-import java.util.Objects;
-
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.model.LoginType;
-import club.plus1.forcetaxi.old.OldServer;
+import club.plus1.forcetaxi.model.LocalSettings;
+import club.plus1.forcetaxi.model.ResponseAuth;
+import club.plus1.forcetaxi.model.ResponseRegistration;
+import club.plus1.forcetaxi.model.ResponseUser;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
+import club.plus1.forcetaxi.stub.ResponseAuthStub;
+import club.plus1.forcetaxi.stub.ResponseRegistrationStub;
+import club.plus1.forcetaxi.stub.ResponseUserStub;
+import club.plus1.forcetaxi.stub.ServerStub;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.EnterPinSetActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
@@ -27,6 +32,8 @@ import club.plus1.forcetaxi.view.RegistrationPasswordResultActivity;
 import club.plus1.forcetaxi.view.RegistrationRecoveryEmailActivity;
 import club.plus1.forcetaxi.view.RegistrationRecoveryPhoneActivity;
 import club.plus1.forcetaxi.view.RegistrationVerificationActivity;
+
+import static java.util.Objects.requireNonNull;
 
 public class RegistrationViewModel extends BaseObservable {
 
@@ -59,16 +66,25 @@ public class RegistrationViewModel extends BaseObservable {
 
     // Ссылки MVVM
     private static RegistrationViewModel mInstance; // Ссылка для биндинга с View
-    private OldServer oldServer;                          // Ссылка на Model
+    private ServerStub server;                      // Ссылка на Model сервера
+    private ResponseAuth responseAuth;                      // Ссылка на Model авторизации
+    private ResponseRegistration responseReg;      // Ссылка на Model регистрации
+    private ResponseUser responseUser;              // Ссылка на Model пользователя
+    private LocalSettings settings;                 // Ссылка на Model локальных настроек
 
     // Конструктор класса
     private RegistrationViewModel(Context context) {
         ActiveLog.getInstance().log();
-        oldServer = OldServer.getInstance(context);
-        fio.set(oldServer.oldUser.getFio());
-        inn.set(oldServer.oldUser.inn);
-        oktmo.set(oldServer.oldUser.oktmo);
-        dateFNS.set(oldServer.oldUser.dateFNS);
+        server = ServerStub.getInstance(ConstantStub.APP_TOKEN);
+        responseAuth = new ResponseAuthStub(ConstantStub.APP_TOKEN);
+        responseReg = new ResponseRegistrationStub(ConstantStub.APP_TOKEN);
+        responseUser = new ResponseUserStub(ConstantStub.APP_TOKEN);
+        settings = new LocalSettings();
+
+        srcTighten.set(getDrawable(context, null));
+        srcInFns.set(getDrawable(context, null));
+        srcForceAccepted.set(getDrawable(context, null));
+        srcPinSet.set(getDrawable(context, null));
     }
 
     // Получение единственного экземпляра класса
@@ -85,19 +101,21 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверные методы signUp и sendSMS
     public void onRegistration(Context context) {
         ActiveLog.getInstance().log();
-        if (Objects.requireNonNull(password.get()).equals(confirm.get())) {
-            oldServer.signUp(context, phone.get(), email.get(), password.get());
-            result.set(oldServer.getError().getText());
-            if (oldServer.isOk()) {
-                oldServer.sendSMS(context, phone.get());
-                result.set(oldServer.getError().getText());
+        if (requireNonNull(password.get()).equals(confirm.get())) {
+            responseReg.createUser(phone.get(), email.get(),
+                    "", "", "", password.get());
+            result.set(responseReg.getErrorText());
+            if (responseReg.ok) {
+                server.smsCode = responseReg.requestSmsCode(phone.get());
+                result.set(responseReg.getErrorText());
                 Intent intent = new Intent(context, RegistrationVerificationActivity.class);
                 context.startActivity(intent);
             } else {
                 Toast.makeText(context, result.get(), Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(context, context.getString(R.string.text_signup_confirm_error), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.text_signup_confirm_error),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -106,8 +124,8 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверный метод sendSMS
     public void onSendSMS(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.sendSMS(context, phone.get());
-        result.set(oldServer.getError().getText());
+        server.smsCode = responseReg.requestSmsCode(phone.get());
+        result.set(responseReg.getErrorText());
         Toast.makeText(context, result.get(), Toast.LENGTH_LONG).show();
     }
 
@@ -116,9 +134,9 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверные методы acceptResetPass и getUser
     public void onVerification(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.acceptResetPass(context, code.get(), password.get());
-        oldServer.getUser(context);
-        result.set(oldServer.getError().getText());
+        responseAuth.passwordReset(phone.get(), code.get(), password.get());
+        server.user = responseUser.getUser();
+        result.set(responseAuth.getErrorText() + "\n" + responseUser.getErrorText());
         Intent intent = new Intent(context, RegistrationFinishedActivity.class);
         context.startActivity(intent);
     }
@@ -137,7 +155,8 @@ public class RegistrationViewModel extends BaseObservable {
     // Выполняется при нажатии ссылки "Зарегистрироваться в ФНС"
     public void onInFns(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.oldUser.isInFns = true;
+        settings.setInFns(true);
+        srcInFns.set(getDrawable(context, true));
         Intent intent = new Intent(context, InnInfoActivity.class);
         context.startActivity(intent);
     }
@@ -147,7 +166,8 @@ public class RegistrationViewModel extends BaseObservable {
     // Выполняется при нажатии ссылки "Предоставить права площадке ..."
     public void onForceAccepted(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.oldUser.isForceAccepted = true;
+        settings.setForceAccepted(true);
+        srcForceAccepted.set(getDrawable(context, true));
         Intent intent = new Intent(context, MenuInstructionActivity.class);
         context.startActivity(intent);
     }
@@ -176,20 +196,19 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверные методы reserPassword и (sendMail или sendSMS)
     public void onRecovery(Context context) {
         ActiveLog.getInstance().log();
-        if ((login == null) || (login.get() == null) || Objects.requireNonNull(login.get()).isEmpty()) {
+        if ((login == null) || (login.get() == null) || requireNonNull(login.get()).isEmpty()) {
             Toast.makeText(context, context.getString(R.string.text_need_login), Toast.LENGTH_LONG).show();
-        } else if (Objects.requireNonNull(login.get()).contains("@")) {  // Найдена @ - значит введен email
+        } else if (requireNonNull(login.get()).contains("@")) {  // Найдена @ - значит введен email
             email.set(login.get());
-            oldServer.reserPassword(context, email.get(), LoginType.email);
-            oldServer.sendMail(context, email.get());
-            result.set(oldServer.getError().getText());
+            responseAuth.sendMail(email.get());
+            result.set(responseAuth.getErrorText());
             Intent intent = new Intent(context, RegistrationRecoveryEmailActivity.class);
             context.startActivity(intent);
         } else {                        // Не найдена @ - значит введен телефон
             phone.set(login.get());
-            oldServer.reserPassword(context, phone.get(), LoginType.phone);
-            oldServer.sendSMS(context, phone.get());
-            result.set(oldServer.getError().getText());
+            responseAuth.passwordRequestReset(phone.get());
+            server.smsCode = responseReg.requestSmsCode(phone.get());
+            result.set(responseAuth.getErrorText() + "\n" + responseReg.getErrorText());
             Intent intent = new Intent(context, RegistrationRecoveryPhoneActivity.class);
             context.startActivity(intent);
         }
@@ -208,8 +227,8 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверный метод acceptResetPass
     public void onPhoneRecovery(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.acceptResetPass(context, code.get(), password.get());
-        result.set(oldServer.getError().getText());
+        responseAuth.passwordReset(phone.get(), password.get(), code.get());
+        result.set(responseAuth.getErrorText());
         Intent intent = new Intent(context, RegistrationPasswordActivity.class);
         context.startActivity(intent);
     }
@@ -219,13 +238,14 @@ public class RegistrationViewModel extends BaseObservable {
     // Вызывает серверный метод setPassword
     public void onPasswordChange(Context context) {
         ActiveLog.getInstance().log();
-        if (Objects.requireNonNull(password.get()).equals(confirm.get())) {
-            oldServer.setPassword(context, login.get(), password.get());
-            result.set(oldServer.getError().getText());
+        if (requireNonNull(password.get()).equals(confirm.get())) {
+            responseAuth.passwordReset(phone.get(), password.get(), code.get());
+            result.set(responseAuth.getErrorText());
             Intent intent = new Intent(context, RegistrationPasswordResultActivity.class);
             context.startActivity(intent);
         } else {
-            Toast.makeText(context, context.getString(R.string.text_signup_confirm_error), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.text_signup_confirm_error),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -253,20 +273,24 @@ public class RegistrationViewModel extends BaseObservable {
         context.startActivity(intent);
     }
 
+    // "5.Регистрация завершена"
+    // Выполняется при открытии экрана "5.Регистрация завершена"
     public void onRegistrationFinished(Context context) {
         ActiveLog.getInstance().log();
-        srcTighten.set(getDrawable(context, oldServer.oldUser.isTighten));
-        srcInFns.set(getDrawable(context, oldServer.oldUser.isInFns));
-        srcForceAccepted.set(getDrawable(context, oldServer.oldUser.isForceAccepted));
-        srcPinSet.set(getDrawable(context, oldServer.oldUser.isPinSet));
+        srcTighten.set(getDrawable(context, server.user.tinConnected));
+        srcInFns.set(getDrawable(context, settings.isInFns()));
+        srcForceAccepted.set(getDrawable(context, settings.isForceAccepted()));
+        srcPinSet.set(getDrawable(context, settings.isPinSet()));
     }
 
+    // "27.Профиль"
+    // Выполняется при открытии экрана "27.Профиль"
     public void onRegistrationProfile(Context context) {
         ActiveLog.getInstance().log();
-        srcTighten.set(getDrawable(context, oldServer.oldUser.isTighten));
-        srcInFns.set(getDrawable(context, oldServer.oldUser.isInFns));
-        srcForceAccepted.set(getDrawable(context, oldServer.oldUser.isForceAccepted));
-        srcPinSet.set(getDrawable(context, oldServer.oldUser.isPinSet));
+        srcTighten.set(getDrawable(context, server.user.tinConnected));
+        srcInFns.set(getDrawable(context, settings.isInFns()));
+        srcForceAccepted.set(getDrawable(context, settings.isForceAccepted()));
+        srcPinSet.set(getDrawable(context, settings.isPinSet()));
     }
 
     // Получение картинки в зависимости от булевого значения

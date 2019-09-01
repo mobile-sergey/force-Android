@@ -3,21 +3,25 @@ package club.plus1.forcetaxi.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.text.format.DateFormat;
 import android.widget.ArrayAdapter;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 
-import java.util.Objects;
-
-import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.old.OldServer;
+import club.plus1.forcetaxi.model.ResponseReceipt;
+import club.plus1.forcetaxi.model.ServerReceipt;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
+import club.plus1.forcetaxi.stub.ResponseReceiptStub;
+import club.plus1.forcetaxi.stub.ServerStub;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
 import club.plus1.forcetaxi.view.CheckStornoActivity;
 import club.plus1.forcetaxi.view.CheckStornoResultActivity;
 import club.plus1.forcetaxi.view.EnterSplashActivity;
+
+import static java.util.Objects.requireNonNull;
 
 public class CheckViewModel extends BaseObservable {
 
@@ -41,21 +45,18 @@ public class CheckViewModel extends BaseObservable {
     // Ссылки MVVM
     private static CheckViewModel mInstance;    // Ссылка для биндинга с View
     public ArrayAdapter<String> adapter;        // Ссылка на адаптер во View
-    private OldServer oldServer;                      // Ссылка на Model
+    private ServerStub server;                  // Ссылка на Model сервера
+    private ResponseReceipt responseReceipt;    // Ссылка на Model чека
 
     // Конструктор класса
     private CheckViewModel(Context context) {
         ActiveLog.getInstance().log();
-        oldServer = OldServer.getInstance(context);
+        server = ServerStub.getInstance(ConstantStub.APP_TOKEN);
+        responseReceipt = new ResponseReceiptStub(ConstantStub.APP_TOKEN);
+
         showCheck.set(false);
         amount.set("");
-        qr.set(oldServer.imgQR);
-        fio.set(oldServer.oldUser.getFio());
-        inn.set(oldServer.oldUser.inn);
-        client.set(oldServer.client);
-        number.set(oldServer.checkNumber);
-        url.set(oldServer.urlCheck);
-        adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, oldServer.history);
+        //adapter = new ArrayAdapter<>(context, R.layout.check_item, R.id.textCheck, oldServer.history);
     }
 
     // Получение единственного экземпляра класса
@@ -72,14 +73,18 @@ public class CheckViewModel extends BaseObservable {
     // Вызывает серверный метод generateCheck
     public void Print(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.generateCheck(context, amount.get(), client.get());
-        number.set(oldServer.getArg("checkNumber").toString());
-        serviceType.set(oldServer.getArg("serviceType").toString());
-        amount.set(oldServer.getArg("amount").toString());
-        executor.set(oldServer.getArg("executor").toString());
-        date.set(oldServer.getArg("date").toString());
-        url.set(oldServer.getArg("url").toString());
-        result.set(oldServer.getError().getText());
+
+        ServerReceipt receipt = responseReceipt.receipts(client.get(),
+                Double.parseDouble(requireNonNull(amount.get())));
+        number.set(Integer.toString(receipt.id));
+        serviceType.set(receipt.serviceType);
+        amount.set(Double.toString(receipt.amount));
+        executor.set(receipt.executor);
+        DateFormat dateFormat = new DateFormat();
+        date.set(DateFormat.format("yyyy-MM-dd", receipt.date).toString());
+        url.set(receipt.url);
+
+        result.set(responseReceipt.getErrorText());
         showCheck.set(!showCheck.get());
     }
 
@@ -88,8 +93,8 @@ public class CheckViewModel extends BaseObservable {
     // Вызывает серверный метод getCheckHistory
     public void onHistory(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.getCheckHistory(context, 0, 0);
-        result.set(oldServer.getError().getText());
+        responseReceipt.getReceipts(50, 0);
+        result.set(responseReceipt.getErrorText());
         Intent intent = new Intent(context, CheckHistoryActivity.class);
         context.startActivity(intent);
     }
@@ -107,8 +112,9 @@ public class CheckViewModel extends BaseObservable {
     // Вызывает серверный метод deleteCheck
     public void onStorno(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.deleteCheck(context, number.get(), reason.get());
-        result.set(oldServer.getError().getText());
+        responseReceipt.cancelReceipt(Integer.parseInt(requireNonNull(number.get())),
+                reason.get());
+        result.set(responseReceipt.getErrorText());
         Intent intent = new Intent(context, CheckStornoResultActivity.class);
         context.startActivity(intent);
     }
@@ -125,8 +131,8 @@ public class CheckViewModel extends BaseObservable {
     public void addNumber(Context context, String number) {
         ActiveLog.getInstance().log();
         String total = amount.get();
-        if (!(number.equals(",") && Objects.requireNonNull(total).contains(","))) {
-            if (Objects.requireNonNull(total).equals("0")) {
+        if (!(number.equals(",") && requireNonNull(total).contains(","))) {
+            if (requireNonNull(total).equals("0")) {
                 amount.set(number);
             } else {
                 amount.set(total + number);
@@ -144,7 +150,7 @@ public class CheckViewModel extends BaseObservable {
     public void Back(Context context) {
         ActiveLog.getInstance().log();
         String total = amount.get();
-        if (Objects.requireNonNull(total).equals("0")) {
+        if (requireNonNull(total).equals("0")) {
             amount.set("0");
         } else {
             amount.set(total.substring(0, total.length() - 1));

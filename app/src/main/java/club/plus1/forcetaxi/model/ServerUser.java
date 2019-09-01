@@ -5,11 +5,13 @@ import androidx.annotation.NonNull;
 import club.plus1.forcetaxi.stub.ConstantStub;
 
 public class ServerUser {
-    public String userToken;    // Токен авторизации пользователя
-    public ServerFts fts;       // Информация из ФНС
-    private String firstName;
-    private String secondName;
-    private String patronymic;
+    public String userToken;        // Токен авторизации пользователя
+    public ServerFts fts;           // Информация из ФНС
+    public boolean tinConnected;    // ИНН привязан
+    public int balance;             // Текущий баланс пользователя
+    private String firstName;       // Фамилия
+    private String secondName;      // Имя
+    private String patronymic;      // Отчество
 
     public ServerUser(String firstName, String secondName, String patronymic) {
         this.firstName = firstName;
@@ -21,6 +23,7 @@ public class ServerUser {
         } else {
             userToken = ConstantStub.USER_TOKEN;
         }
+        balance = 0;
     }
 
     @NonNull

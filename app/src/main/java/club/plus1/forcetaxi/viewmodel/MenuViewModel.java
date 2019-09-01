@@ -11,9 +11,12 @@ import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.old.OldServer;
+import club.plus1.forcetaxi.model.LocalSettings;
+import club.plus1.forcetaxi.model.ResponseBalance;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.stub.ConstantStub;
+import club.plus1.forcetaxi.stub.ResponseBalanceStub;
+import club.plus1.forcetaxi.stub.ServerStub;
 import club.plus1.forcetaxi.view.BalanceActivity;
 import club.plus1.forcetaxi.view.CheckActivity;
 import club.plus1.forcetaxi.view.CheckHistoryActivity;
@@ -27,25 +30,33 @@ import club.plus1.forcetaxi.view.RegistrationProfileActivity;
 
 public class MenuViewModel extends BaseObservable {
 
-    // Ссылки MVVM
-    private static MenuViewModel mInstance;     // Ссылка для биндинга с View
     // Поле экрана "2.Результат входа"
     public ObservableField<String> result = new ObservableField<>();
+
     // Поле экрана "28.Инструкция"
     public ObservableField<String> url = new ObservableField<>();
+
     // Поле экрана "29.Пригласить друга"
     public ObservableField<String> urlApp = new ObservableField<>();
+
     // Поля экрана "5.Регистрация завершена"
     public ObservableBoolean isInFns = new ObservableBoolean();
     public ObservableBoolean isForceAccepted = new ObservableBoolean();
-    private OldServer oldServer;                      // Ссылка на Model
+
+    // Ссылки MVVM
+    private static MenuViewModel mInstance; // Ссылка для биндинга с View
+    private ServerStub server;              // Ссылка на Model сервера
+    private LocalSettings settings;         // Ссылка на Model локальных настроек
+    private ResponseBalance responseBalance;// Ссылка на Model баланса
 
     // Конструктор класса
     private MenuViewModel(Context context) {
         ActiveLog.getInstance().log();
-        oldServer = OldServer.getInstance(context);
+        server = ServerStub.getInstance(ConstantStub.APP_TOKEN);
         url.set(ConstantStub.URL_INSTRUCTIONS);
         urlApp.set(ConstantStub.URL_APP);
+        settings = new LocalSettings();
+        responseBalance = new ResponseBalanceStub(ConstantStub.APP_TOKEN);
     }
 
     // Получение единственного экземпляра класса
@@ -105,7 +116,7 @@ public class MenuViewModel extends BaseObservable {
     // Выполняется при при загрузке экрана
     public void onMenuCheck(Context context) {
         ActiveLog.getInstance().log();
-        if (oldServer.oldUser.isTighten) {
+        if (server.user.tinConnected) {
             Intent intent = new Intent(context, CheckActivity.class);
             context.startActivity(intent);
         }
@@ -123,11 +134,11 @@ public class MenuViewModel extends BaseObservable {
     // Выполняется при при загрузке экрана
     public void onMenuBalance(Context context) {
         ActiveLog.getInstance().log();
-        isInFns.set(oldServer.oldUser.isInFns == null ? false : oldServer.oldUser.isInFns);
-        isForceAccepted.set(oldServer.oldUser.isForceAccepted == null ? false : oldServer.oldUser.isForceAccepted);
+        isInFns.set(settings.isInFns());
+        isForceAccepted.set(settings.isForceAccepted());
         if (isInFns.get() && isForceAccepted.get()) {
-            oldServer.balance(context);
-            result.set(oldServer.getError().getText());
+            server.user.balance = responseBalance.balance();
+            result.set(responseBalance.getErrorText());
             Intent intent = new Intent(context, BalanceActivity.class);
             context.startActivity(intent);
         }

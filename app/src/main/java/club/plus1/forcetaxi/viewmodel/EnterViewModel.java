@@ -10,11 +10,13 @@ import android.widget.Toast;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
 
-import java.util.Objects;
-
 import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.old.OldServer;
+import club.plus1.forcetaxi.model.LocalSettings;
+import club.plus1.forcetaxi.model.ResponseAuth;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
+import club.plus1.forcetaxi.stub.ResponseAuthStub;
+import club.plus1.forcetaxi.stub.ServerStub;
 import club.plus1.forcetaxi.view.EnterActivity;
 import club.plus1.forcetaxi.view.EnterPinActivity;
 import club.plus1.forcetaxi.view.EnterPinConfirmActivity;
@@ -24,6 +26,8 @@ import club.plus1.forcetaxi.view.EnterResultActivity;
 import club.plus1.forcetaxi.view.MenuCheckActivity;
 import club.plus1.forcetaxi.view.RegistrationActivity;
 import club.plus1.forcetaxi.view.RegistrationRecoveryActivity;
+
+import static java.util.Objects.requireNonNull;
 
 public class EnterViewModel extends BaseObservable {
 
@@ -44,12 +48,16 @@ public class EnterViewModel extends BaseObservable {
 
     // Ссылки MVVM
     private static EnterViewModel mInstance;    // Ссылка для биндинга с View
-    private OldServer oldServer;                      // Ссылка на Model
+    private ServerStub server;                  // Ссылка на Model сервера
+    private ResponseAuth responseAuth;          // Ссылка на Model авторизации
+    private LocalSettings settings;             // Ссылка на Model локальных настроек
 
     // Конструктор класса
     private EnterViewModel(Context context) {
         ActiveLog.getInstance().log();
-        oldServer = OldServer.getInstance(context);
+        server = ServerStub.getInstance(ConstantStub.APP_TOKEN);
+        responseAuth = new ResponseAuthStub(ConstantStub.APP_TOKEN);
+        settings = new LocalSettings();
         version.set(getVersion(context));
         startEnterActivity(context);
         pin.set("");
@@ -76,7 +84,8 @@ public class EnterViewModel extends BaseObservable {
             public void run() {
                 // По истечении времени, запускаем главный активити или экран ввода пинкода
                 Intent mainIntent;
-                if (oldServer.oldUser.getPin().isEmpty()) {
+                LocalSettings settings = new LocalSettings();
+                if (settings.getPin().isEmpty()) {
                     mainIntent = new Intent(context, EnterActivity.class);
                 } else {
                     mainIntent = new Intent(context, EnterPinActivity.class);
@@ -91,9 +100,9 @@ public class EnterViewModel extends BaseObservable {
     // Вызывает серверный метод login
     public void onEnter(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.login(context, login.get(), password.get());
-        result.set(oldServer.getError().getText());
-        if (oldServer.isOk()) {
+        server.user = responseAuth.login(login.get(), password.get());
+        result.set(responseAuth.getErrorText());
+        if (responseAuth.ok) {
             Intent intent = new Intent(context, EnterResultActivity.class);
             context.startActivity(intent);
         } else {
@@ -125,7 +134,7 @@ public class EnterViewModel extends BaseObservable {
     public void onResult(Context context) {
         ActiveLog.getInstance().log();
         Intent intent;
-        if (oldServer.isOk()) {
+        if (responseAuth.ok) {
             intent = new Intent(context, MenuCheckActivity.class);
         } else {
             intent = new Intent(context, EnterActivity.class);
@@ -147,9 +156,8 @@ public class EnterViewModel extends BaseObservable {
     // Выполняется при нажатии кнопки "Продолжить"
     public void onPinConfirm(Context context) {
         ActiveLog.getInstance().log();
-        if (Objects.requireNonNull(firstPin.get()).equals(pin.get())) {
-            oldServer.oldUser.setPin(pin.get());
-            oldServer.oldUser.isPinSet = true;
+        if (requireNonNull(firstPin.get()).equals(pin.get())) {
+            settings.setPin(pin.get());
             Intent intent = new Intent(context, EnterPinResultActivity.class);
             context.startActivity(intent);
         } else {
@@ -171,7 +179,7 @@ public class EnterViewModel extends BaseObservable {
     // Выполняется при нажатии кнопки "Продолжить"
     public void onPinEnter(Context context) {
         ActiveLog.getInstance().log();
-        if (Objects.requireNonNull(pin.get()).equals(oldServer.oldUser.getPin())) {
+        if (requireNonNull(pin.get()).equals(settings.getPin())) {
             Intent intent = new Intent(context, MenuCheckActivity.class);
             context.startActivity(intent);
         } else {

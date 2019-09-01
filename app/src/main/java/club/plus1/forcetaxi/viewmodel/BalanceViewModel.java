@@ -7,11 +7,14 @@ import android.widget.ArrayAdapter;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
-import java.util.Objects;
-
-import club.plus1.forcetaxi.R;
-import club.plus1.forcetaxi.old.OldServer;
+import club.plus1.forcetaxi.model.ResponseBalance;
+import club.plus1.forcetaxi.model.ResponseRegistration;
+import club.plus1.forcetaxi.model.TransactionStatus;
 import club.plus1.forcetaxi.service.ActiveLog;
+import club.plus1.forcetaxi.stub.ConstantStub;
+import club.plus1.forcetaxi.stub.ResponseBalanceStub;
+import club.plus1.forcetaxi.stub.ResponseRegistrationStub;
+import club.plus1.forcetaxi.stub.ServerStub;
 import club.plus1.forcetaxi.view.BalanceRechargeActivity;
 import club.plus1.forcetaxi.view.BalanceRechargeResultActivity;
 import club.plus1.forcetaxi.view.BalanceSberbankActivity;
@@ -44,16 +47,18 @@ public class BalanceViewModel {
     private static BalanceViewModel mInstance;  // Ссылка для биндинга с View
     // Ссылки MVVM
     public ArrayAdapter<String> adapter;        // Ссылка на адаптер во View
-    private OldServer oldServer;                      // Ссылка на Model
+    private ServerStub server;                  // Ссылка на Model сервера
+    private ResponseBalance responseBalance;    // Ссылка на Model баланса
+    private ResponseRegistration responseReg;   // Ссылка на Model регистрации
 
     // Конструктор класса
     private BalanceViewModel(Context context) {
         ActiveLog.getInstance().log();
-        oldServer = OldServer.getInstance(context);
+        server = ServerStub.getInstance(ConstantStub.APP_TOKEN);
+        responseBalance = new ResponseBalanceStub(ConstantStub.APP_TOKEN);
+        responseReg = new ResponseRegistrationStub(ConstantStub.APP_TOKEN);
         balance.set(0);
-        adapter = new ArrayAdapter<>(context, R.layout.balance_item, R.id.textStatus, oldServer.transactions);
-        fio.set(oldServer.oldUser.getFio());
-        inn.set(oldServer.oldUser.inn);
+        //adapter = new ArrayAdapter<>(context, R.layout.balance_item, R.id.textStatus, oldServer.transactions);
     }
 
     // Получение единственного экземпляра класса
@@ -78,8 +83,8 @@ public class BalanceViewModel {
     // Вызывает серверный метод sendSMS
     public void onSendSberbank(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.sendSMS(context, phone.get());
-        result.set(oldServer.getError().getText());
+        responseReg.requestSmsCode(phone.get());
+        result.set(responseReg.getErrorText());
         Intent intent = new Intent(context, BalanceSberbankActivity.class);
         context.startActivity(intent);
     }
@@ -89,12 +94,15 @@ public class BalanceViewModel {
     // Вызывает серверный метод refillBalance
     public void onRechargeSberbank(Context context) {
         ActiveLog.getInstance().log();
+        responseBalance.balance();
+        /*
         oldServer.refillBalance(context, amount.get(), gett.get());
         oldServer.refillBalance(context, amount.get(), ytaxi.get());
         oldServer.refillBalance(context, amount.get(), city.get());
         oldServer.refillBalance(context, amount.get(), bolt.get());
-        status.set(Objects.requireNonNull(oldServer.getArgs().get("status")).toString());
-        result.set(oldServer.getError().getText());
+         */
+        status.set(TransactionStatus.processing.toString());
+        result.set(responseBalance.getErrorText());
         Intent intent = new Intent(context, BalanceRechargeResultActivity.class);
         context.startActivity(intent);
     }
@@ -112,8 +120,8 @@ public class BalanceViewModel {
     // Вызывает серверный метод sendSMS
     public void onSendLink(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.sendSMS(context, phone.get());
-        result.set(oldServer.getError().getText());
+        responseReg.requestSmsCode(phone.get());
+        result.set(responseReg.getErrorText());
         Intent intent = new Intent(context, BalanceSberbankResultActivity.class);
         context.startActivity(intent);
     }

@@ -1,12 +1,22 @@
 package club.plus1.forcetaxi.model;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface ResponseAuth {
 
     // Параметры, возращаемые методами сервера
-    boolean ok = false;         // Результат работы метода
-    ServerError error = null;   // Описание результата работы с кодом и текстом
-    String appToken = "";       // Все функции требуют установленный appToken
-    String userToken = "";      // Токен авторизации пользователя
+    boolean ok = false;          // Результат работы метода
+    ServerError error = null;    // Описание результата работы с кодом и текстом
+    String appToken = "";               // Все функции требуют установленный appToken
+    String userToken = "";              // Токен авторизации пользователя
+
+    /**
+     * Возвращает текст ошибки, если она есть
+     *
+     * @return String - текст ошибки, если она есть
+     */
+    @NotNull
+    String getErrorText();
 
     /**
      * Метод для авторизации юзера
@@ -37,4 +47,13 @@ public interface ResponseAuth {
      * Метод для деавторизации юзера
      */
     void logout();
+
+    // TODO: Метод ниже нужно добавить в API
+
+    /**
+     * Метод отправки письма с инструкциями
+     *
+     * @param email - электронная почта юзера
+     */
+    void sendMail(String email);
 }

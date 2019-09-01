@@ -1,11 +1,21 @@
 package club.plus1.forcetaxi.model;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface ResponseRegistration {
 
     // Параметры, возращаемые методами сервера
-    boolean ok = false;         // Результат работы метода
-    ServerError error = null;   // Описание результата работы с кодом и текстом
-    String appToken = "";       // Все функции требуют установленный appToken
+    boolean ok = false;          // Результат работы метода
+    ServerError error = null;    // Описание результата работы с кодом и текстом
+    String appToken = "";               // Все функции требуют установленный appToken
+
+    /**
+     * Возвращает текст ошибки, если она есть
+     *
+     * @return String - текст ошибки, если она есть
+     */
+    @NotNull
+    String getErrorText();
 
     /**
      * Метод проверки регистрации номера телефона

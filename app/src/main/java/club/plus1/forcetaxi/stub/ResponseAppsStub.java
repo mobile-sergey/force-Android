@@ -1,13 +1,15 @@
 package club.plus1.forcetaxi.stub;
 
+import org.jetbrains.annotations.NotNull;
+
 import club.plus1.forcetaxi.model.ResponseApps;
 import club.plus1.forcetaxi.model.ServerError;
 
 public class ResponseAppsStub implements ResponseApps {
 
     // Основные переменные класса
-    boolean ok;         // Результат работы метода
-    ServerError error;  // Описание результата работы с кодом и текстом
+    public boolean ok;          // Результат работы метода
+    public ServerError error;   // Описание результата работы с кодом и текстом
 
     /**
      * Конструктор класса с заполнением начальными данными
@@ -15,6 +17,16 @@ public class ResponseAppsStub implements ResponseApps {
     public ResponseAppsStub() {
         ok = false;
         error = new ServerError("unknown_error", "");
+    }
+
+    /**
+     * Возвращает текст ошибки, если она есть
+     *
+     * @return String - текст ошибки, если она есть
+     */
+    @NotNull
+    public String getErrorText() {
+        return error.getText();
     }
 
     /**

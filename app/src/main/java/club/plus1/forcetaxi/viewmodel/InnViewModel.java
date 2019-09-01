@@ -5,11 +5,11 @@ import android.content.Intent;
 
 import androidx.databinding.ObservableField;
 
-import java.util.Objects;
-
-import club.plus1.forcetaxi.old.OldServer;
+import club.plus1.forcetaxi.model.ResponseUser;
 import club.plus1.forcetaxi.service.ActiveLog;
 import club.plus1.forcetaxi.stub.ConstantStub;
+import club.plus1.forcetaxi.stub.ResponseUserStub;
+import club.plus1.forcetaxi.stub.ServerStub;
 import club.plus1.forcetaxi.view.InnBindActivity;
 import club.plus1.forcetaxi.view.InnBindResultActivity;
 import club.plus1.forcetaxi.view.InnInfoActivity;
@@ -17,6 +17,8 @@ import club.plus1.forcetaxi.view.InnSearchActivity;
 import club.plus1.forcetaxi.view.InnSearchResultActivity;
 import club.plus1.forcetaxi.view.InnSetResultActivity;
 import club.plus1.forcetaxi.view.MenuCheckActivity;
+
+import static java.util.Objects.requireNonNull;
 
 public class InnViewModel {
 
@@ -28,6 +30,7 @@ public class InnViewModel {
 
     // Поля экрана "13.	Поиск ИНН"
     public ObservableField<String> phone = new ObservableField<>();
+    public ObservableField<String> birthday = new ObservableField<>();
     public ObservableField<String> surname = new ObservableField<>();
     public ObservableField<String> name = new ObservableField<>();
     public ObservableField<String> patronymic = new ObservableField<>();
@@ -44,17 +47,15 @@ public class InnViewModel {
 
     // Ссылки MVVM
     private static InnViewModel mInstance;  // Ссылка для биндинга с View
-    private OldServer oldServer;                  // Ссылка на Model
+    private ServerStub server;              // Ссылка на Model сервера
+    private ResponseUser responseUser;      // Ссылка на Model ответа по пользователю
 
     // Конструктор класса
     private InnViewModel(Context context) {
         ActiveLog.getInstance().log();
-        oldServer = OldServer.getInstance(context);
+        server = ServerStub.getInstance(ConstantStub.APP_TOKEN);
+        responseUser = new ResponseUserStub(ConstantStub.APP_TOKEN);
         url.set(ConstantStub.URL_INFO);
-        inn.set("");
-        fio.set(oldServer.oldUser.getFio());
-        oktmo.set(oldServer.oldUser.oktmo);
-        dateFNS.set(oldServer.oldUser.dateFNS);
     }
 
     // Получение единственного экземпляра класса
@@ -79,8 +80,8 @@ public class InnViewModel {
     // Вызывает серверный метод setINN
     public void onInnSet(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.setINN(context, inn.get());
-        result.set(oldServer.getError().getText());
+        responseUser.checkConnectedTin(inn.get());
+        result.set(responseUser.getErrorText());
         Intent intent = new Intent(context, InnSetResultActivity.class);
         context.startActivity(intent);
     }
@@ -91,7 +92,7 @@ public class InnViewModel {
     // Выполняется при нажатии на экране
     public void onSetResult(Context context) {
         ActiveLog.getInstance().log();
-        if (Objects.requireNonNull(inn.get()).isEmpty()) {
+        if (requireNonNull(inn.get()).isEmpty()) {
             Intent intent = new Intent(context, InnSearchActivity.class);
             context.startActivity(intent);
         } else {
@@ -105,9 +106,9 @@ public class InnViewModel {
     // Вызывает серверный метод searchINN
     public void onSearch(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.searchINN(context, phone.get(), surname.get(), name.get(), patronymic.get(), docSeries.get(), docNumber.get());
-        inn.set(Objects.requireNonNull(oldServer.getArgs().get("inn")).toString());
-        result.set(oldServer.getError().getText());
+        inn.set(responseUser.searchTin(surname.get(), name.get(), patronymic.get(),
+                birthday.get(), docSeries.get(), docNumber.get()));
+        result.set(responseUser.getErrorText());
         Intent intent = new Intent(context, InnSearchResultActivity.class);
         context.startActivity(intent);
     }
@@ -126,7 +127,7 @@ public class InnViewModel {
     // Выполняется нажатии на экране
     public void onSearchResult(Context context) {
         ActiveLog.getInstance().log();
-        if (Objects.requireNonNull(inn.get()).isEmpty()) {
+        if (requireNonNull(inn.get()).isEmpty()) {
             Intent intent = new Intent(context, InnInfoActivity.class);
             context.startActivity(intent);
         } else {
@@ -140,8 +141,8 @@ public class InnViewModel {
     // Вызывает серверный метод tightenIncome
     public void onBind(Context context) {
         ActiveLog.getInstance().log();
-        oldServer.tightenIncome(context, inn.get());
-        result.set(oldServer.getError().getText());
+        responseUser.connectTin(inn.get());
+        result.set(responseUser.getErrorText());
         Intent intent = new Intent(context, InnBindResultActivity.class);
         context.startActivity(intent);
     }

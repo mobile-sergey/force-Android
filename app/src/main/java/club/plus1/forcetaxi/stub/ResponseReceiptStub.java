@@ -1,5 +1,7 @@
 package club.plus1.forcetaxi.stub;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Map;
 
 import club.plus1.forcetaxi.model.ResponseReceipt;
@@ -10,8 +12,8 @@ import club.plus1.forcetaxi.service.Regex;
 public class ResponseReceiptStub implements ResponseReceipt {
 
     // Основные переменные класса
-    boolean ok;                 // Результат работы метода
-    ServerError error;          // Описание результата работы с кодом и текстом
+    public boolean ok;          // Результат работы метода
+    public ServerError error;   // Описание результата работы с кодом и текстом
     ServerStub server;          // Заглушка для сервера и всех переменных
 
     /**
@@ -23,6 +25,16 @@ public class ResponseReceiptStub implements ResponseReceipt {
         ok = false;
         error = new ServerError("unknown_error", "");
         server = ServerStub.getInstance(appToken);
+    }
+
+    /**
+     * Возвращает текст ошибки, если она есть
+     *
+     * @return String - текст ошибки, если она есть
+     */
+    @NotNull
+    public String getErrorText() {
+        return error.getText();
     }
 
     /**
@@ -46,14 +58,14 @@ public class ResponseReceiptStub implements ResponseReceipt {
             ok = false;
             error = new ServerError("wrong_amount");
             return null;
-        } else if (!server.tinConnected) {
+        } else if (!server.user.tinConnected) {
             ok = false;
             error = new ServerError("tin_not_connected");
             return null;
         } else {
             ok = true;
             error = new ServerError("");
-            ServerReceipt receipt = new ServerReceipt(server.receipts.size(), clientPhoneNumber, amount);
+            ServerReceipt receipt = new ServerReceipt(server.receipts.size(), clientPhoneNumber, amount, server.user);
             server.receipts.put(receipt.id, receipt);
             return receipt;
         }
@@ -68,7 +80,7 @@ public class ResponseReceiptStub implements ResponseReceipt {
      */
     @Override
     public Map<Integer, ServerReceipt> getReceipts(int limit, int offset) {
-        if (!server.tinConnected) {
+        if (!server.user.tinConnected) {
             ok = false;
             error = new ServerError("tin_not_connected");
             return null;
@@ -95,7 +107,7 @@ public class ResponseReceiptStub implements ResponseReceipt {
             ok = false;
             error = new ServerError("receipt_not_found");
             return null;
-        } else if (!server.tinConnected) {
+        } else if (!server.user.tinConnected) {
             ok = false;
             error = new ServerError("tin_not_connected");
             return null;
@@ -122,7 +134,7 @@ public class ResponseReceiptStub implements ResponseReceipt {
             ok = false;
             error = new ServerError("receipt_not_found");
             return null;
-        } else if (!server.tinConnected) {
+        } else if (!server.user.tinConnected) {
             ok = false;
             error = new ServerError("tin_not_connected");
             return null;

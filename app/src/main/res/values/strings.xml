@@ -49,6 +49,7 @@
     <string name="button_inn_set">Продолжить</string>
 
     <!-- Экран 13.Поиск ИНН (inn_search.xml) -->
+    <string name="edit_birthday">Дата рождения</string>
     <string name="edit_surname">Фамилия</string>
     <string name="edit_name">Имя</string>
     <string name="edit_patronymic">Отчество</string>

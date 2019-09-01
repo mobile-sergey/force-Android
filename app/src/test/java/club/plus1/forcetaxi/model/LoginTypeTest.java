@@ -13,8 +13,8 @@ public class LoginTypeTest {
     }
 
     @Test
-    public void toString1() {
+    public void toString_test() {
         LoginType loginType = LoginType.phone;
-        assertEquals("phone", loginType.toString());
+        assertEquals("Мобильный телефон", loginType.toString());
     }
 }
